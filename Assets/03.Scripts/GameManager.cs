@@ -25,6 +25,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     [SerializeField]
     private MapController mapController;
+    public int Offset
+    {
+        get
+        {
+            return Mathf.CeilToInt(size / 2f);
+        }
+    }
     public int Width
     {
         get

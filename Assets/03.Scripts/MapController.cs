@@ -14,6 +14,11 @@ public class MapController : MonoSingleton<MapController>
 	[SerializeField]
 	private float distance;
 
+	public float Distance
+    {
+		get { return distance; }
+    }
+
 
 	private Vector2 min;
 	private GameObject[][] map;
