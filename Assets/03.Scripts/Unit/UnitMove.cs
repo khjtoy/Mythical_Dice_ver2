@@ -6,11 +6,17 @@ public abstract class UnitMove : MonoBehaviour
 {
     [SerializeField] protected Vector3 _pos;
 
-    protected Vector3 GamePos
+    public Vector3 WorldPos
+    {
+        get { return _pos; }
+    }
+    public Vector3Int GamePos
     { 
         get
         {
-            Vector3 pos = (_pos + new Vector3(GameManager.Instance.Offset, 0, GameManager.Instance.Offset)) / MapController.Instance.Distance;
+            int offsetX = Mathf.RoundToInt((_pos.x + GameManager.Instance.Offset) / MapController.Instance.Distance);
+            int offsetZ = Mathf.RoundToInt((_pos.z + GameManager.Instance.Offset) / MapController.Instance.Distance);
+            Vector3Int pos = new Vector3Int(offsetX, 0, offsetZ);
             return pos; 
         }
     }

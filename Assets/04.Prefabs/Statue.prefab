@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &671802063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671802064}
+  - component: {fileID: 671802066}
+  m_Layer: 0
+  m_Name: ToIdle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671802064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671802063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2493506666024467886}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671802066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671802063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ba5a8f563a79947b66a91d52a03565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartState: {fileID: 3452942249786341114}
+  PositiveCondition: []
+  NegativeCondition: []
+  goalState: {fileID: 2606210051972493052}
+  IsPositiveAnd: 0
+  IsNegativeAnd: 0
 --- !u!1 &787679974
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cf5a950ad1e114787badeb46a2546e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <transitions>k__BackingField: []
+  <EnemyState>k__BackingField: 0
+  <EnemyMove>k__BackingField: {fileID: 99458710}
+  <Transitions>k__BackingField:
+  - {fileID: 7363292510318666596}
   <IsLoop>k__BackingField: 0
 --- !u!1 &3085119892097226809
 GameObject:
@@ -150,7 +202,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 671802064}
   m_Father: {fileID: 787679975}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,9 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4d12f8cdd3fde409a5fb460fdb16f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <transitions>k__BackingField: []
+  <EnemyState>k__BackingField: 1
+  <EnemyMove>k__BackingField: {fileID: 99458710}
+  <Transitions>k__BackingField:
+  - {fileID: 671802066}
   <IsLoop>k__BackingField: 0
-  _skillStamp: {fileID: 0}
 --- !u!1 &3290847449993731370
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1064643412800600097}
   - component: {fileID: 7363292510318666596}
+  - component: {fileID: 1553873228}
   m_Layer: 0
   m_Name: ToStamp
   m_TagString: Untagged
@@ -213,11 +269,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartState: {fileID: 2606210051972493052}
-  PositiveCondition: []
+  PositiveCondition:
+  - {fileID: 1553873228}
   NegativeCondition: []
-  goalState: {fileID: 0}
+  goalState: {fileID: 3452942249786341114}
   IsPositiveAnd: 0
   IsNegativeAnd: 0
+--- !u!114 &1553873228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290847449993731370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2d131512dca5468f8e3ea41834d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goalTime: 5
 --- !u!1 &7904570817087820979
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7904570817365517874}
+  - component: {fileID: 99458710}
   m_Layer: 0
   m_Name: Statue
   m_TagString: Untagged
@@ -363,3 +434,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &99458710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904570817365517875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322659f6bb197114db047e15ac71c65e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

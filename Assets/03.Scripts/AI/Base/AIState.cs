@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,5 +14,5 @@ public abstract class AIState : MonoBehaviour
     public List<AITransition> Transitions { get; set; }
     [field:SerializeField]
     public bool IsLoop { get; set; }
-    public abstract void DoAction();
+    public abstract void DoAction(Action callback = null);
 }
