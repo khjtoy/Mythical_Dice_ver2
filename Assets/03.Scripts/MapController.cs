@@ -15,15 +15,16 @@ public class MapController : MonoSingleton<MapController>
 	private float distance;
 
 	public float Distance
-    {
+	{
 		get { return distance; }
-    }
+	}
 
 
 	private Vector2 min;
 	private GameObject[][] map;
-    public DiceDirecting[][] dices;
-	private int[][] mapCost;
+	public DiceDirecting[][] dices;
+	[SerializeField]
+	public int[][] mapCost = new int[3][];
 	public GameObject[][] MAP { get => map; }
 
 	private GameManager gameManager;
@@ -220,16 +221,6 @@ public class MapController : MonoSingleton<MapController>
 			else
 				FloorDirect(x, y + 1, isfirst);
 		}
-	}
-
-	public static int PosToArray(float pos)
-	{
-		return Mathf.RoundToInt(pos / 1.5f + GameManager.Instance.Size / 2);
-	}
-
-	public static Vector3 ArrayToPos(int indexX, int indexY)
-    {
-		return new Vector3((GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexX), (GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexY), 0);
 	}
 
 }
