@@ -17,14 +17,14 @@ public class SkillStamp : EnemySkill
         seq.Append(baseTrm.DOLocalMoveY(0, 0.2f).SetEase(Ease.InExpo));
         seq.AppendCallback(() =>
         {
-            GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x + 1, enemyMove.GamePos.y - 1);
-            BoomMap.Instance.Boom(enemyMove.GamePos.x + 1, enemyMove.GamePos.y - 1);
-            GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x + 1, enemyMove.GamePos.y + 1);
-            BoomMap.Instance.Boom(enemyMove.GamePos.x + 1, enemyMove.GamePos.y + 1);
-            GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x - 1, enemyMove.GamePos.y - 1);
-            BoomMap.Instance.Boom(enemyMove.GamePos.x - 1, enemyMove.GamePos.y - 1);
-            GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x - 1, enemyMove.GamePos.y + 1);
-            BoomMap.Instance.Boom(enemyMove.GamePos.x - 1, enemyMove.GamePos.y + 1);
+            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x + 1, enemyMove.GamePos.y - 1);
+            //BoomMap.Instance.Boom(enemyMove.GamePos.x + 1, enemyMove.GamePos.y - 1);
+            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x + 1, enemyMove.GamePos.y + 1);
+            //BoomMap.Instance.Boom(enemyMove.GamePos.x + 1, enemyMove.GamePos.y + 1);
+            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x - 1, enemyMove.GamePos.y - 1);
+            //BoomMap.Instance.Boom(enemyMove.GamePos.x - 1, enemyMove.GamePos.y - 1);
+            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x - 1, enemyMove.GamePos.y + 1);
+            //BoomMap.Instance.Boom(enemyMove.GamePos.x - 1, enemyMove.GamePos.y + 1);
             callback?.Invoke();
         });
     }

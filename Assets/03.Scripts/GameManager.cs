@@ -7,10 +7,6 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [Header("¸Ê Å©±â ÁöÁ¤")]
     [SerializeField]
-    private int width;
-    [SerializeField]
-    private int height;
-    [SerializeField]
     private int size;
 
     [field: SerializeField]
@@ -30,20 +26,6 @@ public class GameManager : MonoSingleton<GameManager>
         get
         {
             return Mathf.CeilToInt(size / 2f);
-        }
-    }
-    public int Width
-    {
-        get
-        {
-            return width;
-        }
-    }
-    public int Height
-    {
-        get
-        {
-            return height;
         }
     }
 

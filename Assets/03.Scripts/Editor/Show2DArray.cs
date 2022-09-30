@@ -35,7 +35,7 @@ public class Show2DArray : EditorWindow
 
         //Cube cu = GameObject.Find("Cube").GetComponent<Cube>();
         debug2d = new int[1000][];
-        debug2d = cu.mapCost.Clone() as int[][];
+        debug2d = cu.MapNum.Clone() as int[][];
         for (int i = GameManager.Instance.Size - 1; i >= 0 ; i--)
         {
             GUILayout.BeginHorizontal();

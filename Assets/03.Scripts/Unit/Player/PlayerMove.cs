@@ -43,11 +43,10 @@ public class PlayerMove : UnitMove
             return;
         }
         seq = DOTween.Sequence();
-        seq.Append(transform.DOLocalMove(_pos, 0.2f));
+        seq.Append(transform.DOLocalMove(_pos, 0.17f).SetEase(Ease.InFlash));
         seq.AppendCallback(() =>
         {
             _isMoving = false;
-            Debug.Log(GamePos);
             seq.Kill();
         });
        }
