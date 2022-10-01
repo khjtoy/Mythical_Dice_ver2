@@ -5,26 +5,31 @@ using DG.Tweening;
 
 public class DiceDirecting : MonoBehaviour
 {
-	public ParticleSystem[] diceParticel;
+	[Header("´ÙÀÌ½º ÇÒ ¿ÀºêÁ§Æ®")]
+	[SerializeField]
+	private GameObject DiceObjet;
 
-	public Vector3[] DiceRotationVector;
+	[Header("ÆÄÆ¼Å¬µé")]
+	[SerializeField]
+	private ParticleSystem[] diceParticel;
 
-	public GameObject DiceObjet;
+	[Header("´ÙÀÌ½º ÇÒ ½ºÇÇµå")]
+	[SerializeField]
+	private float speed = 5f;
 
-	public bool isDiceDirecting = false;
+	[Header("´ÙÀÌ½º ¸ØÃß´Â ½Ã°£")]
+	[SerializeField]
+	private float wait;
 
-	[HideInInspector]
-	public int thisNum;
+	[SerializeField]
+	private Vector3[] DiceRotationVector;
 
-	public float speed = 5f;
+	private int randoms;
+	private bool isDiceDirecting = false;
 
-	[Header("ï¿½ï¿½Ù¸ï¿½ï¿½ï¿?ï¿½âº» ï¿½Ã°ï¿½")]
-	public float wait;
-
-	public int randoms;
+	public int Randoms => randoms;
 
 	public Vector2Int Pos = Vector2Int.zero;
-	public Vector2Int playerIndex;
 	void Update()
 	{
 		if (isDiceDirecting)
@@ -33,6 +38,10 @@ public class DiceDirecting : MonoBehaviour
 		}
 	}
 
+	public void DiceStart()
+	{
+		isDiceDirecting = true;
+	}
 	public void DiceNumSelect()
 	{
 		randoms = Random.Range(1, 7);
@@ -66,6 +75,9 @@ public class DiceDirecting : MonoBehaviour
 	}
 	public IEnumerator BasicDiceNumSelect()
 	{
+		transform.rotation = Quaternion.Euler(0, 0, 0);
+		isDiceDirecting = true;
+		Debug.Log("?");
 		yield return new WaitForSeconds(wait);
 		
 		//playerIndex = new Vector2Int(MapController.PosToArray(Define.Player.x), MapController.PosToArray(Define.Player.y));
@@ -74,7 +86,6 @@ public class DiceDirecting : MonoBehaviour
 		//	Define.Controller.OnHits(randoms);
   //      }
 		randoms = Random.Range(1, 7);
-		thisNum = randoms;
 		DiceObjet.transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
 		for (int i = 0; i < diceParticel.Length; i++)
