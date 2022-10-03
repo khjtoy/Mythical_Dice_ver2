@@ -25,9 +25,9 @@ public class MapController : MonoSingleton<MapController>
 
 	private int[,] mapNum;
 	public int[,] MapNum
-    {
+	{
 		get { return mapNum; }
-    }
+	}
 
 	public DiceDirecting[,] dices;
 
@@ -55,9 +55,9 @@ public class MapController : MonoSingleton<MapController>
 	}
 	private void SpawnMap()
 	{
-		for(int y = 0; y < GameManager.Instance.Size; y++)
+		for (int y = 0; y < GameManager.Instance.Size; y++)
 		{
-			for(int x = 0; x< GameManager.Instance.Size; x++)
+			for (int x = 0; x < GameManager.Instance.Size; x++)
 			{
 				MapInitSet(y, x);
 			}
@@ -106,6 +106,8 @@ public class MapController : MonoSingleton<MapController>
 		if (!isLeft && !isfirst)
 			condition = new Vector2(GameManager.Instance.Size - 1, condition.y);
 
+		if (!isDual && GameManager.Instance.Size % 2 == 0 && !isfirst)
+			condition = new Vector2(condition.x, 0);
 
 		if (!isDual)
 		{
@@ -143,9 +145,9 @@ public class MapController : MonoSingleton<MapController>
 		}
 
 
-		diceObjectArr[y,x].transform.localRotation = Quaternion.Euler(0, 0, 0);
-		dices[y, x].DiceStart();
 
+		diceObjectArr[y, x].transform.localRotation = Quaternion.Euler(0, 0, 0);
+		dices[y, x].DiceStart();
 		isfirst = true;
 		StartCoroutine(WaitFloor(x, y, isfirst));
 	}
@@ -155,13 +157,16 @@ public class MapController : MonoSingleton<MapController>
 		yield return new WaitForSeconds(floorChangeTime);
 
 		dices[y, x].DiceNumSelect();
-		mapNum[y,x] = dices[y,x].Randoms;
+		mapNum[y, x] = dices[y, x].Randoms;
 
 		if (!isDual)
 		{
+			Debug.Log(condition.x);
+			Debug.Log(condition.y);
 			if (x == condition.x && y == condition.y)
 			{
-				Boom();
+				//Boom();
+				Debug.Log("?");
 				GameManager.Instance.StageStart = true;
 				yield break;
 			}
@@ -170,6 +175,7 @@ public class MapController : MonoSingleton<MapController>
 				x += isLeft == true ? -1 : 1;
 			else
 				y += isDown == true ? -1 : 1;
+
 			FloorInit(x, y, isfirst);
 		}
 		else
@@ -198,9 +204,10 @@ public class MapController : MonoSingleton<MapController>
 		{
 			for (int j = 0; j < GameManager.Instance.Size; j++)
 			{
-				if (dices[i,j].Randoms == brokeNum)
+				if (dices[i, j].Randoms == brokeNum)
 				{
-					MeshRenderer renderer = dices[i,j].GetComponent<MeshRenderer>();
+					MeshRenderer renderer = dices[i, j].GetComponent<MeshRenderer>();
+					Debug.Log(renderer.GetInstanceID());
 					Sequence seq = DOTween.Sequence();
 					seq.Append(renderer.material.DOColor(Color.red, 0.4f));
 					seq.Append(renderer.material.DOColor(new Color(156, 146, 115) / 255, 0.3f));
@@ -208,8 +215,8 @@ public class MapController : MonoSingleton<MapController>
 					int m = j;
 					seq.AppendCallback(() =>
 					{
-						dices[n,m].transform.rotation = Quaternion.Euler(0, 0, 0);
-						StartCoroutine(dices[n,m].BasicDiceNumSelect());
+						dices[n, m].transform.rotation = Quaternion.Euler(0, 0, 0);
+						StartCoroutine(dices[n, m].BasicDiceNumSelect());
 						seq.Kill();
 					});
 				}
@@ -220,9 +227,9 @@ public class MapController : MonoSingleton<MapController>
 	public void Boom(int x, int y)
 	{
 		int brokeNum = GameManager.Instance.BossNum;
-		if (dices[y,x].Randoms == brokeNum)
+		if (dices[y, x].Randoms == brokeNum)
 		{
-			MeshRenderer renderer = dices[y,x].GetComponent<MeshRenderer>();
+			MeshRenderer renderer = dices[y, x].GetComponent<MeshRenderer>();
 			Sequence seq = DOTween.Sequence();
 			seq.Append(renderer.material.DOColor(Color.red, 0.4f));
 			seq.Append(renderer.material.DOColor(new Color(156, 146, 115) / 255, 0.3f));
@@ -230,7 +237,7 @@ public class MapController : MonoSingleton<MapController>
 			int m = x;
 			seq.AppendCallback(() =>
 			{
-				StartCoroutine(dices[n,m].BasicDiceNumSelect());
+				StartCoroutine(dices[n, m].BasicDiceNumSelect());
 				seq.Kill();
 			});
 		}
