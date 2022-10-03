@@ -5,9 +5,6 @@ using DG.Tweening;
 
 public class DiceDirecting : MonoBehaviour
 {
-	[Header("다이스 할 오브젝트")]
-	[SerializeField]
-	private GameObject DiceObjet;
 
 	[Header("파티클들")]
 	[SerializeField]
@@ -24,6 +21,7 @@ public class DiceDirecting : MonoBehaviour
 	[SerializeField]
 	private Vector3[] DiceRotationVector;
 
+	[SerializeField]
 	private int randoms;
 	private bool isDiceDirecting = false;
 
@@ -34,7 +32,7 @@ public class DiceDirecting : MonoBehaviour
 	{
 		if (isDiceDirecting)
 		{
-			DiceObjet.transform.localRotation = Quaternion.Euler(DiceObjet.transform.localEulerAngles + new Vector3(0, 1, 1) * Time.deltaTime * speed);
+			transform.localRotation = Quaternion.Euler(transform.localEulerAngles + new Vector3(0, 1, 1) * Time.deltaTime * speed);
 		}
 	}
 
@@ -45,7 +43,7 @@ public class DiceDirecting : MonoBehaviour
 	public void DiceNumSelect()
 	{
 		randoms = Random.Range(1, 7);
-		DiceObjet.transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms-1]);
+		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms-1]);
 		isDiceDirecting = false;
 		for (int i = 0; i < diceParticel.Length; i++)
 		{
@@ -61,7 +59,7 @@ public class DiceDirecting : MonoBehaviour
 	public void DiceNumSelect(int value)
 	{
 		randoms = value;
-		DiceObjet.transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
+		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
 		for (int i = 0; i < diceParticel.Length; i++)
 		{
@@ -86,7 +84,7 @@ public class DiceDirecting : MonoBehaviour
 		//	Define.Controller.OnHits(randoms);
   //      }
 		randoms = Random.Range(1, 7);
-		DiceObjet.transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
+		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
 		for (int i = 0; i < diceParticel.Length; i++)
 		{

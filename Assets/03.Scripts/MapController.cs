@@ -72,7 +72,7 @@ public class MapController : MonoSingleton<MapController>
 		dices[y, x].Pos = new Vector2Int(x, y);
 		dices[y, x].transform.SetParent(root);
 
-		diceObject = dices[y, x].gameObject.transform.GetChild(0).gameObject;
+		diceObject = dices[y, x].gameObject;
 		float posX = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(x + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + x * distance;
 		float posZ = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(y + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + y * distance;
 		diceObject.transform.localPosition = new Vector3(posX, 0, posZ);

@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9de1fca2fa7214f82a1222b7d29b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 4
+  size: 5
   <BossNum>k__BackingField: 0
   StageNum: 0
   StageStart: 0
@@ -704,7 +704,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
@@ -5730,17 +5730,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1314614606093676721, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834552367294491147, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834552367294491147, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834552367294491147, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.43
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5748,11 +5764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5764,7 +5780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -5773,6 +5789,22 @@ PrefabInstance:
     - target: {fileID: 6819223620161211912, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819223620161211913, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: DiceRotationVector.Array.data[2].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819223620161211913, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: DiceRotationVector.Array.data[2].z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819223620161211913, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: DiceRotationVector.Array.data[3].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819223620161211913, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
+      propertyPath: DiceRotationVector.Array.data[3].z
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6819223620161211915, guid: 49aee8af49b935e43a28f6e482485ef1, type: 3}
       propertyPath: m_Name
