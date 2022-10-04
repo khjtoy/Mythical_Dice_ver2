@@ -6,5 +6,5 @@ using UnityEngine;
 [System.Serializable]
 public abstract class EnemySkill
 {
-    public abstract void DoAttack(Transform baseTrm, Action callback = null);
+    public abstract void DoAttack(UnitMove unit, Action callback = null);
 }

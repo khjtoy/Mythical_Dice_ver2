@@ -27,6 +27,7 @@ public class MapController : MonoSingleton<MapController>
 	public int[,] MapNum
 	{
 		get { return mapNum; }
+		set { mapNum = value; }
 	}
 
 	public DiceDirecting[,] dices;
@@ -161,12 +162,9 @@ public class MapController : MonoSingleton<MapController>
 
 		if (!isDual)
 		{
-			Debug.Log(condition.x);
-			Debug.Log(condition.y);
 			if (x == condition.x && y == condition.y)
 			{
 				//Boom();
-				Debug.Log("?");
 				GameManager.Instance.StageStart = true;
 				yield break;
 			}
@@ -210,7 +208,7 @@ public class MapController : MonoSingleton<MapController>
 					Debug.Log(renderer.GetInstanceID());
 					Sequence seq = DOTween.Sequence();
 					seq.Append(renderer.material.DOColor(Color.red, 0.4f));
-					seq.Append(renderer.material.DOColor(new Color(156, 146, 115) / 255, 0.3f));
+					seq.Append(renderer.material.DOColor(new Color(38, 8, 0) / 255, 0.3f));
 					int n = i;
 					int m = j;
 					seq.AppendCallback(() =>
@@ -229,17 +227,26 @@ public class MapController : MonoSingleton<MapController>
 		int brokeNum = GameManager.Instance.BossNum;
 		if (dices[y, x].Randoms == brokeNum)
 		{
-			MeshRenderer renderer = dices[y, x].GetComponent<MeshRenderer>();
+			MeshRenderer renderer = dices[y, x].transform.GetChild(0).GetComponent<MeshRenderer>();
 			Sequence seq = DOTween.Sequence();
 			seq.Append(renderer.material.DOColor(Color.red, 0.4f));
-			seq.Append(renderer.material.DOColor(new Color(156, 146, 115) / 255, 0.3f));
+			seq.Append(renderer.material.DOColor(new Color(38, 8, 0) / 255, 0.3f));
 			int n = y;
 			int m = x;
 			seq.AppendCallback(() =>
 			{
 				StartCoroutine(dices[n, m].BasicDiceNumSelect());
+				MapNum[n, m] = dices[n, m].Randoms;
 				seq.Kill();
 			});
 		}
+	}
+
+	public void Boom(Vector2Int pos, int value)
+    {
+		dices[pos.y, pos.x].DiceNumSelect(1);
+		MapNum[pos.y, pos.x] = 1;
+		GameManager.Instance.BossNum = 1;
+		Boom(pos.x, pos.y);
 	}
 }

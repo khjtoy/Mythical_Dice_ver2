@@ -75,7 +75,6 @@ public class DiceDirecting : MonoBehaviour
 	{
 		transform.rotation = Quaternion.Euler(0, 0, 0);
 		isDiceDirecting = true;
-		Debug.Log("?");
 		yield return new WaitForSeconds(wait);
 		
 		//playerIndex = new Vector2Int(MapController.PosToArray(Define.Player.x), MapController.PosToArray(Define.Player.y));
@@ -84,6 +83,8 @@ public class DiceDirecting : MonoBehaviour
 		//	Define.Controller.OnHits(randoms);
   //      }
 		randoms = Random.Range(1, 7);
+
+		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
 		for (int i = 0; i < diceParticel.Length; i++)

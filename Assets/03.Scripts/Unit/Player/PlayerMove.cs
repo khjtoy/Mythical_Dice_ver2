@@ -25,7 +25,11 @@ public class PlayerMove : UnitMove
         {
             Translate(Vector3.right * 1.5f);
         }
-
+        //Dice Boom Debug
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MapController.Instance.Boom(Vector2Int.zero, 1);
+        }
     }
     public override void Translate(Vector3 pos)
     {
