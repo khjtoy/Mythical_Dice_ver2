@@ -20,7 +20,19 @@ public class SkillStamp : EnemySkill
         {
             unit.WorldPos = baseTrm.localPosition;
             Vector2Int pos = unit.GamePos;
-            MapController.Instance.Boom(pos, 1);
+            int damage = MapController.Instance.MapNum[pos.y, pos.x];
+            MapController.Instance.Boom(pos, damage);
+            for(int i = 1; i <= GameManager.Instance.Size; i++)
+            {
+                if((pos + Vector2Int.up * i).y < GameManager.Instance.Size)
+                    MapController.Instance.Boom(pos + Vector2Int.up * i, damage);
+                if((pos + Vector2Int.down * i).y >= 0)
+                    MapController.Instance.Boom(pos + Vector2Int.down * i, damage);
+                if((pos + Vector2Int.left * i).x >= 0)
+                    MapController.Instance.Boom(pos + Vector2Int.left * i, damage);
+                if((pos + Vector2Int.right * i).x < GameManager.Instance.Size)
+                    MapController.Instance.Boom(pos + Vector2Int.right * i, damage);
+            }
             callback?.Invoke();
             seq.Kill();
         });

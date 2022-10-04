@@ -236,7 +236,6 @@ public class MapController : MonoSingleton<MapController>
 			seq.AppendCallback(() =>
 			{
 				StartCoroutine(dices[n, m].BasicDiceNumSelect());
-				MapNum[n, m] = dices[n, m].Randoms;
 				seq.Kill();
 			});
 		}
@@ -244,9 +243,9 @@ public class MapController : MonoSingleton<MapController>
 
 	public void Boom(Vector2Int pos, int value)
     {
-		dices[pos.y, pos.x].DiceNumSelect(1);
-		MapNum[pos.y, pos.x] = 1;
-		GameManager.Instance.BossNum = 1;
+		dices[pos.y, pos.x].DiceNumSelect(value);
+		MapNum[pos.y, pos.x] = value;
+		GameManager.Instance.BossNum = value;
 		Boom(pos.x, pos.y);
 	}
 }
