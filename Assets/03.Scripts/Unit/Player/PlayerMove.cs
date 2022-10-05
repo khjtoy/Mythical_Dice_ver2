@@ -5,21 +5,10 @@ using DG.Tweening;
 
 public class PlayerMove : UnitMove
 {
-    Sequence seq = null;
-    int hashSlide = Animator.StringToHash("Slide");
-    int hashCrouch = Animator.StringToHash("Crouch");
-    int hashRise = Animator.StringToHash("Rise");
-
-    	float movePos
-	{
-		get
-		{
-			return MapController.Instance.Distance;
-		}
-	}
-	private void Start()
-	{
-	}
+	Sequence seq = null;
+	int hashSlide = Animator.StringToHash("Slide");
+	int hashCrouch = Animator.StringToHash("Crouch");
+	int hashRise = Animator.StringToHash("Rise");
 
 	float movePos
 	{
@@ -33,34 +22,34 @@ public class PlayerMove : UnitMove
 	}
 
 	private void Update()
-	{ 
+	{
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			Translate(Vector3.forward * movePos);
-            animation.PlayAnimator(hashRise);
+			animation.PlayAnimator(hashRise);
 		}
 		if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			Translate(Vector3.back * movePos);
-            animation.PlayAnimator(hashCrouch);
+			animation.PlayAnimator(hashCrouch);
 		}
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			Translate(Vector3.left * movePos);
-            animation.PlayAnimator(hashSlide);
-            transform.localScale = new Vector3Int(-1, 1, 1);
+			animation.PlayAnimator(hashSlide);
+			transform.localScale = new Vector3Int(-1, 1, 1);
 		}
 		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			Translate(Vector3.right * movePos);
-            animation.PlayAnimator(hashSlide);
-            transform.localScale = Vector3Int.one;
+			animation.PlayAnimator(hashSlide);
+			transform.localScale = Vector3Int.one;
 		}
-        //Dice Boom Debug
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            MapController.Instance.Boom(Vector2Int.zero, 1);
-        }
+		//Dice Boom Debug
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			MapController.Instance.Boom(Vector2Int.zero, 1);
+		}
 	}
 	public override void Translate(Vector3 pos)
 	{
