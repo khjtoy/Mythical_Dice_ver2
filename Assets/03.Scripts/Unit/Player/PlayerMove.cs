@@ -6,14 +6,12 @@ using DG.Tweening;
 public class PlayerMove : UnitMove
 {
     Sequence seq = null;
-    [SerializeField]
-    UnitAnimation animation;
     int hashSlide = Animator.StringToHash("Slide");
     int hashCrouch = Animator.StringToHash("Crouch");
     int hashRise = Animator.StringToHash("Rise");
 
     private void Update()
-    {
+    { 
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             Translate(Vector3.forward * 1.5f);
@@ -29,12 +27,14 @@ public class PlayerMove : UnitMove
             Translate(Vector3.left * 1.5f);
             animation.PlayAnimator(hashSlide);
             transform.localScale = new Vector3Int(-1, 1, 1);
+            shadow.TurnPosition(true);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Translate(Vector3.right * 1.5f);
             animation.PlayAnimator(hashSlide);
             transform.localScale = Vector3Int.one;
+            shadow.TurnPosition(false);
         }
         //Dice Boom Debug
         if (Input.GetKeyDown(KeyCode.Space))
