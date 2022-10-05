@@ -27,6 +27,7 @@ public class MapController : MonoSingleton<MapController>
 	public int[,] MapNum
 	{
 		get { return mapNum; }
+		set { mapNum = value; }
 	}
 
 	public DiceDirecting[,] dices;
@@ -72,7 +73,7 @@ public class MapController : MonoSingleton<MapController>
 		dices[y, x].Pos = new Vector2Int(x, y);
 		dices[y, x].transform.SetParent(root);
 
-		diceObject = dices[y, x].gameObject.transform.GetChild(0).gameObject;
+		diceObject = dices[y, x].gameObject;
 		float posX = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(x + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + x * distance;
 		float posZ = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(y + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + y * distance;
 		diceObject.transform.localPosition = new Vector3(posX, 0, posZ);
@@ -206,8 +207,8 @@ public class MapController : MonoSingleton<MapController>
 					MeshRenderer renderer = dices[i, j].GetComponent<MeshRenderer>();
 					Debug.Log(renderer.GetInstanceID());
 					Sequence seq = DOTween.Sequence();
-					seq.Append(renderer.material.DOColor(Color.red, 0.4f));
-					seq.Append(renderer.material.DOColor(new Color(156, 146, 115) / 255, 0.3f));
+					seq.Append(renderer.material.DOColor(Color.red * 0.8f, 0.3f));
+					seq.Append(renderer.material.DOColor(new Color(38, 8, 0) / 255, 0.2f));
 					int n = i;
 					int m = j;
 					seq.AppendCallback(() =>
@@ -226,10 +227,10 @@ public class MapController : MonoSingleton<MapController>
 		int brokeNum = GameManager.Instance.BossNum;
 		if (dices[y, x].Randoms == brokeNum)
 		{
-			MeshRenderer renderer = dices[y, x].GetComponent<MeshRenderer>();
+			MeshRenderer renderer = dices[y, x].transform.GetChild(0).GetComponent<MeshRenderer>();
 			Sequence seq = DOTween.Sequence();
-			seq.Append(renderer.material.DOColor(Color.red, 0.4f));
-			seq.Append(renderer.material.DOColor(new Color(156, 146, 115) / 255, 0.3f));
+			seq.Append(renderer.material.DOColor(Color.red * 0.8f, 0.3f));
+			seq.Append(renderer.material.DOColor(new Color(38, 8, 0) / 255, 0.2f));
 			int n = y;
 			int m = x;
 			seq.AppendCallback(() =>
@@ -238,5 +239,15 @@ public class MapController : MonoSingleton<MapController>
 				seq.Kill();
 			});
 		}
+	}
+
+	public void Boom(Vector2Int pos, int value)
+    {
+		if (pos.x >= GameManager.Instance.Size || pos.x < 0 || pos.y >= GameManager.Instance.Size || pos.y < 0)
+			return;
+		dices[pos.y, pos.x].DiceNumSelect(value);
+		MapNum[pos.y, pos.x] = value;
+		GameManager.Instance.BossNum = value;
+		Boom(pos.x, pos.y);
 	}
 }

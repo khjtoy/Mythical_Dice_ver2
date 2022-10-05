@@ -6,7 +6,7 @@ using UnityEditor;
 public class Show2DArray : EditorWindow
 {
     Object cube;
-    int[][] debug2d;
+    int[,] debug2d;
 
     [MenuItem("Tools/Map Cost Checker")]
     static void init()
@@ -34,13 +34,13 @@ public class Show2DArray : EditorWindow
         MapController cu = go.GetComponent<MapController>();
 
         //Cube cu = GameObject.Find("Cube").GetComponent<Cube>();
-        debug2d = new int[1000][];
-        debug2d = cu.MapNum.Clone() as int[][];
+        debug2d = new int[1000,1000];
+        debug2d = cu.MapNum.Clone() as int[,];
         for (int i = GameManager.Instance.Size - 1; i >= 0 ; i--)
         {
             GUILayout.BeginHorizontal();
             for (int k = 0; k < GameManager.Instance.Size; k++)
-                debug2d[i][k] = EditorGUILayout.IntField(debug2d[i][k]);
+                debug2d[i,k] = EditorGUILayout.IntField(debug2d[i,k]);
             GUILayout.EndHorizontal();
         }
     }

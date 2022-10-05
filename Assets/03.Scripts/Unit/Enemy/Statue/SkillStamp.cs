@@ -7,8 +7,10 @@ using DG.Tweening;
 public class SkillStamp : EnemySkill
 {
     Sequence seq = null;
-    public override void DoAttack(Transform baseTrm, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action callback = null)
     {
+        int skillCase = UnityEngine.Random.Range(0, 2);
+        Transform baseTrm = unit.transform;
         EnemyMove enemyMove = Define.EnemyMove;
         seq = DOTween.Sequence();
         seq.Append(baseTrm.DOLocalMoveY(1, 0.5f));
@@ -17,15 +19,27 @@ public class SkillStamp : EnemySkill
         seq.Append(baseTrm.DOLocalMoveY(0, 0.2f).SetEase(Ease.InExpo));
         seq.AppendCallback(() =>
         {
-            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x + 1, enemyMove.GamePos.y - 1);
-            //BoomMap.Instance.Boom(enemyMove.GamePos.x + 1, enemyMove.GamePos.y - 1);
-            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x + 1, enemyMove.GamePos.y + 1);
-            //BoomMap.Instance.Boom(enemyMove.GamePos.x + 1, enemyMove.GamePos.y + 1);
-            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x - 1, enemyMove.GamePos.y - 1);
-            //BoomMap.Instance.Boom(enemyMove.GamePos.x - 1, enemyMove.GamePos.y - 1);
-            //GameManager.Instance.BossNum = MapController.Instance.GetIndexCost(enemyMove.GamePos.x - 1, enemyMove.GamePos.y + 1);
-            //BoomMap.Instance.Boom(enemyMove.GamePos.x - 1, enemyMove.GamePos.y + 1);
+            unit.WorldPos = baseTrm.localPosition;
+            Vector2Int pos = unit.GamePos;
+            int damage = MapController.Instance.MapNum[pos.y, pos.x];
+            
+            switch (skillCase)
+            {
+                case 0:
+                    {
+                        CrossAttack(pos, damage);
+                        break;
+                    }
+                case 1:
+                    {
+                        RangeAttack(pos, 1, damage);
+                        break;
+                    }
+            }
+
+            
             callback?.Invoke();
+            seq.Kill();
         });
     }
 

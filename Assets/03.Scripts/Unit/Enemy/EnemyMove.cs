@@ -20,7 +20,7 @@ public class EnemyMove : UnitMove
     }
     public void DoSkill(EnemyAIState state, Action callback = null)
     {
-        _enemySkillDict[state].DoAttack(transform, callback);
+        _enemySkillDict[state].DoAttack(this, callback);
     }
 
     public override void Translate(Vector3 pos)
