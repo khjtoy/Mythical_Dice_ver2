@@ -9,6 +9,7 @@ public class SkillStamp : EnemySkill
     Sequence seq = null;
     public override void DoAttack(UnitMove unit, Action callback = null)
     {
+        int skillCase = UnityEngine.Random.Range(0, 2);
         Transform baseTrm = unit.transform;
         EnemyMove enemyMove = Define.EnemyMove;
         seq = DOTween.Sequence();
@@ -21,18 +22,22 @@ public class SkillStamp : EnemySkill
             unit.WorldPos = baseTrm.localPosition;
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
-            MapController.Instance.Boom(pos, damage);
-            for(int i = 1; i <= GameManager.Instance.Size; i++)
+            
+            switch (skillCase)
             {
-                if((pos + Vector2Int.up * i).y < GameManager.Instance.Size)
-                    MapController.Instance.Boom(pos + Vector2Int.up * i, damage);
-                if((pos + Vector2Int.down * i).y >= 0)
-                    MapController.Instance.Boom(pos + Vector2Int.down * i, damage);
-                if((pos + Vector2Int.left * i).x >= 0)
-                    MapController.Instance.Boom(pos + Vector2Int.left * i, damage);
-                if((pos + Vector2Int.right * i).x < GameManager.Instance.Size)
-                    MapController.Instance.Boom(pos + Vector2Int.right * i, damage);
+                case 0:
+                    {
+                        CrossAttack(pos, damage);
+                        break;
+                    }
+                case 1:
+                    {
+                        RangeAttack(pos, 1, damage);
+                        break;
+                    }
             }
+
+            
             callback?.Invoke();
             seq.Kill();
         });
