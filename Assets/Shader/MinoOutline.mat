@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineShaderMat
+  m_Name: MinoOutline
   m_Shader: {fileID: -6465566751694194690, guid: 46f20ac0e70c2574fb98f7411f8a0526, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -38,5 +38,5 @@ Material:
     m_Floats:
     - Vector1_00ba9ef463994cb19b70842d2f059876: 1
     m_Colors:
-    - _: {r: 1, g: 0.3019608, b: 0, a: 1}
+    - _: {r: 0.0754717, g: 0.050542418, b: 0, a: 1}
   m_BuildTextureStacks: []

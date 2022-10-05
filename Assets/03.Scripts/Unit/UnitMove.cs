@@ -24,4 +24,8 @@ public abstract class UnitMove : MonoBehaviour
     }
     protected bool _isMoving = false;
     public abstract void Translate(Vector3 pos);
+
+
+    [SerializeField]
+    protected UnitAnimation animation;
 }

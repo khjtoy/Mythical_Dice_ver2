@@ -6,14 +6,12 @@ using DG.Tweening;
 public class PlayerMove : UnitMove
 {
     Sequence seq = null;
-    [SerializeField]
-    UnitAnimation animation;
     int hashSlide = Animator.StringToHash("Slide");
     int hashCrouch = Animator.StringToHash("Crouch");
     int hashRise = Animator.StringToHash("Rise");
 
     private void Update()
-    {
+    { 
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             Translate(Vector3.forward * 1.5f);
