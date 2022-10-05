@@ -250,4 +250,14 @@ public class MapController : MonoSingleton<MapController>
 		GameManager.Instance.BossNum = value;
 		Boom(pos.x, pos.y);
 	}
+
+	public static int PosToArray(float pos)
+	{
+		return Mathf.RoundToInt(pos / 1.5f + GameManager.Instance.Size / 2);
+	}
+
+	public static Vector3 ArrayToPos(int indexX, int indexY)
+	{
+		return new Vector3((GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexX), (GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexY), 0);
+	}
 }

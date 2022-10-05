@@ -4,9 +4,23 @@ using UnityEngine;
 
 public static class Define
 {
+    private static Transform _enemyTrans;
+
     private static Transform _playerTrans;
     private static PlayerMove _playerMove;
     private static EnemyMove _enemyMove;
+
+    public static Transform EnemyTrans
+    {
+        get
+        {
+            if (_enemyTrans == null)
+            {
+                _enemyTrans = GameObject.FindGameObjectWithTag("Boss").transform;
+            }
+            return _enemyTrans;
+        }
+    }
     public static Transform PlayerTrans
     {
         get
@@ -36,7 +50,7 @@ public static class Define
         {
             if (_enemyMove == null)
             {
-                _enemyMove = GameObject.FindObjectOfType<EnemyMove>();
+                _enemyMove = EnemyTrans.GetComponent<EnemyMove>();
             }
             return _enemyMove;
         }

@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &164311437
 Transform:
   m_ObjectHideFlags: 0
@@ -668,6 +668,10 @@ PrefabInstance:
     - target: {fileID: 7904570817365517875, guid: c5f0c765c29b6704fa0b8a78257052aa, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904570817365517875, guid: c5f0c765c29b6704fa0b8a78257052aa, type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5f0c765c29b6704fa0b8a78257052aa, type: 3}
@@ -5687,6 +5691,7 @@ GameObject:
   - component: {fileID: 1962720373}
   - component: {fileID: 1962720375}
   - component: {fileID: 1962720374}
+  - component: {fileID: 1962720376}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5740,3 +5745,18 @@ MonoBehaviour:
     origin_hp: 0
     hp: 0
     atk: 0
+--- !u!114 &1962720376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962720372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a67ba91d83dc634ca8ba6a1dd6428f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation:
+    animator: {fileID: 691774779}
+  attackDelay: 0.5
