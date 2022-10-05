@@ -161,12 +161,9 @@ public class MapController : MonoSingleton<MapController>
 
 		if (!isDual)
 		{
-			Debug.Log(condition.x);
-			Debug.Log(condition.y);
 			if (x == condition.x && y == condition.y)
 			{
 				//Boom();
-				Debug.Log("?");
 				GameManager.Instance.StageStart = true;
 				yield break;
 			}
