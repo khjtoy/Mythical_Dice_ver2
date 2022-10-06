@@ -41,4 +41,5 @@ public static class Define
             return _enemyMove;
         }
     }
+
 }
