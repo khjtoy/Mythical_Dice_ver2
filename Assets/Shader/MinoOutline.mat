@@ -38,5 +38,5 @@ Material:
     m_Floats:
     - Vector1_00ba9ef463994cb19b70842d2f059876: 1
     m_Colors:
-    - _: {r: 0.0754717, g: 0.050542418, b: 0, a: 1}
+    - _: {r: 0.16981131, g: 0.0744117, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -6,6 +6,7 @@ using UnityEngine;
 public enum EnemyAIState{
     IDLE,
     STAMP,
+    JUMP,
     COUNT
 }
 public class EnemyMove : UnitMove
@@ -17,9 +18,16 @@ public class EnemyMove : UnitMove
     {
         _enemySkillDict.Add(EnemyAIState.IDLE, null);
         _enemySkillDict.Add(EnemyAIState.STAMP, new SkillStamp());
+        _enemySkillDict.Add(EnemyAIState.JUMP, new SkillJump());
     }
     public void DoSkill(EnemyAIState state, Action callback = null)
     {
+        Debug.Log(state);
+        if(state == EnemyAIState.IDLE)
+        {
+            callback?.Invoke();
+            return;
+        }
         _enemySkillDict[state].DoAttack(this, callback);
     }
 
