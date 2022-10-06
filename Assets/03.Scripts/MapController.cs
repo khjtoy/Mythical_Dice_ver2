@@ -156,7 +156,6 @@ public class MapController : MonoSingleton<MapController>
 	private IEnumerator WaitFloor(int x, int y, bool isfirst)
 	{
 		yield return new WaitForSeconds(floorChangeTime);
-
 		dices[y, x].DiceNumSelect();
 		mapNum[y, x] = dices[y, x].Randoms;
 

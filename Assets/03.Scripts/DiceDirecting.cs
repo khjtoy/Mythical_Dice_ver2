@@ -5,11 +5,6 @@ using DG.Tweening;
 
 public class DiceDirecting : MonoBehaviour
 {
-
-	[Header("파티클들")]
-	[SerializeField]
-	private ParticleSystem[] diceParticel;
-
 	[Header("다이스 할 스피드")]
 	[SerializeField]
 	private float speed = 5f;
@@ -18,11 +13,14 @@ public class DiceDirecting : MonoBehaviour
 	[SerializeField]
 	private float wait;
 
-	[SerializeField]
-	private Vector3[] DiceRotationVector;
-
+	[Header("다이스 현재 값")]
 	[SerializeField]
 	private int randoms;
+
+	private Vector3[] DiceRotationVector = new Vector3[] 
+	{ new Vector3(0,0,0), new Vector3(90,0,0), new Vector3(0,0,-90),
+	 new Vector3(0,0,90), new Vector3(-90,0,0), new Vector3(180,0,0)};
+
 	private bool isDiceDirecting = false;
 
 	public int Randoms => randoms;
@@ -45,15 +43,7 @@ public class DiceDirecting : MonoBehaviour
 		randoms = Random.Range(1, 7);
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms-1]);
 		isDiceDirecting = false;
-		for (int i = 0; i < diceParticel.Length; i++)
-		{
-			diceParticel[i].Clear();
-		}
-		for (int i = 0; i < diceParticel.Length; i++)
-		{
-			diceParticel[i].Play();
-		}
-
+		ParticleOn();
 	}
 
 	public void DiceNumSelect(int value)
@@ -61,14 +51,7 @@ public class DiceDirecting : MonoBehaviour
 		randoms = value;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
-		for (int i = 0; i < diceParticel.Length; i++)
-		{
-			diceParticel[i].Clear();
-		}
-		for (int i = 0; i < diceParticel.Length; i++)
-		{
-			diceParticel[i].Play();
-		}
+		ParticleOn();
 		//SoundManager.Instance.SetEffectClip((int)EffectEnum.SNAP);
 	}
 	public IEnumerator BasicDiceNumSelect()
@@ -87,22 +70,34 @@ public class DiceDirecting : MonoBehaviour
 		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
-		for (int i = 0; i < diceParticel.Length; i++)
-		{
-			diceParticel[i].Clear();
-		}
-		for (int i = 0; i < diceParticel.Length; i++)
-		{
-			diceParticel[i].Play();
-		}
+		ParticleOn();
 		//if(MapController.PosToArray(this.transform.position.y) == MapController.PosToArray(Define.Player.y))
 		//{
 		//	Define.Controller.gameObject.GetComponent<OnHit>().OnHits(thisNum);
 		//}
 	}
 
+	Sequence sequence;
+	public void UpDownSelect()
+	{
+		Debug.Log("?");
+		isDiceDirecting = true;
+		sequence.Append(this.gameObject.transform.DOMoveY(2f, 0.5f));
+		sequence.Append(this.gameObject.transform.DOMoveY(0f, 0.5f));
+		sequence.AppendCallback(() => { DiceNumSelect(); });
+	}
+
     public void OnDestroy()
     {
 		StopAllCoroutines();
     }
+
+	private void ParticleOn()
+	{
+		ParticleSystem particleSystem = ObjectPool.Instance.GetObject(PoolObjectType.DiceParticle).GetComponent<ParticleSystem>();
+		particleSystem.gameObject.transform.position = this.transform.position + Vector3.up;
+		particleSystem.Clear();
+		particleSystem.Play();
+		StartCoroutine(particleSystem.gameObject.GetComponent<DiceParticleReturn>().ReturnObject());
+	}
 }
