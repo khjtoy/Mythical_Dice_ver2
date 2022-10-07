@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 670804275}
   - component: {fileID: 670804274}
+  - component: {fileID: 670804276}
+  - component: {fileID: 670804277}
   m_Layer: 0
   m_Name: ToDash
   m_TagString: Untagged
@@ -44,11 +46,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartState: {fileID: 4822514865309852164}
-  PositiveCondition: []
+  PositiveCondition:
+  - {fileID: 670804277}
+  - {fileID: 670804276}
   NegativeCondition: []
   goalState: {fileID: 734169900}
   IsPositiveAnd: 1
-  IsNegativeAnd: 1
+  IsNegativeAnd: 0
+--- !u!114 &670804276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670804273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70bcfcc40d0e1d4380bfc90d5842596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &670804277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670804273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb2d131512dca5468f8e3ea41834d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goalTime: 2
 --- !u!1 &671802063
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemyState>k__BackingField: 3
-  <EnemyMove>k__BackingField: {fileID: 0}
+  <EnemyMove>k__BackingField: {fileID: 99458710}
   <Transitions>k__BackingField:
   - {fileID: 1177156880}
   <IsLoop>k__BackingField: 0
@@ -353,6 +382,7 @@ MonoBehaviour:
   <EnemyMove>k__BackingField: {fileID: 99458710}
   <Transitions>k__BackingField:
   - {fileID: 7363292510318666596}
+  - {fileID: 670804274}
   <IsLoop>k__BackingField: 0
 --- !u!1 &3085119892097226809
 GameObject:
