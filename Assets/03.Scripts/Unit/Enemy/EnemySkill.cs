@@ -29,4 +29,24 @@ public abstract class EnemySkill
             }
         }
     }
+    public virtual void RangeWireAttack(Vector2Int pos, int range, int damage)
+    {
+        for (int i = -range; i <= range; i++)
+        {
+            for (int j = -range; j <= range; j++)
+            {
+                if(Mathf.Abs(i) == range || Mathf.Abs(j) == range)
+                    MapController.Instance.Boom(pos + Vector2Int.up * i + Vector2Int.right * j, damage);
+            }
+        }
+    }
+
+    protected IEnumerator WaveAttackCoroutine(Vector2Int pos, int damage, float delay)
+    {
+        for (int i = 0; i <= GameManager.Instance.Size; i++)
+        {
+            RangeWireAttack(pos, i, damage);
+            yield return new WaitForSeconds(delay);
+        }
+    }
 }
