@@ -14,6 +14,7 @@ public class EnemyMove : UnitMove
 {
     private Dictionary<EnemyAIState, EnemySkill> _enemySkillDict = new Dictionary<EnemyAIState, EnemySkill>();
     [SerializeField] private List<EnemySkill> enemySkills = new List<EnemySkill>();
+    
 
     public void Awake()
     {

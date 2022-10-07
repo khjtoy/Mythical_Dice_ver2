@@ -12,6 +12,7 @@ public class SkillStamp : EnemySkill
         int skillCase = UnityEngine.Random.Range(0, 2);
         Transform baseTrm = unit.transform;
         EnemyMove enemyMove = Define.EnemyMove;
+        unit.CanVoid = true;
         seq = DOTween.Sequence();
         seq.Append(baseTrm.DOLocalMoveY(1, 0.5f));
         seq.Append(baseTrm.DOLocalMoveX(Define.PlayerMove.WorldPos.x, 0.3f));
@@ -19,6 +20,7 @@ public class SkillStamp : EnemySkill
         seq.Append(baseTrm.DOLocalMoveY(0, 0.2f).SetEase(Ease.InExpo));
         seq.AppendCallback(() =>
         {
+            unit.CanVoid = false;
             unit.WorldPos = baseTrm.localPosition;
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
