@@ -34,7 +34,7 @@ public class SkillStamp : EnemySkill
                     }
                 case 1:
                     {
-                        RangeAttack(pos, 1, damage);
+                        SquareRangeAttack(pos, 1, damage);
                         break;
                     }
             }

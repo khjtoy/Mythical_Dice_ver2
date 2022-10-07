@@ -19,7 +19,7 @@ public abstract class EnemySkill
             MapController.Instance.Boom(pos + Vector2Int.right * i, damage);
         }
     }
-    public virtual void RangeAttack(Vector2Int pos, int range, int damage)
+    public virtual void SquareRangeAttack(Vector2Int pos, int range, int damage)
     {
         for(int i = -range; i <= range; i++)
         {
@@ -40,7 +40,21 @@ public abstract class EnemySkill
             }
         }
     }
-
+    public virtual void RhombusWireAttack(Vector2Int pos, int range, int damage)
+    {
+        for (int i = -range; i <= range; i++)
+        {
+            int offset = range - Mathf.Abs(i);
+            Vector2Int de = new Vector2Int(offset, i);
+            MapController.Instance.Boom(pos + de, 1);
+        }
+        for (int i = -range; i < range; i++)
+        {
+            int offset = -range + Mathf.Abs(i);
+            Vector2Int de = new Vector2Int(offset, i);
+            MapController.Instance.Boom(pos + de, 1);
+        }
+    }
     protected void PushAttack(Vector2Int pos, Vector2Int direction, int damage)
     {
         Vector2Int temp = Vector2Int.zero;
@@ -64,6 +78,15 @@ public abstract class EnemySkill
         for (int i = 0; i <= GameManager.Instance.Size; i++)
         {
             RangeWireAttack(pos, i, damage);
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+    protected IEnumerator SwimAttackCoroutine(Vector2Int pos, int times, float delay, int damage)
+    {
+        for(int i = 1; i <= times; i++)
+        {
+            RhombusWireAttack(pos, i, damage);
             yield return new WaitForSeconds(delay);
         }
     }
