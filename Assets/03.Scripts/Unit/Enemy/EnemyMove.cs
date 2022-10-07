@@ -7,6 +7,7 @@ public enum EnemyAIState{
     IDLE,
     STAMP,
     JUMP,
+    Dash,
     COUNT
 }
 public class EnemyMove : UnitMove
@@ -19,6 +20,7 @@ public class EnemyMove : UnitMove
         _enemySkillDict.Add(EnemyAIState.IDLE, null);
         _enemySkillDict.Add(EnemyAIState.STAMP, new SkillStamp());
         _enemySkillDict.Add(EnemyAIState.JUMP, new SkillJump());
+        _enemySkillDict.Add(EnemyAIState.Dash, new SkillDash());
     }
     public void DoSkill(EnemyAIState state, Action callback = null)
     {

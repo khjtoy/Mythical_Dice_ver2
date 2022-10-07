@@ -41,6 +41,24 @@ public abstract class EnemySkill
         }
     }
 
+    protected void PushAttack(Vector2Int pos, Vector2Int direction, int damage)
+    {
+        Vector2Int temp = Vector2Int.zero;
+        for(int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                temp = pos + new Vector2Int(j, i);
+                if (temp.x == pos.x - direction.x && temp.x != pos.x)
+                    continue;
+                if (temp.y == pos.y - direction.y && temp.y != pos.y)
+                    continue;
+                MapController.Instance.Boom(temp, damage);
+
+            }
+        }
+    }
+
     protected IEnumerator WaveAttackCoroutine(Vector2Int pos, int damage, float delay)
     {
         for (int i = 0; i <= GameManager.Instance.Size; i++)
