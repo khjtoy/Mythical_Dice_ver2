@@ -23,6 +23,11 @@ public class PlayerAttack : MonoBehaviour
         {
             CheckPos();
         }
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     private void CheckPos()
@@ -31,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         else if (enemy.transform.localPosition.x < transform.localPosition.x)
             transform.localScale = new Vector3(-1, 1, 1);
+
         AttackAction(MapController.PosToArray(transform.localPosition.x), MapController.PosToArray(transform.localPosition.y));
     }
 
