@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,10 +13,19 @@ public class PlayerAttack : MonoBehaviour
     UnitAnimation animation;
     [SerializeField]
     private float attackDelay;
+    [SerializeField]
+    private float impactOffeset = 1;
 
     private int hashAttack = Animator.StringToHash("Attack");
+
+    [SerializeField]
+    private Text comboText;
+
+    private PlayerBase playerBase;
+
     private void Start()
     {
+        playerBase = GetComponent<PlayerBase>();
         enemy = Define.EnemyTrans;
     }
     private void Update()
@@ -45,14 +56,22 @@ public class PlayerAttack : MonoBehaviour
         if (timer > 0) return;
 
         int difX = MapController.PosToArray(enemy.localPosition.x) - MapController.PosToArray(transform.localPosition.x);
-        int difY = MapController.PosToArray(enemy.localPosition.y) - MapController.PosToArray(transform.localPosition.y);
-        float add = Mathf.Abs(difX) + Mathf.Abs(difY);
+        int difY = MapController.PosToArray(enemy.localPosition.z) - MapController.PosToArray(transform.localPosition.z);
+        Debug.Log($"difx:{difX}, difY:{difY}");
+        bool nearEnemy = (Mathf.Abs(difX) + Mathf.Abs(difY)) == 1 ? true : false;
 
         animation.PlayAnimator(hashAttack);
         Debug.Log("Attack");
-        if (add == 1)
+        if (nearEnemy)
         {
-            Debug.Log("공격");
+            int count = playerBase.GetCombo(1);
+            comboText.text = $"{count}";
+            // 파티클 생성
+            GameObject particle = ObjectPool.Instance.GetObject(count < 20 ? PoolObjectType.AttackParticle : PoolObjectType.ComboParticle);
+            particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
+
+            Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
+
             timer = attackDelay;
         }
     }

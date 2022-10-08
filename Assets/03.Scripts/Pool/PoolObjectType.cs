@@ -1,4 +1,6 @@
 public enum PoolObjectType
 {
-	DiceParticle
+	DiceParticle,
+	AttackParticle,
+	ComboParticle
 }
