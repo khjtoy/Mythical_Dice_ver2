@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class UnitMove : MonoBehaviour
 {
     [SerializeField] protected Vector3 _pos;
-
+    [SerializeField] private bool canVoid = false;
+    public bool CanVoid { get => canVoid; set => canVoid = value; }
     public Vector3 WorldPos
     {
         get { return _pos; }

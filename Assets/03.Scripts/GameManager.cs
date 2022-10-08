@@ -5,46 +5,46 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [Header("¸Ê Å©±â ÁöÁ¤")]
-    [SerializeField]
-    private int size;
+	[Header("¸Ê Å©±â ÁöÁ¤")]
+	[SerializeField]
+	private int size;
 
-    [field: SerializeField]
-    public int BossNum { get; set; }
+	[field: SerializeField]
+	public int BossNum { get; set; }
 
-    public int StageNum;
+	public int StageNum;
 
-    public bool StageStart;
+	public bool StageStart;
 
-    public bool thirdTutorial = false;
+	public bool thirdTutorial = false;
 
 
-    [SerializeField]
-    private MapController mapController;
-    public int Offset
-    {
-        get
-        {
-            return Mathf.CeilToInt(size / 2f);
-        }
-    }
+	[SerializeField]
+	private MapController mapController;
+	public int Offset
+	{
+		get
+		{
+			return Mathf.CeilToInt(size / 2f);
+		}
+	}
 
-    public int Size
+	public int Size
 
-    {
-        get
-        {
-            return size;
-        }
-    }
+	{
+		get
+		{
+			return size;
+		}
+	}
 
-    private void Start()
-    {
+	private void Start()
+	{
 
-        
-    }
 
-    protected override void Init()
-    {
-    }
+	}
+
+	protected override void Init()
+	{
+	}
 }

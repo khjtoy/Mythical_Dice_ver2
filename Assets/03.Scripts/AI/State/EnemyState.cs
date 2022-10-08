@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : AIState
+public class EnemyState : AIState
 {
     public override void DoAction(Action callback = null)
     {
-        callback?.Invoke();
+        EnemyMove.DoSkill(EnemyState, callback);
     }
 }
