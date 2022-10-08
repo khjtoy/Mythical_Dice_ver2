@@ -21,6 +21,7 @@ public class DiceDirecting : MonoBehaviour
 	{ new Vector3(0,0,0), new Vector3(90,0,0), new Vector3(0,0,-90),
 	 new Vector3(0,0,90), new Vector3(-90,0,0), new Vector3(180,0,0)};
 
+
 	private bool isDiceDirecting = false;
 
 	public int Randoms => randoms;
