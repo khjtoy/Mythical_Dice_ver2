@@ -7,6 +7,7 @@ public class SkillRough : EnemySkill
 {
     public override void DoAttack(UnitMove unit, Action callback = null)
     {
-        throw new NotImplementedException();
+        Vector2Int pos = unit.GamePos;
+        callback?.Invoke();
     }
 }

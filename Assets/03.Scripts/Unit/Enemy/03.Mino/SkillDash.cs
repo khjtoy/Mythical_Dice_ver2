@@ -14,7 +14,6 @@ public class SkillDash : EnemySkill
         Vector2Int dir = new Vector2Int(Mathf.CeilToInt(direction.x), Mathf.CeilToInt(direction.y));
         direction = new Vector3(dir.x, 0, dir.y);
         seq = DOTween.Sequence();
-        Debug.Log("Start");
         PushAttack(unit.GamePos, dir, damage);
         for(int i = 1; i <= GameManager.Instance.Size; i++)
         {
@@ -30,7 +29,6 @@ public class SkillDash : EnemySkill
         }
         seq.AppendCallback(() =>
         {
-            Debug.Log("End");
             callback?.Invoke();
         });
     }

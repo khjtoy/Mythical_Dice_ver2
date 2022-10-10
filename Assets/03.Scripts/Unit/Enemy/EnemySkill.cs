@@ -8,16 +8,22 @@ public abstract class EnemySkill
 {
     public abstract void DoAttack(UnitMove unit, Action callback = null);
 
+    public virtual void LineAttack(int x, int y, int damage)
+    {
+        int size = GameManager.Instance.Size;
+        for(int i = 0; i < size; i++)
+        {
+            if (x == -1)
+                continue;
+            MapController.Instance.Boom(x, i, damage);
+            if (y == -1)
+                continue;
+            MapController.Instance.Boom(i, y, damage);
+        }
+    }
     public virtual void CrossAttack(Vector2Int pos, int damage)
     {
-        MapController.Instance.Boom(pos, damage);
-        for (int i = 1; i <= GameManager.Instance.Size; i++)
-        {
-            MapController.Instance.Boom(pos + Vector2Int.up * i, damage);
-            MapController.Instance.Boom(pos + Vector2Int.down * i, damage);
-            MapController.Instance.Boom(pos + Vector2Int.left * i, damage);
-            MapController.Instance.Boom(pos + Vector2Int.right * i, damage);
-        }
+        LineAttack(pos.x, pos.y, damage);
     }
     public virtual void SquareRangeAttack(Vector2Int pos, int range, int damage)
     {
