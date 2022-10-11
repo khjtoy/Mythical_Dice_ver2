@@ -85,7 +85,7 @@ public class DiceDirecting : MonoBehaviour
 		isDiceDirecting = true;
 		sequence.Append(this.gameObject.transform.DOMoveY(2f, 0.5f));
 		sequence.Append(this.gameObject.transform.DOMoveY(0f, 0.5f));
-		sequence.AppendCallback(() => { DiceNumSelect(); });
+		sequence.AppendCallback(DiceNumSelect);
 	}
 
     public void OnDestroy()
@@ -99,6 +99,6 @@ public class DiceDirecting : MonoBehaviour
 		particleSystem.gameObject.transform.position = this.transform.position + Vector3.up;
 		particleSystem.Clear();
 		particleSystem.Play();
-		StartCoroutine(particleSystem.gameObject.GetComponent<DiceParticleReturn>().ReturnObject());
+		StartCoroutine(particleSystem.GetComponent<DiceParticleReturn>().ReturnObject());
 	}
 }

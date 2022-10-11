@@ -59,9 +59,9 @@ public class PlayerMove : UnitMove
 		Vector3 original = _pos;
 		float offset = 0f;
 		if (GameManager.Instance.Size % 2 != 0)
-			offset = (GameManager.Instance.Offset - 1) * MapController.Instance.Distance;
+			offset = (GameManager.Instance.OffsetInt - 1) * MapController.Instance.Distance;
 		else
-			offset = (GameManager.Instance.Offset - 0.5f) * MapController.Instance.Distance;
+			offset = (GameManager.Instance.OffsetInt - 0.5f) * MapController.Instance.Distance;
 		_pos += pos;
 		_pos.x = Mathf.Clamp(_pos.x, -offset, offset);
 		_pos.z = Mathf.Clamp(_pos.z, -offset, offset);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -194,7 +195,7 @@ public class MapController : MonoSingleton<MapController>
 				FloorInit(x, y + 1, isfirst);
 		}
 	}
-	public void Boom()
+	public void BoomSameNum()
 	{
 		int brokeNum = GameManager.Instance.BossNum;
 		for (int i = 0; i < GameManager.Instance.Size; i++)
@@ -261,11 +262,25 @@ public class MapController : MonoSingleton<MapController>
 
 	public static int PosToArray(float pos)
 	{
-		return Mathf.RoundToInt(pos / 1.5f + GameManager.Instance.Size / 2);
+		return Mathf.RoundToInt(pos / Instance.Distance + GameManager.Instance.Size / 2);
+	}
+
+	public static Vector2Int PosToArray(Vector3 pos)
+	{
+		int x = Mathf.RoundToInt(pos.x / Instance.Distance + GameManager.Instance.Offset);
+		int y = Mathf.RoundToInt(pos.y / Instance.Distance + GameManager.Instance.Offset);
+		return new Vector2Int(x, y);
 	}
 
 	public static Vector3 ArrayToPos(int indexX, int indexY)
 	{
-		return new Vector3((GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexX), (GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexY), 0);
+		float x = indexX * Instance.Distance - GameManager.Instance.OffsetInt;
+		float y = indexY * Instance.Distance - GameManager.Instance.OffsetInt;
+		return new Vector3(x, 0, y);
+	}
+
+	public static Vector3 ArrayToPos(Vector2Int pos)
+	{
+		return ArrayToPos(pos.x, pos.y);
 	}
 }

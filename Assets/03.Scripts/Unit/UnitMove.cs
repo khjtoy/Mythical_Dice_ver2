@@ -17,8 +17,8 @@ public abstract class UnitMove : MonoBehaviour
     { 
         get
         {
-            int offsetX = Mathf.RoundToInt((_pos.x + GameManager.Instance.Offset) / MapController.Instance.Distance);
-            int offsetZ = Mathf.RoundToInt((_pos.z + GameManager.Instance.Offset) / MapController.Instance.Distance);
+            int offsetX = Mathf.RoundToInt((_pos.x + GameManager.Instance.OffsetInt) / MapController.Instance.Distance);
+            int offsetZ = Mathf.RoundToInt((_pos.z + GameManager.Instance.OffsetInt) / MapController.Instance.Distance);
             Vector2Int pos = new Vector2Int(offsetX, offsetZ);
             return pos; 
         }

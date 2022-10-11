@@ -7,6 +7,6 @@ public class SkillSilent : EnemySkill
 {
     public override void DoAttack(UnitMove unit, Action callback = null)
     {
-        throw new NotImplementedException();
+        callback?.Invoke();
     }
 }
