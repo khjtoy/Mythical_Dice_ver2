@@ -13,12 +13,10 @@ public abstract class EnemySkill
         int size = GameManager.Instance.Size;
         for(int i = 0; i < size; i++)
         {
-            if (x == -1)
-                continue;
-            MapController.Instance.Boom(x, i, damage);
-            if (y == -1)
-                continue;
-            MapController.Instance.Boom(i, y, damage);
+            if (x != -1)
+                MapController.Instance.Boom(x, i, damage);
+            if (y != -1)
+                MapController.Instance.Boom(i, y, damage);
         }
     }
     public virtual void CrossAttack(Vector2Int pos, int damage)
@@ -93,6 +91,23 @@ public abstract class EnemySkill
         for(int i = 1; i <= times; i++)
         {
             RhombusWireAttack(pos, i, damage);
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+    protected IEnumerator LineWaveAttack(Vector2Int pos, int damage, float delay)
+    {
+        int size = GameManager.Instance.Size - 1;
+        for (int i = 0; i <= size; i++)
+        {
+            if(pos.x == 1)
+                LineAttack(i, -1, damage);
+            if(pos.x == -1)
+                LineAttack(size - i, -1, damage);
+            if(pos.y == 1)
+                LineAttack(-1, i, damage);
+            if(pos.y == -1)
+                LineAttack(-1, size - i, damage);
             yield return new WaitForSeconds(delay);
         }
     }
