@@ -148,9 +148,8 @@ public class MapController : MonoSingleton<MapController>
 
 
 
-		diceObjectArr[y, x].transform.localRotation = Quaternion.Euler(0, 0, 0);
-		dices[y, x].DiceStart();
 		isfirst = true;
+		dices[y, x].DiceStart();
 		StartCoroutine(WaitFloor(x, y, isfirst));
 	}
 
@@ -213,7 +212,6 @@ public class MapController : MonoSingleton<MapController>
 					int m = j;
 					seq.AppendCallback(() =>
 					{
-						dices[n, m].transform.rotation = Quaternion.Euler(0, 0, 0);
 						StartCoroutine(dices[n, m].BasicDiceNumSelect());
 						seq.Kill();
 					});
