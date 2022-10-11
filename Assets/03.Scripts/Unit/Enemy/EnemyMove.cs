@@ -31,7 +31,6 @@ public class EnemyMove : UnitMove
     }
     public void DoSkill(EnemyAIState state, Action callback = null)
     {
-        Debug.Log(state);
         if(state == EnemyAIState.IDLE)
         {
             callback?.Invoke();

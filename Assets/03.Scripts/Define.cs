@@ -4,12 +4,23 @@ using UnityEngine;
 
 public static class Define
 {
+    private static Transform _cameraTrans;
     private static Transform _enemyTrans;
-
     private static Transform _playerTrans;
     private static PlayerMove _playerMove;
     private static EnemyMove _enemyMove;
 
+    public static Transform CameraTrans
+    {
+        get
+        {
+            if (_cameraTrans == null)
+            {
+                _cameraTrans = Camera.main.transform;
+            }
+            return _cameraTrans;
+        }
+    }
     public static Transform EnemyTrans
     {
         get
@@ -25,7 +36,7 @@ public static class Define
     {
         get
         {
-            if( _playerTrans == null )
+            if (_playerTrans == null)
             {
                 _playerTrans = GameObject.Find("Player").GetComponent<Transform>();
             }

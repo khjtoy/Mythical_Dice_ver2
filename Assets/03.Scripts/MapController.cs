@@ -237,6 +237,15 @@ public class MapController : MonoSingleton<MapController>
 			});
 		}
 	}
+	public void Boom(int x, int y, int value)
+	{
+		if (x >= GameManager.Instance.Size || x < 0 || y >= GameManager.Instance.Size || y < 0)
+			return;
+		dices[y, x].DiceNumSelect(value);
+		MapNum[y, x] = value;
+		GameManager.Instance.BossNum = value;
+		Boom(x, y);
+	}
 
 	public void Boom(Vector2Int pos, int value)
     {

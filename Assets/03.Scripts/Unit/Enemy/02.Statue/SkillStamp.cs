@@ -24,7 +24,6 @@ public class SkillStamp : EnemySkill
             unit.WorldPos = baseTrm.localPosition;
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
-            
             switch (skillCase)
             {
                 case 0:
@@ -33,7 +32,7 @@ public class SkillStamp : EnemySkill
                         break;
                     }
                 case 1:
-                    {
+                {
                         SquareRangeAttack(pos, 1, damage);
                         break;
                     }

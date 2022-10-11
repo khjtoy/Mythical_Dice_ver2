@@ -10,4 +10,11 @@ public class UnitBase : MonoBehaviour
     {
         _info.AddValue(UnitProperty.HP, -value);
     }
+    public int GetCombo(int value)
+    {
+        if(_info.COMBO + value <= 20)
+            _info.AddValue(UnitProperty.COMBO, 1);
+        return _info.COMBO;
+
+    }
 }
