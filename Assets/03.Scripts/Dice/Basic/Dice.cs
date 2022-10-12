@@ -6,14 +6,14 @@ public class Dice:MonoBehaviour
 {
 	public Dictionary<System.Type, Direct> Directs = new Dictionary<System.Type, Direct>();
 
-	#region 오디오
+	#region ?????
 	[SerializeField]
 	private BaseSound baseSound;
 
 	private AudioSource audioSource;
 	#endregion
 
-	[Header("다이스 현재 값")]
+	[Header("????? ???? ??")]
 	[SerializeField]
 	protected int randoms;
 

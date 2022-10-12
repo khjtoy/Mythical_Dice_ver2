@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class MapController : MonoSingleton<MapController>
 {
@@ -220,6 +221,21 @@ public class MapController : MonoSingleton<MapController>
 		}
 	}
 
+	public void BoomSameNum(int value)
+	{		
+		GameManager.Instance.BossNum = value;
+		int brokeNum = GameManager.Instance.BossNum;
+		int size = GameManager.Instance.Size;
+		int sizeSqr = size * size;
+		for (int i = 0; i < sizeSqr; i++)
+		{
+			int x = i / size;
+			int y = i % size;
+			if(mapNum[y, x] == brokeNum)
+				Boom(x, y);
+		}
+	}
+
 	public void Boom(int x, int y)
 	{
 		int brokeNum = GameManager.Instance.BossNum;
@@ -256,6 +272,24 @@ public class MapController : MonoSingleton<MapController>
 		MapNum[pos.y, pos.x] = value;
 		GameManager.Instance.BossNum = value;
 		Boom(pos.x, pos.y);
+	}
+
+	public Vector2Int GetRandomNumberPosition(int value)
+	{
+		List<Vector2Int> diceTrms = new List<Vector2Int>();
+		int size = GameManager.Instance.Size;
+		int sizeSqr = size * size;
+		for (int i = 0; i < sizeSqr; i++)
+		{
+			int x = i / size;
+			int y = i % size;
+			if(Instance.MapNum[y, x] == value)
+				diceTrms.Add(new Vector2Int(x, y));
+		}
+
+		int random = Random.Range(0, diceTrms.Count);
+
+		return diceTrms[random];
 	}
 
 	public static int PosToArray(float pos)
