@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -25,17 +26,17 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 		get
 		{
-			return Mathf.CeilToInt(size / 2f);
+			return Mathf.CeilToInt(0.75f * size - 1);
 		}
 	}
 	public float Offset
 	{
 		get
 		{
-			return size / 2f;
+			return 0.75f * (size - 1);
 		}
 	}
-
+	
 	public int Size
 
 	{
@@ -45,13 +46,8 @@ public class GameManager : MonoSingleton<GameManager>
 		}
 	}
 
-	private void Start()
-	{
-
-
-	}
-
 	protected override void Init()
 	{
+		
 	}
 }

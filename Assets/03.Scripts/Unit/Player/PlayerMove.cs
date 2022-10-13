@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering;
 
 public class PlayerMove : UnitMove
 {
@@ -19,6 +20,9 @@ public class PlayerMove : UnitMove
 	}
 	private void Start()
 	{
+		float offset = GameManager.Instance.Offset;
+		transform.localPosition = new Vector3(-offset, 0, -offset);
+		WorldPos = transform.localPosition;
 	}
 
 	private void Update()
@@ -57,11 +61,7 @@ public class PlayerMove : UnitMove
 			return;
 		_isMoving = true;
 		Vector3 original = _pos;
-		float offset = 0f;
-		if (GameManager.Instance.Size % 2 != 0)
-			offset = (GameManager.Instance.OffsetInt - 1) * MapController.Instance.Distance;
-		else
-			offset = (GameManager.Instance.OffsetInt - 0.5f) * MapController.Instance.Distance;
+		float offset = GameManager.Instance.Offset;
 		_pos += pos;
 		_pos.x = Mathf.Clamp(_pos.x, -offset, offset);
 		_pos.z = Mathf.Clamp(_pos.z, -offset, offset);
@@ -76,6 +76,7 @@ public class PlayerMove : UnitMove
 		seq.AppendCallback(() =>
 		{
 			_isMoving = false;
+			Debug.Log(GamePos);
 			seq.Kill();
 		});
 	}
