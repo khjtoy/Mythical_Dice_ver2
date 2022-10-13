@@ -40,7 +40,10 @@ public class Show2DArray : EditorWindow
         {
             GUILayout.BeginHorizontal();
             for (int k = 0; k < GameManager.Instance.Size; k++)
-                debug2d[i,k] = EditorGUILayout.IntField(debug2d[i,k]);
+            {
+                
+                debug2d[i,k] = EditorGUILayout.IntField(debug2d[i, k]);
+            }
             GUILayout.EndHorizontal();
         }
     }

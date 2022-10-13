@@ -5,9 +5,17 @@ using UnityEngine;
 public class RangeDetectCondition : AICondition
 {
     [SerializeField]
-    Transform baseTrm = null;
+    private int range = 0;
     public override bool Result()
     {
-        return true;
+        Vector2Int pos = Define.EnemyMove.GamePos;
+        Vector2Int playerPos = Define.PlayerMove.GamePos;
+        for (int i = -range; i <= range; i++)
+            for (int j = -range; j <= range; j++)
+            {
+                if(pos + new Vector2Int(i, j) == playerPos)
+                    return true;
+            }
+        return false;
     }
 }

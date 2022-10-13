@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -21,13 +22,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[SerializeField]
 	private MapController mapController;
-	public int Offset
-	{
-		get
-		{
-			return Mathf.CeilToInt(size / 2f);
-		}
-	}
+	public float Offset => 0.75f * (size - 1);
 
 	public int Size
 
@@ -38,13 +33,8 @@ public class GameManager : MonoSingleton<GameManager>
 		}
 	}
 
-	private void Start()
-	{
-
-
-	}
-
 	protected override void Init()
 	{
+		
 	}
 }
