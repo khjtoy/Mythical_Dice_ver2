@@ -76,9 +76,7 @@ public class MapController : MonoSingleton<MapController>
 		dices[y, x].transform.SetParent(root);
 
 		diceObject = dices[y, x].gameObject;
-		float posX = x * distance - GameManager.Instance.Offset;
-		float posZ = y * distance - GameManager.Instance.Offset;
-		diceObject.transform.localPosition = new Vector3(posX, 0, posZ);
+		diceObject.transform.localPosition = ArrayToPos(dices[y, x].Pos);
 
 		diceObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 		diceObject.transform.localScale = new Vector3(1, 1, 1);

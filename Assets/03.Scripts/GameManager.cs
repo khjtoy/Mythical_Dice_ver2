@@ -22,21 +22,8 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[SerializeField]
 	private MapController mapController;
-	public int OffsetInt
-	{
-		get
-		{
-			return Mathf.CeilToInt(0.75f * size - 1);
-		}
-	}
-	public float Offset
-	{
-		get
-		{
-			return 0.75f * (size - 1);
-		}
-	}
-	
+	public float Offset => 0.75f * (size - 1);
+
 	public int Size
 
 	{
