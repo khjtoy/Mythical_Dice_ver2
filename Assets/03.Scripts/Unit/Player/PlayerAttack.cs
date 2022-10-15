@@ -4,13 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : CharacterBase
 {
     private Transform enemy;
     private float timer;
 
-    [SerializeField]
-    UnitAnimation animation;
     [SerializeField]
     private float attackDelay;
     [SerializeField]
@@ -21,11 +19,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private Text comboText;
 
-    private PlayerBase playerBase;
+    private PlayerStat playerStat;
+
 
     private void Start()
     {
-        playerBase = GetComponent<PlayerBase>();
+        playerStat = GetComponent<PlayerStat>();
         enemy = Define.EnemyTrans;
     }
     private void Update()
@@ -60,19 +59,30 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log($"difx:{difX}, difY:{difY}");
         bool nearEnemy = (Mathf.Abs(difX) + Mathf.Abs(difY)) == 1 ? true : false;
 
-        animation.PlayAnimator(hashAttack);
+        PlayAnimator(hashAttack);
         Debug.Log("Attack");
         if (nearEnemy)
         {
-            int count = playerBase.GetCombo(1);
+            int count = playerStat.GetCombo(1);
             comboText.text = $"{count}";
+            bool FlagCombo = count >= 20;
             // 파티클 생성
-            GameObject particle = ObjectPool.Instance.GetObject(count < 20 ? PoolObjectType.AttackParticle : PoolObjectType.ComboParticle);
+            GameObject particle = ObjectPool.Instance.GetObject(FlagCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
             particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
 
             Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
+            if(FlagCombo)
+            {
+                Time.timeScale = 0.1f;
+                Invoke("OrginTime", 0.06f);
+            }
 
             timer = attackDelay;
         }
+    }
+
+    private void OrginTime()
+    {
+        Time.timeScale = 1;
     }
 }

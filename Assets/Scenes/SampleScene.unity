@@ -515,6 +515,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92d1c7692dda6d41a8d46b5938b966c, type: 3}
+--- !u!1 &407679533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1752668753, guid: 4d0748fc200d80d408aa2dc851617bb8, type: 3}
+  m_PrefabInstance: {fileID: 1939804844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &407679534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407679533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e474b5a4c63e67342b28266b42c6425d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin_hp: 0
+  hp: 0
+  atk: 0
+  combo: 0
 --- !u!4 &500530172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7904570817365517874, guid: 4d0748fc200d80d408aa2dc851617bb8, type: 3}
@@ -5942,7 +5963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1962720373}
-  - component: {fileID: 1962720375}
+  - component: {fileID: 1962720377}
   - component: {fileID: 1962720374}
   - component: {fileID: 1962720376}
   m_Layer: 0
@@ -5981,25 +6002,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pos: {x: -3, y: 0, z: -3}
   canVoid: 0
-  animation:
-    animator: {fileID: 691774779}
---- !u!114 &1962720375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962720372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0041ff75765568440842fca6c53fbc1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _info:
-    origin_hp: 100
-    hp: 100
-    atk: 0
-    combo: 0
 --- !u!114 &1962720376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6012,11 +6014,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a67ba91d83dc634ca8ba6a1dd6428f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation:
-    animator: {fileID: 691774779}
   attackDelay: 0.5
   impactOffeset: 1.5
   comboText: {fileID: 153698506798392891}
+--- !u!114 &1962720377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962720372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8d5493ea16c1446a51d03a2b29084b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin_hp: 100
+  hp: 100
+  atk: 0
+  combo: 0
+  sliderSpeed: 5
+  playerHPSlider: {fileID: 153698506560933918}
+  whiteSlider: {fileID: 153698507447915164}
 --- !u!222 &153698506011921512
 CanvasRenderer:
   m_ObjectHideFlags: 0

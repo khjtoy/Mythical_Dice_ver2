@@ -7,6 +7,7 @@ public class UnitAnimation
 {
     [SerializeField]
     private Animator animator;
+
     public void PlayAnimator(int hash)
     {
         animator.SetTrigger(hash);

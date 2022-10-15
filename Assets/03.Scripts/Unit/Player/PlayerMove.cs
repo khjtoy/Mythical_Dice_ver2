@@ -26,23 +26,23 @@ public class PlayerMove : UnitMove
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			Translate(Vector3.forward * movePos);
-			animation.PlayAnimator(hashRise);
+			PlayAnimator(hashRise);
 		}
 		if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			Translate(Vector3.back * movePos);
-			animation.PlayAnimator(hashCrouch);
+			PlayAnimator(hashCrouch);
 		}
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			Translate(Vector3.left * movePos);
-			animation.PlayAnimator(hashSlide);
+			PlayAnimator(hashSlide);
 			transform.localScale = new Vector3Int(-1, 1, 1);
 		}
 		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			Translate(Vector3.right * movePos);
-			animation.PlayAnimator(hashSlide);
+			PlayAnimator(hashSlide);
 			transform.localScale = Vector3Int.one;
 		}
 		//Dice Boom Debug

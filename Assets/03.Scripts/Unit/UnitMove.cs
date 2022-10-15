@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UnitMove : MonoBehaviour
+public abstract class UnitMove : CharacterBase
 {
     [SerializeField] protected Vector3 _pos;
     [SerializeField] private bool canVoid = false;
@@ -25,8 +25,4 @@ public abstract class UnitMove : MonoBehaviour
     }
     protected bool _isMoving = false;
     public abstract void Translate(Vector3 pos);
-
-
-    [SerializeField]
-    protected UnitAnimation animation;
 }
