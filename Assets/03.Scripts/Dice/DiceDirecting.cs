@@ -5,15 +5,15 @@ using DG.Tweening;
 
 public class DiceDirecting : MonoBehaviour
 {
-	[Header("다이스 할 스피드")]
+	[Header("????? ?? ?????")]
 	[SerializeField]
 	private float speed = 5f;
 
-	[Header("다이스 멈추는 시간")]
+	[Header("????? ????? ?ð?")]
 	[SerializeField]
 	private float wait;
 
-	[Header("다이스 현재 값")]
+	[Header("????? ???? ??")]
 	[SerializeField]
 	private int randoms;
 
@@ -21,11 +21,14 @@ public class DiceDirecting : MonoBehaviour
 	{ new Vector3(0,0,0), new Vector3(90,0,0), new Vector3(0,0,-90),
 	 new Vector3(0,0,90), new Vector3(-90,0,0), new Vector3(180,0,0)};
 
+
 	private bool isDiceDirecting = false;
 
 	public int Randoms => randoms;
 
 	public Vector2Int Pos = Vector2Int.zero;
+
+	private Sequence sequence;
 	void Update()
 	{
 		if (isDiceDirecting)
@@ -36,6 +39,7 @@ public class DiceDirecting : MonoBehaviour
 
 	public void DiceStart()
 	{
+		transform.localRotation = Quaternion.Euler(0, 0, 0);
 		isDiceDirecting = true;
 	}
 	public void DiceNumSelect()
@@ -59,31 +63,18 @@ public class DiceDirecting : MonoBehaviour
 		transform.rotation = Quaternion.Euler(0, 0, 0);
 		isDiceDirecting = true;
 		yield return new WaitForSeconds(wait);
-		
-		//playerIndex = new Vector2Int(MapController.PosToArray(Define.Player.x), MapController.PosToArray(Define.Player.y));
-		//if(playerIndex == Pos)
-  //      {
-		//	Define.Controller.OnHits(randoms);
-  //      }
 		randoms = Random.Range(1, 7);
-
 		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		isDiceDirecting = false;
 		ParticleOn();
-		//if(MapController.PosToArray(this.transform.position.y) == MapController.PosToArray(Define.Player.y))
-		//{
-		//	Define.Controller.gameObject.GetComponent<OnHit>().OnHits(thisNum);
-		//}
 	}
-
-	Sequence sequence;
 	public void UpDownSelect()
 	{
-		Debug.Log("?");
 		isDiceDirecting = true;
-		sequence.Append(this.gameObject.transform.DOMoveY(2f, 0.5f));
-		sequence.Append(this.gameObject.transform.DOMoveY(0f, 0.5f));
+		sequence = DOTween.Sequence();
+		sequence.Append(this.gameObject.transform.DOMoveY(3f, 0.2f));
+		sequence.Append(this.gameObject.transform.DOMoveY(0f, 0.2f));
 		sequence.AppendCallback(() => { DiceNumSelect(); });
 	}
 

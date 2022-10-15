@@ -14,7 +14,7 @@ public static class Define
     {
         get
         {
-            if(_cameraTrans == null)
+            if (_cameraTrans == null)
             {
                 _cameraTrans = Camera.main.transform;
             }
@@ -36,7 +36,7 @@ public static class Define
     {
         get
         {
-            if( _playerTrans == null )
+            if (_playerTrans == null)
             {
                 _playerTrans = GameObject.Find("Player").GetComponent<Transform>();
             }
@@ -66,4 +66,5 @@ public static class Define
             return _enemyMove;
         }
     }
+
 }

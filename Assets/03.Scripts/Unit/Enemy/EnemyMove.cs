@@ -28,10 +28,13 @@ public class EnemyMove : UnitMove
         _enemySkillDict.Add(EnemyAIState.SWIM, new SkillSwim());
         _enemySkillDict.Add(EnemyAIState.ROUGH, new SkillRough());
         _enemySkillDict.Add(EnemyAIState.SILENT, new SkillSilent());
+        
+        float offset = GameManager.Instance.Offset;
+        transform.localPosition = new Vector3(offset, 0, offset);
+        WorldPos = transform.localPosition;
     }
     public void DoSkill(EnemyAIState state, Action callback = null)
     {
-        Debug.Log(state);
         if(state == EnemyAIState.IDLE)
         {
             callback?.Invoke();

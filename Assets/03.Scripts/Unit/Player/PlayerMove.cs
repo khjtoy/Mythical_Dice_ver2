@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering;
 
 public class PlayerMove : UnitMove
 {
 	Sequence seq = null;
-	int hashSlide = Animator.StringToHash("Slide");
+	int hashMove = Animator.StringToHash("Move");
 	int hashCrouch = Animator.StringToHash("Crouch");
 	int hashRise = Animator.StringToHash("Rise");
 
@@ -19,6 +20,9 @@ public class PlayerMove : UnitMove
 	}
 	private void Start()
 	{
+		float offset = GameManager.Instance.Offset;
+		transform.localPosition = new Vector3(-offset, 0, -offset);
+		WorldPos = transform.localPosition;
 	}
 
 	private void Update()
@@ -36,13 +40,21 @@ public class PlayerMove : UnitMove
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			Translate(Vector3.left * movePos);
+<<<<<<< HEAD
 			PlayAnimator(hashSlide);
+=======
+			animation.PlayAnimator(hashMove);
+>>>>>>> origin/main
 			transform.localScale = new Vector3Int(-1, 1, 1);
 		}
 		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			Translate(Vector3.right * movePos);
+<<<<<<< HEAD
 			PlayAnimator(hashSlide);
+=======
+			animation.PlayAnimator(hashMove);
+>>>>>>> origin/main
 			transform.localScale = Vector3Int.one;
 		}
 		//Dice Boom Debug
@@ -57,11 +69,7 @@ public class PlayerMove : UnitMove
 			return;
 		_isMoving = true;
 		Vector3 original = _pos;
-		float offset = 0f;
-		if (GameManager.Instance.Size % 2 != 0)
-			offset = (GameManager.Instance.Offset - 1) * MapController.Instance.Distance;
-		else
-			offset = (GameManager.Instance.Offset - 0.5f) * MapController.Instance.Distance;
+		float offset = GameManager.Instance.Offset;
 		_pos += pos;
 		_pos.x = Mathf.Clamp(_pos.x, -offset, offset);
 		_pos.z = Mathf.Clamp(_pos.z, -offset, offset);
@@ -76,6 +84,7 @@ public class PlayerMove : UnitMove
 		seq.AppendCallback(() =>
 		{
 			_isMoving = false;
+			Debug.Log(GamePos);
 			seq.Kill();
 		});
 	}

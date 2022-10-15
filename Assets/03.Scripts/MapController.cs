@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class MapController : MonoSingleton<MapController>
 {
@@ -74,9 +76,7 @@ public class MapController : MonoSingleton<MapController>
 		dices[y, x].transform.SetParent(root);
 
 		diceObject = dices[y, x].gameObject;
-		float posX = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(x + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + x * distance;
-		float posZ = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(y + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + y * distance;
-		diceObject.transform.localPosition = new Vector3(posX, 0, posZ);
+		diceObject.transform.localPosition = ArrayToPos(dices[y, x].Pos);
 
 		diceObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 		diceObject.transform.localScale = new Vector3(1, 1, 1);
@@ -147,9 +147,8 @@ public class MapController : MonoSingleton<MapController>
 
 
 
-		diceObjectArr[y, x].transform.localRotation = Quaternion.Euler(0, 0, 0);
-		dices[y, x].DiceStart();
 		isfirst = true;
+		dices[y, x].DiceStart();
 		StartCoroutine(WaitFloor(x, y, isfirst));
 	}
 
@@ -194,7 +193,7 @@ public class MapController : MonoSingleton<MapController>
 				FloorInit(x, y + 1, isfirst);
 		}
 	}
-	public void Boom()
+	public void BoomSameNum()
 	{
 		int brokeNum = GameManager.Instance.BossNum;
 		for (int i = 0; i < GameManager.Instance.Size; i++)
@@ -212,12 +211,26 @@ public class MapController : MonoSingleton<MapController>
 					int m = j;
 					seq.AppendCallback(() =>
 					{
-						dices[n, m].transform.rotation = Quaternion.Euler(0, 0, 0);
 						StartCoroutine(dices[n, m].BasicDiceNumSelect());
 						seq.Kill();
 					});
 				}
 			}
+		}
+	}
+
+	public void BoomSameNum(int value)
+	{		
+		GameManager.Instance.BossNum = value;
+		int brokeNum = GameManager.Instance.BossNum;
+		int size = GameManager.Instance.Size;
+		int sizeSqr = size * size;
+		for (int i = 0; i < sizeSqr; i++)
+		{
+			int x = i / size;
+			int y = i % size;
+			if(mapNum[y, x] == brokeNum)
+				Boom(x, y);
 		}
 	}
 
@@ -239,6 +252,15 @@ public class MapController : MonoSingleton<MapController>
 			});
 		}
 	}
+	public void Boom(int x, int y, int value)
+	{
+		if (x >= GameManager.Instance.Size || x < 0 || y >= GameManager.Instance.Size || y < 0)
+			return;
+		dices[y, x].DiceNumSelect(value);
+		MapNum[y, x] = value;
+		GameManager.Instance.BossNum = value;
+		Boom(x, y);
+	}
 
 	public void Boom(Vector2Int pos, int value)
     {
@@ -250,13 +272,45 @@ public class MapController : MonoSingleton<MapController>
 		Boom(pos.x, pos.y);
 	}
 
+	public Vector2Int GetRandomNumberPosition(int value)
+	{
+		List<Vector2Int> diceTrms = new List<Vector2Int>();
+		int size = GameManager.Instance.Size;
+		int sizeSqr = size * size;
+		for (int i = 0; i < sizeSqr; i++)
+		{
+			int x = i / size;
+			int y = i % size;
+			if(Instance.MapNum[y, x] == value)
+				diceTrms.Add(new Vector2Int(x, y));
+		}
+
+		int random = Random.Range(0, diceTrms.Count);
+
+		return diceTrms[random];
+	}
+
 	public static int PosToArray(float pos)
 	{
-		return Mathf.RoundToInt(pos / 1.5f + GameManager.Instance.Size / 2);
+		return Mathf.RoundToInt((pos + GameManager.Instance.Offset) / Instance.Distance );
+	}
+
+	public static Vector2Int PosToArray(Vector3 pos)
+	{
+		int x = Mathf.RoundToInt((pos.x + GameManager.Instance.Offset) / Instance.Distance);
+		int y = Mathf.RoundToInt((pos.z + GameManager.Instance.Offset) / Instance.Distance);
+		return new Vector2Int(x, y);
 	}
 
 	public static Vector3 ArrayToPos(int indexX, int indexY)
 	{
-		return new Vector3((GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexX), (GameManager.Instance.Size / 2 * -1.5f) + (1.5f * indexY), 0);
+		float x = indexX * Instance.Distance - GameManager.Instance.Offset;
+		float y = indexY * Instance.Distance - GameManager.Instance.Offset;
+		return new Vector3(x, 0, y);
+	}
+
+	public static Vector3 ArrayToPos(Vector2Int pos)
+	{
+		return ArrayToPos(pos.x, pos.y);
 	}
 }
