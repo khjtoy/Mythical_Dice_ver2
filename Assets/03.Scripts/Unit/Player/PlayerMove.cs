@@ -40,21 +40,13 @@ public class PlayerMove : UnitMove
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			Translate(Vector3.left * movePos);
-<<<<<<< HEAD
-			PlayAnimator(hashSlide);
-=======
-			animation.PlayAnimator(hashMove);
->>>>>>> origin/main
+			PlayAnimator(hashMove);
 			transform.localScale = new Vector3Int(-1, 1, 1);
 		}
 		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			Translate(Vector3.right * movePos);
-<<<<<<< HEAD
-			PlayAnimator(hashSlide);
-=======
-			animation.PlayAnimator(hashMove);
->>>>>>> origin/main
+			PlayAnimator(hashMove);
 			transform.localScale = Vector3Int.one;
 		}
 		//Dice Boom Debug
