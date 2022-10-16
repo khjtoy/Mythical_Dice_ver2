@@ -207,7 +207,7 @@ public class MapController : MonoSingleton<MapController>
 					int m = j;
 					seq.AppendCallback(() =>
 					{
-						Debug.Log("??");
+						//Debug.Log("??");
 						//dices[n, m].DiceNumSelect();
 ;						seq.Kill();
 					});

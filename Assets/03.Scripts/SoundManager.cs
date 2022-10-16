@@ -16,8 +16,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 	public AudioSource effectSource;
 	private void Awake()
 	{
-		effectSource = GetComponent<AudioSource>();
-		BackGroundSource = GetComponent<AudioSource>();
+
 	}
 
 	private void Start()
