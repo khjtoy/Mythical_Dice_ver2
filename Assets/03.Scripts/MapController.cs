@@ -76,9 +76,7 @@ public class MapController : MonoSingleton<MapController>
 		dices[y, x].transform.SetParent(root);
 
 		diceObject = dices[y, x].gameObject;
-		float posX = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(x + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + x * distance;
-		float posZ = GameManager.Instance.Size % 2 == 0 ? -((GameManager.Instance.Size / 2) * distance) + (float)(y + 0.5) * distance : -((GameManager.Instance.Size / 2) * distance) + y * distance;
-		diceObject.transform.localPosition = new Vector3(posX, 0, posZ);
+		diceObject.transform.localPosition = ArrayToPos(dices[y, x].Pos);
 
 		diceObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 		diceObject.transform.localScale = new Vector3(1, 1, 1);
@@ -294,20 +292,20 @@ public class MapController : MonoSingleton<MapController>
 
 	public static int PosToArray(float pos)
 	{
-		return Mathf.RoundToInt(pos / Instance.Distance + GameManager.Instance.Size / 2);
+		return Mathf.RoundToInt((pos + GameManager.Instance.Offset) / Instance.Distance );
 	}
 
 	public static Vector2Int PosToArray(Vector3 pos)
 	{
-		int x = Mathf.RoundToInt(pos.x / Instance.Distance + GameManager.Instance.Offset);
-		int y = Mathf.RoundToInt(pos.y / Instance.Distance + GameManager.Instance.Offset);
+		int x = Mathf.RoundToInt((pos.x + GameManager.Instance.Offset) / Instance.Distance);
+		int y = Mathf.RoundToInt((pos.z + GameManager.Instance.Offset) / Instance.Distance);
 		return new Vector2Int(x, y);
 	}
 
 	public static Vector3 ArrayToPos(int indexX, int indexY)
 	{
-		float x = indexX * Instance.Distance - GameManager.Instance.OffsetInt;
-		float y = indexY * Instance.Distance - GameManager.Instance.OffsetInt;
+		float x = indexX * Instance.Distance - GameManager.Instance.Offset;
+		float y = indexY * Instance.Distance - GameManager.Instance.Offset;
 		return new Vector3(x, 0, y);
 	}
 

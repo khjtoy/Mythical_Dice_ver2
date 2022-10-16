@@ -5,15 +5,15 @@ using DG.Tweening;
 
 public class DiceDirecting : MonoBehaviour
 {
-	[Header("다이스 할 스피드")]
+	[Header("????? ?? ?????")]
 	[SerializeField]
 	private float speed = 5f;
 
-	[Header("다이스 멈추는 시간")]
+	[Header("????? ????? ?ð?")]
 	[SerializeField]
 	private float wait;
 
-	[Header("다이스 현재 값")]
+	[Header("????? ???? ??")]
 	[SerializeField]
 	private int randoms;
 
