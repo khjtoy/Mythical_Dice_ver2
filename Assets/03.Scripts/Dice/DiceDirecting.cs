@@ -42,6 +42,7 @@ public class DiceDirecting : MonoBehaviour
 		transform.localRotation = Quaternion.Euler(0, 0, 0);
 		isDiceDirecting = true;
 	}
+
 	public void DiceNumSelect()
 	{
 		randoms = Random.Range(1, 7);
@@ -63,6 +64,18 @@ public class DiceDirecting : MonoBehaviour
 		transform.rotation = Quaternion.Euler(0, 0, 0);
 		isDiceDirecting = true;
 		yield return new WaitForSeconds(wait);
+		randoms = Random.Range(1, 7);
+		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
+		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
+		isDiceDirecting = false;
+		ParticleOn();
+	}
+	public IEnumerator BasicDiceNumSelect(int x, int y)
+	{
+		transform.rotation = Quaternion.Euler(0, 0, 0);
+		isDiceDirecting = true;
+		yield return new WaitForSeconds(wait);
+		MapController.Instance.WaitFloor(x, y,true);
 		randoms = Random.Range(1, 7);
 		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);

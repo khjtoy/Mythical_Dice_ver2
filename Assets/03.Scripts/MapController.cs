@@ -32,7 +32,7 @@ public class MapController : MonoSingleton<MapController>
 		set { mapNum = value; }
 	}
 
-	public DiceDirecting[,] dices;
+	public Dice[,] dices;
 
 	[SerializeField]
 	private float floorChangeTime;
@@ -52,7 +52,7 @@ public class MapController : MonoSingleton<MapController>
 	public void InitMap()
 	{
 		diceObjectArr = new GameObject[GameManager.Instance.Size, GameManager.Instance.Size];
-		dices = new DiceDirecting[GameManager.Instance.Size, GameManager.Instance.Size];
+		dices = new Dice[GameManager.Instance.Size, GameManager.Instance.Size];
 		mapNum = new int[GameManager.Instance.Size, GameManager.Instance.Size];
 		SpawnMap();
 	}
@@ -71,7 +71,7 @@ public class MapController : MonoSingleton<MapController>
 	private void MapInitSet(int y, int x)
 	{
 		ref GameObject diceObject = ref diceObjectArr[y, x];
-		dices[y, x] = Instantiate(dicePrefabs, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<DiceDirecting>();
+		dices[y, x] = Instantiate(dicePrefabs, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Dice>();
 		dices[y, x].Pos = new Vector2Int(x, y);
 		dices[y, x].transform.SetParent(root);
 
@@ -146,27 +146,23 @@ public class MapController : MonoSingleton<MapController>
 				}
 			}
 		}
-
-
-
-		isfirst = true;
-		dices[y, x].DiceStart();
-		StartCoroutine(WaitFloor(x, y, isfirst));
+		DiceRotation rotationo;
+		dices[y, x].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
+		StartCoroutine(dices[y, x].BasicDiceNumSelect(x, y,wait, rotationo));
 	}
 
-	private IEnumerator WaitFloor(int x, int y, bool isfirst)
+	public void WaitFloor(int x, int y, bool isfirst)
 	{
-		yield return new WaitForSeconds(floorChangeTime);
-		dices[y, x].DiceNumSelect();
 		mapNum[y, x] = dices[y, x].Randoms;
 
+		Debug.Log("¿Ó´õÆÜ½º");
 		if (!isDual)
 		{
 			if (x == condition.x && y == condition.y)
 			{
-				//Boom();
+				Debug.Log(">");
 				GameManager.Instance.StageStart = true;
-				yield break;
+				return;
 			}
 
 			if (XAxis)
@@ -181,7 +177,7 @@ public class MapController : MonoSingleton<MapController>
 			if (condition.x == x && condition.y == y)
 			{
 				GameManager.Instance.StageStart = true;
-				yield break;
+				return;
 			}
 
 			if (isLeft)
@@ -213,8 +209,9 @@ public class MapController : MonoSingleton<MapController>
 					int m = j;
 					seq.AppendCallback(() =>
 					{
-						StartCoroutine(dices[n, m].BasicDiceNumSelect());
-						seq.Kill();
+						Debug.Log("??");
+						//dices[n, m].DiceNumSelect();
+;						seq.Kill();
 					});
 				}
 			}
@@ -249,7 +246,10 @@ public class MapController : MonoSingleton<MapController>
 			int m = x;
 			seq.AppendCallback(() =>
 			{
-				StartCoroutine(dices[n, m].BasicDiceNumSelect());
+				//dices[n, m].DiceNumSelect();
+				//DiceRotation rotationo;
+				//dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
+				//StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));
 				seq.Kill();
 			});
 		}
