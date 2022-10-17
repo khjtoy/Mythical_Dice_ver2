@@ -60,7 +60,7 @@ public class Dice:MonoBehaviour
 	{
 		rotation.Rotation();
 		transform.rotation = Quaternion.Euler(0, 0, 0);
-		Debug.Log("¿Ó´õÆÜ>");
+		Debug.Log("?????>");
 		yield return new WaitForSeconds(wait);
 		SoundManager.Instance.AudioChange(ref SoundManager.Instance.effectSource, baseSound.audioClips[(int)DiceEffect.Snap]);
 		MapController.Instance.WaitFloor(x, y, true);
