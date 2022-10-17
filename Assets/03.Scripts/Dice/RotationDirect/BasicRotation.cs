@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicRotation : MonoBehaviour, DiceRotation
+public class BasicRotation : Dice, DiceRotation
 {
 	public float speed;
 
 	private bool isRotation;
+
+	protected override void Awake()
+	{
+		base.Awake();
+		dice.rotation.Add(this.GetType(), this);
+	}
 	private void Update()
 	{
 		if(isRotation)

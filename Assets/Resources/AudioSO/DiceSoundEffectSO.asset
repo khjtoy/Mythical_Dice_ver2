@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DiceSoundEffectSO
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: d3fcf424adc6a8e41bec1385a1f5c066, type: 3}
+  - {fileID: 8300000, guid: 34b5b19fb5758264ca239f44a421326e, type: 3}

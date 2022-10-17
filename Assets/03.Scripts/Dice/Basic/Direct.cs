@@ -4,8 +4,5 @@ using UnityEngine;
 
 public interface Direct
 {
-	[HideInInspector]
-	public Dice dice { get; set; }
-
-	public void Direction();
+	public void Direction(DiceRotation diceRotation);
 }

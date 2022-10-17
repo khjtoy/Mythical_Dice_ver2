@@ -7,30 +7,24 @@ using UnityEngine.UI;
 
 public class StageContoller : MonoBehaviour
 {
-
-    [SerializeField]
-    private List<GameObject> stageList = new List<GameObject>();
-
+    public static StageContoller Instance;
     [SerializeField]
     private RectTransform _fadePanel;
-    private int currentStage;
-    private int OpenStage;
 
     private void Awake()
     {
+        if(Instance!= null)
+        {
+            Debug.LogError("Multiple StageController");
+        }
+        Instance = this;
         Time.timeScale = 1;
-        //PlayerPrefs.SetInt("CLEAR", 0);
-        //PlayerPrefs.SetInt("OPEN", 0);
-        OpenStage = PlayerPrefs.GetInt("OPEN");
-        currentStage = PlayerPrefs.GetInt("CLEAR");
+        PlayerPrefs.SetInt("CLEAR", 5);
+        PlayerPrefs.SetInt("OPEN", 5);
     }
 
     private void Start()
     {
-        for (int i = 0; i < OpenStage; i++)
-        {
-            stageList[i].SetActive(false);
-        }
         _fadePanel.anchoredPosition = new Vector3(0, 0, 0);
         Sequence seq = DOTween.Sequence();
         seq.AppendInterval(1);
@@ -43,31 +37,8 @@ public class StageContoller : MonoBehaviour
     private void InitStage()
     {
 
-        Sequence seq = DOTween.Sequence();
-        for (int i = 0; i < currentStage; i++)
-        {
-            if (stageList[i].activeSelf)
-            {
-                Debug.Log(i);
-                int n = i;
-                seq.Append(stageList[i].transform.DOShakePosition(1, 10, 10));
-                seq.AppendCallback(() => stageList[n].SetActive(false));
-            }
-        }
-        if (OpenStage < currentStage)
-        {
-            PlayerPrefs.SetInt("OPEN", currentStage);
-        }
     }
 
-    public void Stage(int stage)
-    {
-        PlayerPrefs.SetInt("NOWSTAGE", stage);
-        _fadePanel.anchoredPosition = new Vector3(0, -1080, 0);
-        Sequence seq = DOTween.Sequence();
-        seq.Append(_fadePanel.DOAnchorPosY(0, 1f));
-        //seq.AppendCallback(() => SceneManager.LoadScene("GamePlay 6"));
-    }
     private void OnDisable()
     {
         DOTween.KillAll();

@@ -11,11 +11,12 @@ public class SoundManager : MonoSingleton<SoundManager>
 	[SerializeField]
 	private BaseSound BackGroundSound;
 
+	[SerializeField]
 	private AudioSource BackGroundSource;
-
+	public AudioSource effectSource;
 	private void Awake()
 	{
-		BackGroundSource = GetComponent<AudioSource>();
+
 	}
 
 	private void Start()
