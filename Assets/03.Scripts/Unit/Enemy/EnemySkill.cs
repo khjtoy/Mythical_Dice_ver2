@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 public abstract class EnemySkill
@@ -62,17 +63,20 @@ public abstract class EnemySkill
     protected void PushAttack(Vector2Int pos, Vector2Int direction, int damage)
     {
         Vector2Int temp = Vector2Int.zero;
-        for(int i = -1; i <= 1; i++)
+        if (direction.x != 0)
         {
-            for (int j = -1; j <= 1; j++)
+            for (int i = -1; i <= 1; i++)
             {
-                temp = pos + new Vector2Int(j, i);
-                if (temp.x == pos.x - direction.x && temp.x != pos.x)
-                    continue;
-                if (temp.y == pos.y - direction.y && temp.y != pos.y)
-                    continue;
+                temp = pos + new Vector2Int(direction.x, i);
                 MapController.Instance.Boom(temp, damage);
-
+            }
+        }
+        else if(direction.y != 0)
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                temp = pos + new Vector2Int(i, direction.y);
+                MapController.Instance.Boom(temp, damage);
             }
         }
     }

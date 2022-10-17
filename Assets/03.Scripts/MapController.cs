@@ -189,32 +189,6 @@ public class MapController : MonoSingleton<MapController>
 				FloorInit(x, y + 1, isfirst);
 		}
 	}
-	public void BoomSameNum()
-	{
-		int brokeNum = GameManager.Instance.BossNum;
-		for (int i = 0; i < GameManager.Instance.Size; i++)
-		{
-			for (int j = 0; j < GameManager.Instance.Size; j++)
-			{
-				if (dices[i, j].Randoms == brokeNum)
-				{
-					MeshRenderer renderer = dices[i, j].GetComponent<MeshRenderer>();
-					Debug.Log(renderer.GetInstanceID());
-					Sequence seq = DOTween.Sequence();
-					seq.Append(renderer.material.DOColor(Color.red * 0.8f, 0.3f));
-					seq.Append(renderer.material.DOColor(new Color(38, 8, 0) / 255, 0.2f));
-					int n = i;
-					int m = j;
-					seq.AppendCallback(() =>
-					{
-						//Debug.Log("??");
-						//dices[n, m].DiceNumSelect();
-;						seq.Kill();
-					});
-				}
-			}
-		}
-	}
 
 	public void BoomSameNum(int value)
 	{		
@@ -244,10 +218,11 @@ public class MapController : MonoSingleton<MapController>
 			int m = x;
 			seq.AppendCallback(() =>
 			{
-				//dices[n, m].DiceNumSelect();
-				//DiceRotation rotationo;
-				//dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
-				//StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));
+				dices[n, m].DiceNumSelect();
+				DiceRotation rotationo;
+				dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
+				StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));
+				GiveDamage(new Vector2Int(x, y), brokeNum);
 				seq.Kill();
 			});
 		}
@@ -312,5 +287,11 @@ public class MapController : MonoSingleton<MapController>
 	public static Vector3 ArrayToPos(Vector2Int pos)
 	{
 		return ArrayToPos(pos.x, pos.y);
+	}
+
+	public void GiveDamage(Vector2Int pos, int value)
+	{
+		if(Define.PlayerMove.GamePos == pos)
+			Define.PlayerStat.GetDamage(value);
 	}
 }
