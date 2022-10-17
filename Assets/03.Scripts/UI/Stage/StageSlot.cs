@@ -18,6 +18,7 @@ public class StageSlot : MonoBehaviour
     private Button _stageBtn;
 
     private int _slotStage;
+    private bool _isHard = false;
     
     private void Awake()
     {
@@ -27,9 +28,7 @@ public class StageSlot : MonoBehaviour
         _stageBtn = transform.GetComponent<Button>();
         _stageBtn.onClick.AddListener(Stage);
 
-        string name = gameObject.name;
-        name = name.Replace("Stage_", "");
-        _slotStage = int.Parse(name);
+ 
     }
 
     private void Start()
@@ -42,6 +41,16 @@ public class StageSlot : MonoBehaviour
     }
     private void SetStageSlot()
     {
+        string name = gameObject.name;
+        name = name.Replace("Stage_", "");
+        if(name.Contains("HARD"))
+        {
+            name = name.Replace("HARD_", "");
+            _isHard = true;
+        }
+
+        _slotStage = int.Parse(name);
+
         int currentStage = PlayerPrefs.GetInt("OPEN");
         int clearStage = PlayerPrefs.GetInt("CLEAR");
 
