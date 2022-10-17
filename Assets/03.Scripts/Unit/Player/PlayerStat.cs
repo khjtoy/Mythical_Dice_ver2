@@ -13,6 +13,8 @@ public class PlayerStat : StatBase
     private Image playerHPSlider;
     [SerializeField]
     private Image whiteSlider;
+    [SerializeField]
+    private Text comboText;
 
     private RectTransform hpSliderRt;
     private RectTransform whiteSliderRt;
@@ -42,6 +44,7 @@ public class PlayerStat : StatBase
         hp -= value;
         combo = 0;
         SetHPSlider();
+        StatUI();
         isDamage = true;
     }
     private void SetHPSlider()
@@ -64,10 +67,15 @@ public class PlayerStat : StatBase
         }
     }
 
-    public int GetCombo(int value)
+    public void SetCombo(int value = 0)
     {
-        if (combo + value <= 20)
-            combo++;
-        return COMBO;
+        combo += value;
+        if (combo > 20) combo = 20;
+        StatUI();
+    }
+
+    public void StatUI()
+    {
+        comboText.text = $"{combo}";
     }
 }

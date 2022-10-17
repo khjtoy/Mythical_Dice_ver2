@@ -6016,7 +6016,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 0.5
   impactOffeset: 1.5
-  comboText: {fileID: 153698506798392891}
 --- !u!114 &1962720377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6036,6 +6035,7 @@ MonoBehaviour:
   sliderSpeed: 5
   playerHPSlider: {fileID: 153698506560933918}
   whiteSlider: {fileID: 153698507447915164}
+  comboText: {fileID: 153698506798392891}
 --- !u!222 &153698506011921512
 CanvasRenderer:
   m_ObjectHideFlags: 0

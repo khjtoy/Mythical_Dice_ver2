@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
 public class PlayerAttack : CharacterBase
@@ -15,10 +14,6 @@ public class PlayerAttack : CharacterBase
     private float impactOffeset = 1;
 
     private int hashAttack = Animator.StringToHash("Attack");
-
-    [SerializeField]
-    private Text comboText;
-
     private PlayerStat playerStat;
 
 
@@ -63,9 +58,10 @@ public class PlayerAttack : CharacterBase
         Debug.Log("Attack");
         if (nearEnemy)
         {
-            int count = playerStat.GetCombo(1);
-            comboText.text = $"{count}";
-            bool FlagCombo = count >= 20;
+            Vector2Int pos = MapController.PosToArray(transform.localPosition);
+            int damage = MapController.Instance.MapNum[pos.y, pos.x];
+            playerStat.SetCombo(damage);
+            bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
             GameObject particle = ObjectPool.Instance.GetObject(FlagCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
             particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
