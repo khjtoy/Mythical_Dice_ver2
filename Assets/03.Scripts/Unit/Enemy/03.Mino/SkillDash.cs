@@ -21,7 +21,7 @@ public class SkillDash : EnemySkill
             Vector3 temp = unit.WorldPos + direction * i * MapController.Instance.Distance;
             if (temp.x <= -range || temp.x >= range || temp.z <= -range || temp.z >= range)
                 break;
-            seq.Append(unit.transform.DOLocalMove(temp, 0.1f));
+            seq.Append(unit.transform.DOLocalMove(temp, 0.15f));
             seq.AppendCallback(() =>
             {
                 unit.WorldPos = unit.transform.localPosition;
