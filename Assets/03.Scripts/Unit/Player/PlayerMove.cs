@@ -11,6 +11,8 @@ public class PlayerMove : UnitMove
 	int hashCrouch = Animator.StringToHash("Crouch");
 	int hashRise = Animator.StringToHash("Rise");
 
+	Queue<Vector3> moveDir = new Queue<Vector3>();
+
 	float movePos
 	{
 		get
@@ -27,34 +29,51 @@ public class PlayerMove : UnitMove
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			Translate(Vector3.forward * movePos);
-			PlayAnimator(hashRise);
-		}
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			Translate(Vector3.back * movePos);
-			PlayAnimator(hashCrouch);
-		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			Translate(Vector3.left * movePos);
-			PlayAnimator(hashMove);
-			transform.localScale = new Vector3Int(-1, 1, 1);
-		}
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			Translate(Vector3.right * movePos);
-			PlayAnimator(hashMove);
-			transform.localScale = Vector3Int.one;
-		}
+		InputMovement();
+		PopMove();
 		//Dice Boom Debug
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			MapController.Instance.Boom(Vector2Int.zero, 1);
 		}
 	}
+
+
+	public void InputMovement()
+    {
+		if (moveDir.Count > 3) return;
+		if (Input.GetKeyDown(KeyCode.UpArrow))
+			moveDir.Enqueue(Vector3.forward);
+		if (Input.GetKeyDown(KeyCode.DownArrow))
+			moveDir.Enqueue(Vector3.back);
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
+			moveDir.Enqueue(Vector3.left);
+		if (Input.GetKeyDown(KeyCode.RightArrow))
+			moveDir.Enqueue(Vector3.right);
+	}
+
+	public void PopMove()
+    {
+		if (moveDir.Count > 0 && !_isMoving)
+		{
+			Vector3 dir = moveDir.Dequeue();
+			if(dir == Vector3.left) transform.localScale = new Vector3Int(-1, 1, 1); 
+			if(dir == Vector3.right) transform.localScale = Vector3Int.one;
+			ShootAnimation(dir);
+			Translate(dir * movePos);
+		}
+    }
+
+	public void ShootAnimation(Vector3 dir)
+    {
+		if (dir == Vector3.forward)
+			PlayAnimator(hashRise);
+		else if (dir == Vector3.back)
+			PlayAnimator(hashCrouch);
+		else if (dir == Vector3.left || dir == Vector3.right)
+			PlayAnimator(hashMove);
+    }
+
 	public override void Translate(Vector3 pos)
 	{
 		if (_isMoving)
