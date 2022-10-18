@@ -10,6 +10,9 @@ public class StageContoller : MonoBehaviour
     public static StageContoller Instance;
     [SerializeField]
     private RectTransform _fadePanel;
+    [SerializeField]
+    private StagePanel _stagePanel;
+    public StagePanel StagePanel => _stagePanel;
 
     private void Awake()
     {
