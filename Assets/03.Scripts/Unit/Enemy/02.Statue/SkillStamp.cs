@@ -7,6 +7,7 @@ using DG.Tweening;
 public class SkillStamp : EnemySkill
 {
     Sequence seq = null;
+
     public override void DoAttack(UnitMove unit, Action callback = null)
     {
         int skillCase = UnityEngine.Random.Range(0, 2);
