@@ -14,6 +14,8 @@ public class StageContoller : MonoBehaviour
     private StagePanel _stagePanel;
     public StagePanel StagePanel => _stagePanel;
 
+    public bool OpenPanel { get; }
+
     private void Awake()
     {
         if(Instance!= null)

@@ -15,6 +15,8 @@ public class PlayerStat : StatBase
     private Image whiteSlider;
     [SerializeField]
     private Text comboText;
+    [SerializeField]
+    private BloodControl bloodCt;
 
     private RectTransform hpSliderRt;
     private RectTransform whiteSliderRt;
@@ -42,6 +44,9 @@ public class PlayerStat : StatBase
     public void GetDamage(int value)
     {
         hp -= value;
+        bloodCt.BloodFade(value);
+        if (origin_hp * 0.5f >= hp)
+            bloodCt.BloodSet(hp, origin_hp);
         combo = 0;
         SetHPSlider();
         StatUI();
@@ -59,7 +64,9 @@ public class PlayerStat : StatBase
         if(isDamage)
         {
             whiteSliderRt.localScale = Vector3.Lerp(whiteSliderRt.localScale, hpSliderRt.localScale, sliderSpeed * Time.deltaTime);
-            if(hpSliderRt.localScale.x >= whiteSliderRt.localScale.x - 0.01f)
+
+            
+            if (hpSliderRt.localScale.x >= whiteSliderRt.localScale.x - 0.01f)
             {
                 isDamage = false;
                 whiteSliderRt.localScale = hpSliderRt.localScale;

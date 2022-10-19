@@ -38,10 +38,7 @@ public class StageSlot : MonoBehaviour
     private void Stage()
     {
         Debug.Log("Stage : " + _slotStage);
-        RectTransform go = StageContoller.Instance.StagePanel.gameObject?.GetComponent<RectTransform>();
-        Sequence seq = DOTween.Sequence();
-        go.anchoredPosition = new Vector2(1500, 0);
-        seq.Append(go.DOAnchorPos(new Vector2(0, 0),1));
+        StageContoller.Instance.StagePanel.OpenPanel(_slotStage);
 
     }
     private void SetStageSlot()
