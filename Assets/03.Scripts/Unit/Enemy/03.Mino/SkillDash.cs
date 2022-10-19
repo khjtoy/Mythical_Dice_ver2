@@ -12,7 +12,7 @@ public class SkillDash : EnemySkill
         int damage = MapController.Instance.MapNum[unit.GamePos.y, unit.GamePos.x];
         float range = GameManager.Instance.Size / 2f * MapController.Instance.Distance;
         Vector3 direction = ((Vector2)Define.PlayerMove.GamePos - unit.GamePos).normalized;
-        Vector2Int dir = new Vector2Int(Mathf.CeilToInt(direction.x), Mathf.CeilToInt(direction.y));~
+        Vector2Int dir = new Vector2Int(Mathf.CeilToInt(direction.x), Mathf.CeilToInt(direction.y));
         direction = new Vector3(dir.x, 0, dir.y);
         seq = DOTween.Sequence();
         PushAttack(unit.GamePos, dir, damage);
@@ -25,7 +25,7 @@ public class SkillDash : EnemySkill
             seq.AppendCallback(() =>
             {
                 unit.WorldPos = unit.transform.localPosition;
-                PushAttack(unit.GamePos, dir, dam~age);
+                PushAttack(unit.GamePos, dir, damage);
             });
         }
         seq.AppendCallback(() =>
