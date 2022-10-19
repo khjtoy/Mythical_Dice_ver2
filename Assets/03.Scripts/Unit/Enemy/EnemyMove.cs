@@ -32,7 +32,7 @@ public class EnemyMove : UnitMove
 
 		for (int i = 0; i < _enemySkillDict.Count; i++)
 		{
-			_enemySkillDict[(EnemyAIState)i].audioSource = audioSource;
+			//_enemySkillDict[(EnemyAIState)i].audioSource = audioSource;
 		}
 
 		float offset = GameManager.Instance.Offset;
