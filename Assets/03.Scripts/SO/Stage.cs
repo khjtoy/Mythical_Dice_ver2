@@ -6,8 +6,9 @@ using System;
 [Serializable]
 public class Stage
 {
-    public int level = 0;
-    public Vector2 pos;
-    public string explanation = "";
-    public string story = "";
+    public Sprite sprite;
+    public string bossText;
+    public string storyText;
+
+
 }

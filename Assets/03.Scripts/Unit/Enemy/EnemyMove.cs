@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum EnemyAIState{
     IDLE,
+    SLIME,
     STAMP,
     JUMP,
     DASH,
@@ -22,6 +23,7 @@ public class EnemyMove : UnitMove
     public void Awake()
     {
         _enemySkillDict.Add(EnemyAIState.IDLE, null);
+        _enemySkillDict.Add(EnemyAIState.SLIME, new SkillSlime());
         _enemySkillDict.Add(EnemyAIState.STAMP, new SkillStamp());
         _enemySkillDict.Add(EnemyAIState.JUMP, new SkillJump());
         _enemySkillDict.Add(EnemyAIState.DASH, new SkillDash());
