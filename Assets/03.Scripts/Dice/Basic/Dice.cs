@@ -34,21 +34,21 @@ public class Dice:MonoBehaviour
 		randoms = Random.Range(1, 7);
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		ParticleOn();
-		SoundManager.Instance.AudioChange(ref SoundManager.Instance.effectSource, baseSound.audioClips[(int)DiceEffect.Snap]);
+		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 	}
 	public void DiceNumSelect(int value)
 	{
 		randoms = value;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		ParticleOn();
-		SoundManager.Instance.AudioChange(ref SoundManager.Instance.effectSource, baseSound.audioClips[(int)DiceEffect.Snap]);
+		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap],SoundManager.Instance.effectSource);
 	}
 	public IEnumerator BasicDiceNumSelect(float wait, DiceRotation rotation)
 	{
 		rotation.Rotation();
 		transform.rotation = Quaternion.Euler(0, 0, 0);
 		yield return new WaitForSeconds(wait);
-		SoundManager.Instance.AudioChange(ref SoundManager.Instance.effectSource, baseSound.audioClips[(int)DiceEffect.Snap]);
+		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 		randoms = Random.Range(1, 7);
 		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
@@ -60,9 +60,8 @@ public class Dice:MonoBehaviour
 	{
 		rotation.Rotation();
 		transform.rotation = Quaternion.Euler(0, 0, 0);
-		Debug.Log("?????>");
 		yield return new WaitForSeconds(wait);
-		SoundManager.Instance.AudioChange(ref SoundManager.Instance.effectSource, baseSound.audioClips[(int)DiceEffect.Snap]);
+		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 		MapController.Instance.WaitFloor(x, y, true);
 		rotation.Rotation();
 		randoms = Random.Range(1, 7);
@@ -71,9 +70,9 @@ public class Dice:MonoBehaviour
 		ParticleOn();
 	}
 
-	public void Direct(Direct direct, DiceRotation diceRotation)
+	public void Direct(System.Type diceType, System.Type rotationType)
 	{
-		direct.Direction(diceRotation);
+		directs[diceType].Direction(rotation[rotationType]);
 	}
 	private void ParticleOn()
 	{

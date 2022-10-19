@@ -22,10 +22,10 @@ public class SoundManager : MonoSingleton<SoundManager>
 	private void Start()
 	{
 		//이걸 스테이지 시작할때 마다 실행 시켜주면 됨
-		AudioChange(ref BackGroundSource, BackGroundSound.audioClips[0]);
+		AudioChange(BackGroundSound.audioClips[0], BackGroundSource);
 	}
 
-	public void AudioChange(ref AudioSource audioSource, AudioClip audioClip)
+	public void AudioChange(AudioClip audioClip ,AudioSource audioSource = null)
 	{
 		audioSource.Stop();
 		audioSource.clip = audioClip;

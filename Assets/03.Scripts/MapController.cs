@@ -144,9 +144,10 @@ public class MapController : MonoSingleton<MapController>
 				}
 			}
 		}
+
 		DiceRotation rotationo;
 		dices[y, x].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
-		StartCoroutine(dices[y, x].BasicDiceNumSelect(x, y,wait, rotationo));
+		StartCoroutine(dices[y, x].BasicDiceNumSelect(x, y, wait, rotationo));
 	}
 
 	public void WaitFloor(int x, int y, bool isfirst)
@@ -218,7 +219,7 @@ public class MapController : MonoSingleton<MapController>
 			int m = x;
 			seq.AppendCallback(() =>
 			{
-				dices[n, m].DiceNumSelect();
+				//dices[n, m].DiceNumSelect();
 				DiceRotation rotationo;
 				dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
 				StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));

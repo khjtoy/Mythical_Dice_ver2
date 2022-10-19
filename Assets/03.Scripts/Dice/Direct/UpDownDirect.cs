@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BasicDirect : Dice, Direct
+public class UpDownDirect : Dice, Direct
 {
 	[SerializeField]
 	private float upSecound;
