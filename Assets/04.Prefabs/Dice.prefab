@@ -74,9 +74,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0}
-  upSecound: 1
-  downSecound: 1
-  upPos: 3
+  upSecound: 0.1
+  downSecound: 0.1
+  upPos: 0.5
 --- !u!114 &792345203
 MonoBehaviour:
   m_ObjectHideFlags: 0

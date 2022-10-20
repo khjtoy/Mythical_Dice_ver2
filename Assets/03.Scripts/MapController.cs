@@ -220,9 +220,11 @@ public class MapController : MonoSingleton<MapController>
 			seq.AppendCallback(() =>
 			{
 				//dices[n, m].DiceNumSelect();
-				DiceRotation rotationo;
-				dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
-				StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));
+				//DiceRotation rotationo;
+				//dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
+				//StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));
+
+				dices[y, x].Direct(typeof(UpDownDirect), typeof(BasicRotation));
 				GiveDamage(new Vector2Int(x, y), brokeNum);
 				seq.Kill();
 			});
