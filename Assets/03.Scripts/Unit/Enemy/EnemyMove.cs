@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnemyAIState{
+	ANY,
     IDLE,
     SLIME,
     STAMP,
@@ -12,6 +13,7 @@ public enum EnemyAIState{
     SWIM,
     ROUGH,
     SILENT,
+    DEATH,
     COUNT
 }
 public class EnemyMove : UnitMove
@@ -30,6 +32,7 @@ public class EnemyMove : UnitMove
 		_enemySkillDict.Add(EnemyAIState.SWIM, new SkillSwim());
 		_enemySkillDict.Add(EnemyAIState.ROUGH, new SkillRough());
 		_enemySkillDict.Add(EnemyAIState.SILENT, new SkillSilent());
+		_enemySkillDict.Add(EnemyAIState.DEATH, new DeathState());
 
 		for (int i = 0; i < _enemySkillDict.Count; i++)
 		{
@@ -40,9 +43,9 @@ public class EnemyMove : UnitMove
 		transform.localPosition = new Vector3(offset, 0, offset);
 		WorldPos = transform.localPosition;
 	}
-	public void DoSkill(EnemyAIState state, Action callback = null)
+	public void  DoSkill(EnemyAIState state, Action callback = null)
 	{
-		if (state == EnemyAIState.IDLE)
+		if (state == EnemyAIState.ANY || state == EnemyAIState.IDLE)
 		{
 			callback?.Invoke();
 			return;

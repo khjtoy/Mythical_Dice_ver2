@@ -9,6 +9,8 @@ public class DirectDirectionCondition : AICondition
         Vector2Int pos = Define.EnemyMove.GamePos;
         Vector2Int playerPos = Define.PlayerMove.GamePos;
         int size = GameManager.Instance.Size;
+        if (pos == playerPos)
+            return false;
         if(pos.x == playerPos.x)
             return true;
         if (pos.y == playerPos.y)

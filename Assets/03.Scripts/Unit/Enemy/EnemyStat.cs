@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class EnemyStat : StatBase
 {
-
+    public void GetDamage(int value)
+    {
+        HP -= value;
+    }
 }

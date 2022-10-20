@@ -17,6 +17,9 @@ public class PlayerStat : StatBase
     private Text comboText;
     [SerializeField]
     private BloodControl bloodCt;
+    
+    [SerializeField] protected int combo = 0;
+    public int COMBO { get => combo; }
 
     private RectTransform hpSliderRt;
     private RectTransform whiteSliderRt;
@@ -43,7 +46,7 @@ public class PlayerStat : StatBase
 
     public void GetDamage(int value)
     {
-        hp -= value;
+        HP -= value;
         bloodCt.BloodFade(value);
         if (origin_hp * 0.5f >= hp)
             bloodCt.BloodSet(hp, origin_hp);
