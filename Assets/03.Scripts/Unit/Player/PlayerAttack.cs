@@ -53,8 +53,10 @@ public class PlayerAttack : CharacterBase
         int difY = MapController.PosToArray(enemy.localPosition.z) - MapController.PosToArray(transform.localPosition.z);
         Debug.Log($"difx:{difX}, difY:{difY}");
         bool nearEnemy = (Mathf.Abs(difX) + Mathf.Abs(difY)) == 1 ? true : false;
-
+        
         PlayAnimator(hashAttack);
+        if (Define.IsBossAlive == false)
+            return; 
         Debug.Log("Attack");
         if (nearEnemy)
         {
@@ -63,14 +65,16 @@ public class PlayerAttack : CharacterBase
             playerStat.SetCombo(damage);
             bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
+            
+            Define.EnemyStat.GetDamage(damage);
             GameObject particle = ObjectPool.Instance.GetObject(FlagCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
             particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
-
+            
             Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
             if(FlagCombo)
             {
-                Time.timeScale = 0.1f;
-                Invoke("OrginTime", 0.06f);
+                Time.timeScale = 0.4f;
+                Invoke("OrginTime", 0.12f);
             }
 
             timer = attackDelay;
