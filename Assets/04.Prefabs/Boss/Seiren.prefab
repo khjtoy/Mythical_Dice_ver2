@@ -329,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767244215972145543}
   - component: {fileID: 3388926980364923789}
-  - component: {fileID: 3096688309355437583}
+  - component: {fileID: 1407190476480421670}
   m_Layer: 0
   m_Name: ToDeath
   m_TagString: Untagged
@@ -365,12 +365,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartState: {fileID: 4798723915565882158}
   PositiveCondition:
-  - {fileID: 3096688309355437583}
+  - {fileID: 1407190476480421670}
   NegativeCondition: []
   goalState: {fileID: 2224181704422934057}
   IsPositiveAnd: 0
   IsNegativeAnd: 0
---- !u!114 &3096688309355437583
+--- !u!114 &1407190476480421670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2239267163512532333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f228499027fd22e4a823afe79ca960c5, type: 3}
+  m_Script: {fileID: 11500000, guid: f786a1246a8d22e4b8bea860b382ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyStat: {fileID: 5088377108744236980}
@@ -978,7 +978,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin_hp: 50
   hp: 50
-  atk: 0
 --- !u!1 &7654677781477894223
 GameObject:
   m_ObjectHideFlags: 0

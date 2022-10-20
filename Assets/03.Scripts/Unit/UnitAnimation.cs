@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class UnitAnimation
+public class  UnitAnimation
 {
     [SerializeField]
     private Animator animator;

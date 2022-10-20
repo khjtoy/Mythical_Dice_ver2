@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class DeathState : EnemySkill
 {
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
-        
+        ani?.Invoke();
     }
 }

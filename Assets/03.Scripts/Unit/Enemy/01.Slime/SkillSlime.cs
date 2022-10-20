@@ -7,8 +7,9 @@ using UnityEngine;
 public class SkillSlime : EnemySkill
 {
     Sequence seq = null;
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        ani?.Invoke();
         Transform baseTrm = unit.transform;
         EnemyMove enemyMove = Define.EnemyMove;
         unit.CanVoid = true;
