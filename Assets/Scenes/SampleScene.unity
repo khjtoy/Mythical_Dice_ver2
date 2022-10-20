@@ -412,7 +412,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6284,13 +6284,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin_hp: 50
   hp: 50
-  atk: 0
-  combo: 0
   sliderSpeed: 5
   playerHPSlider: {fileID: 153698506560933918}
   whiteSlider: {fileID: 153698507447915164}
   comboText: {fileID: 153698506798392891}
   bloodCt: {fileID: 1396408452}
+  combo: 0
 --- !u!222 &153698506011921512
 CanvasRenderer:
   m_ObjectHideFlags: 0
