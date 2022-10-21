@@ -348,7 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29839336716781466}
   - component: {fileID: 7869385456539021976}
-  - component: {fileID: 6061836782161272203}
+  - component: {fileID: 6885142092620473369}
   m_Layer: 0
   m_Name: ToDeath
   m_TagString: Untagged
@@ -384,12 +384,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartState: {fileID: 4077560652253928661}
   PositiveCondition:
-  - {fileID: 6061836782161272203}
+  - {fileID: 6885142092620473369}
   NegativeCondition: []
   goalState: {fileID: 3469247654955188156}
   IsPositiveAnd: 0
   IsNegativeAnd: 0
---- !u!114 &6061836782161272203
+--- !u!114 &6885142092620473369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5690862294252377997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f228499027fd22e4a823afe79ca960c5, type: 3}
+  m_Script: {fileID: 11500000, guid: f786a1246a8d22e4b8bea860b382ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyStat: {fileID: 4876849465232296201}
@@ -490,6 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7904570817149137987}
   - component: {fileID: 7904570817149137984}
+  - component: {fileID: 939271342}
   m_Layer: 0
   m_Name: angel_break_0
   m_TagString: Untagged
@@ -562,6 +563,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &939271342
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904570817149137985}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69d271b16db620a41b408524172cd25f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7904570817365517875
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +630,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pos: {x: 0, y: 0, z: 0}
   canVoid: 0
+  _animation:
+    animator: {fileID: 939271342}
 --- !u!114 &4876849465232296201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,4 +646,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin_hp: 50
   hp: 50
-  atk: 0

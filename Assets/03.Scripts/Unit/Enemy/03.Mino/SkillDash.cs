@@ -7,11 +7,13 @@ using UnityEngine;
 public class SkillDash : EnemySkill
 {
     Sequence seq;
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        ani?.Invoke();
         int damage = MapController.Instance.MapNum[unit.GamePos.y, unit.GamePos.x];
         float range = GameManager.Instance.Size / 2f * MapController.Instance.Distance;
         Vector3 direction = ((Vector2)Define.PlayerMove.GamePos - unit.GamePos).normalized;
+        unit.transform.localScale = (direction.x <= 0) ? new Vector3(1, 1 ,1): new Vector3(-1, 1 ,1);
         Vector2Int dir = new Vector2Int(Mathf.CeilToInt(direction.x), Mathf.CeilToInt(direction.y));
         direction = new Vector3(dir.x, 0, dir.y);
         seq = DOTween.Sequence();

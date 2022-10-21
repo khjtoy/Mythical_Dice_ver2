@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public enum EnemyAIState{
@@ -18,9 +19,10 @@ public enum EnemyAIState{
 }
 public class EnemyMove : UnitMove
 {
+	[SerializeField] private UnitAnimation _animation = null;
 	private Dictionary<EnemyAIState, EnemySkill> _enemySkillDict = new Dictionary<EnemyAIState, EnemySkill>();
 	[SerializeField] private List<EnemySkill> enemySkills = new List<EnemySkill>();
-
+	private List<int> hashes = new List<int>();
 
 	public void Awake()
 	{
@@ -33,6 +35,11 @@ public class EnemyMove : UnitMove
 		_enemySkillDict.Add(EnemyAIState.ROUGH, new SkillRough());
 		_enemySkillDict.Add(EnemyAIState.SILENT, new SkillSilent());
 		_enemySkillDict.Add(EnemyAIState.DEATH, new DeathState());
+
+		for (var i = EnemyAIState.ANY; i < EnemyAIState.COUNT; i++)
+		{
+			hashes.Add(Animator.StringToHash(i.ToString()));
+		}
 
 		for (int i = 0; i < _enemySkillDict.Count; i++)
 		{
@@ -50,7 +57,11 @@ public class EnemyMove : UnitMove
 			callback?.Invoke();
 			return;
 		}
-		_enemySkillDict[state].DoAttack(this, callback);
+		Action ani = () =>
+		{
+			_animation.PlayAnimator(hashes[(int)state]);
+		};
+		_enemySkillDict[state].DoAttack(this, ani, callback);
 	}
 
 	public override void Translate(Vector3 pos)

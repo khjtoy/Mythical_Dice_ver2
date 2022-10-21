@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3006645018724738592}
   - component: {fileID: 8952071644985223335}
-  - component: {fileID: 210894764290466292}
+  - component: {fileID: 2958013535385303794}
   m_Layer: 0
   m_Name: ToDeath
   m_TagString: Untagged
@@ -381,12 +381,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartState: {fileID: 2073960542094926281}
   PositiveCondition:
-  - {fileID: 210894764290466292}
+  - {fileID: 2958013535385303794}
   NegativeCondition: []
   goalState: {fileID: 4166047542108625033}
   IsPositiveAnd: 0
   IsNegativeAnd: 0
---- !u!114 &210894764290466292
+--- !u!114 &2958013535385303794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 216584449450648025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f228499027fd22e4a823afe79ca960c5, type: 3}
+  m_Script: {fileID: 11500000, guid: f786a1246a8d22e4b8bea860b382ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyStat: {fileID: 8678142049655726889}
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4d12f8cdd3fde409a5fb460fdb16f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EnemyState>k__BackingField: 0
+  <EnemyState>k__BackingField: 1
   <EnemyMove>k__BackingField: {fileID: 99458710}
   <Transitions>k__BackingField:
   - {fileID: 8952071644985223335}
@@ -666,6 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7904570817149137987}
   - component: {fileID: 7904570817149137984}
+  - component: {fileID: 1670965967}
   m_Layer: 0
   m_Name: angel_break_0
   m_TagString: Untagged
@@ -739,6 +740,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1670965967
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904570817149137985}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3bfdb7ef21749bb48b649589c701f564, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7904570817365517875
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +770,7 @@ GameObject:
   - component: {fileID: 7904570817365517874}
   - component: {fileID: 99458710}
   - component: {fileID: 8678142049655726889}
+  - component: {fileID: 1277356749}
   m_Layer: 0
   m_Name: Mino
   m_TagString: Boss
@@ -787,6 +808,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pos: {x: 0, y: 0, z: 0}
   canVoid: 0
+  _animation:
+    animator: {fileID: 1670965967}
 --- !u!114 &8678142049655726889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +824,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin_hp: 50
   hp: 50
-  atk: 0
+--- !u!114 &1277356749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904570817365517875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf032a704b6ef3e42bb8bd6d6bdccca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainSprite: {fileID: 7904570817149137984}
 --- !u!1 &8995289324523614701
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +882,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EnemyState>k__BackingField: 0
-  <EnemyMove>k__BackingField: {fileID: 0}
+  <EnemyMove>k__BackingField: {fileID: 99458710}
   <Transitions>k__BackingField: []
   <IsLoop>k__BackingField: 0

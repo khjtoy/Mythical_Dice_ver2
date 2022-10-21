@@ -8,7 +8,7 @@ public class SkillSilent : EnemySkill
 {
     private Sequence seq = null;
     Vector2Int randomPos = Vector2Int.zero;
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         seq = DOTween.Sequence();
         Vector2Int pos = unit.GamePos;
