@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ccc2f940e88b1a469250d27688a54bf, type: 3}
-  m_Name: NewBlit
+  m_Name: SceneShocky
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
