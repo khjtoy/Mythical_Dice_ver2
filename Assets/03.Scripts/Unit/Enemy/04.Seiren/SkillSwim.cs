@@ -12,10 +12,10 @@ public class SkillSwim : EnemySkill
     bool isUnderWater = false;
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
-        ani?.Invoke();
         switch(times)
         {
             case 0:
+                ani?.Invoke();
                 range = 2;
                 isUnderWater = true;
                 break;
@@ -37,7 +37,7 @@ public class SkillSwim : EnemySkill
         if(isUnderWater)
         {
             seq.AppendInterval(0.8f);
-            seq.AppendCallback(() => DoAttack(unit, callback));
+            seq.AppendCallback(() => DoAttack(unit, ani, callback));
         }
         else
         {

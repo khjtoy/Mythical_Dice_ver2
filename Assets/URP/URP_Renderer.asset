@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccc2f940e88b1a469250d27688a54bf, type: 3}
   m_Name: SceneShocky
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 300
     blitMaterial: {fileID: 2100000, guid: 297a36712a7d00647a12b7db0a53f911, type: 2}

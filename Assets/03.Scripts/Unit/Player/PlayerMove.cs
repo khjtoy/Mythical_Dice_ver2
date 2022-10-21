@@ -36,11 +36,15 @@ public class PlayerMove : UnitMove
 		{
 			MapController.Instance.Boom(Vector2Int.zero, 1);
 		}
+		else if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			//DiceSkill.Instance.Spread();
+		}
 	}
 
 
 	public void InputMovement()
-    {
+	{
 		if (moveDir.Count > 3) return;
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 			moveDir.Enqueue(Vector3.forward);
@@ -53,26 +57,26 @@ public class PlayerMove : UnitMove
 	}
 
 	public void PopMove()
-    {
+	{
 		if (moveDir.Count > 0 && !_isMoving)
 		{
 			Vector3 dir = moveDir.Dequeue();
-			if(dir == Vector3.left) transform.localScale = new Vector3Int(-1, 1, 1); 
-			if(dir == Vector3.right) transform.localScale = Vector3Int.one;
+			if (dir == Vector3.left) transform.localScale = new Vector3Int(-1, 1, 1);
+			if (dir == Vector3.right) transform.localScale = Vector3Int.one;
 			ShootAnimation(dir);
 			Translate(dir * movePos);
 		}
-    }
+	}
 
 	public void ShootAnimation(Vector3 dir)
-    {
+	{
 		if (dir == Vector3.forward)
 			PlayAnimator(hashRise);
 		else if (dir == Vector3.back)
 			PlayAnimator(hashCrouch);
 		else if (dir == Vector3.left || dir == Vector3.right)
 			PlayAnimator(hashMove);
-    }
+	}
 
 	public override void Translate(Vector3 pos)
 	{
