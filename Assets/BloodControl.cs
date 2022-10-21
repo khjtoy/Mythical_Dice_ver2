@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class BloodControl : MonoBehaviour
 {
+	private Sequence seq;
 	[SerializeField]
 	private Image attackBlood;
 
@@ -19,10 +20,13 @@ public class BloodControl : MonoBehaviour
 	}
 	public void BloodFade(int damage)
 	{
+		seq.Kill();
+		seq = DOTween.Sequence();
 		float d = 0f;
 		float percent = (float)damage / 6 * 100;
 		if (percent == 16.67f)
 			d = 0.2f;
-		blood.DOFade(0.7f * (percent / 100) + d, 0.5f).OnComplete(() => blood.DOFade(0, 0.5f));
+		seq.Append(blood.DOFade(0.7f * (percent / 100) + d, 0.5f).OnComplete(() => blood.DOFade(0, 0.5f)));
+		seq.AppendCallback(() => seq.Kill());
 	}
 }

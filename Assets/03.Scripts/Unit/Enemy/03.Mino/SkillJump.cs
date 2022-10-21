@@ -7,10 +7,12 @@ using UnityEngine;
 public class SkillJump : EnemySkill
 {
     Sequence seq = null;
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        ani?.Invoke();
         Transform baseTrm = unit.transform;
-        EnemyMove enemyMove = Define.EnemyMove;
+        PlayerMove enemyMove = Define.PlayerMove;
+        unit.transform.localScale = (baseTrm.localPosition.x - enemyMove.GamePos.x >= 0) ? new Vector3(1, 1 ,1): new Vector3(-1, 1 ,1);
         seq = DOTween.Sequence();
         seq.Append(baseTrm.DOLocalMoveY(1.3f, 0.5f));
         seq.Join(baseTrm.DOLocalMoveX(Define.PlayerMove.WorldPos.x, 0.3f));

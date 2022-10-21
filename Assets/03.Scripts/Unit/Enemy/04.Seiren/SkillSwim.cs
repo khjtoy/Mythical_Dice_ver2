@@ -10,8 +10,9 @@ public class SkillSwim : EnemySkill
     int times = 0;
     int range = 2;
     bool isUnderWater = false;
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        ani?.Invoke();
         switch(times)
         {
             case 0:

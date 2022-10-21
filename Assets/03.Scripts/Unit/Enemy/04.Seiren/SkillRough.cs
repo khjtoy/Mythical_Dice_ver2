@@ -11,7 +11,7 @@ public class SkillRough : EnemySkill
     Vector2Int movePos = Vector2Int.zero;
     Vector2Int wavePos = Vector2Int.zero;
     private int times = 0;
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         Vector2Int pos = unit.GamePos;
         Vector2Int enemyPos = Define.PlayerMove.GamePos;

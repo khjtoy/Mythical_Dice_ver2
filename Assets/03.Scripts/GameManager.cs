@@ -1,8 +1,10 @@
+using System;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -36,5 +38,13 @@ public class GameManager : MonoSingleton<GameManager>
 	protected override void Init()
 	{
 		
+	}
+
+	private void Start()
+	{
+		if (SceneManager.sceneCount < 2)
+		{
+			SceneManager.LoadScene(0, LoadSceneMode.Additive);
+		}
 	}
 }

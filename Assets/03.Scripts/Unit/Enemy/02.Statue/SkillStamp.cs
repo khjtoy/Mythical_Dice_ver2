@@ -8,7 +8,7 @@ public class SkillStamp : EnemySkill
 {
     Sequence seq = null;
 
-    public override void DoAttack(UnitMove unit, Action callback = null)
+    public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         int skillCase = UnityEngine.Random.Range(0, 2);
         Transform baseTrm = unit.transform;

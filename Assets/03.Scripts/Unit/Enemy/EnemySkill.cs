@@ -9,7 +9,7 @@ public abstract class EnemySkill
 {
     public AudioSource audioSource;
 
-    public abstract void DoAttack(UnitMove unit, Action callback = null);
+    public abstract void DoAttack(UnitMove unit, Action ani = null, Action callback = null);
 
     public virtual void LineAttack(int x, int y, int damage)
     {
