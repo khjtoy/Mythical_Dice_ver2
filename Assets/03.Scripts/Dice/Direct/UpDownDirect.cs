@@ -29,6 +29,7 @@ public class UpDownDirect : Dice, Direct
 		sequence.Append(this.gameObject.transform.DOMoveY(upPos, upSecound));
 		sequence.Append(this.gameObject.transform.DOMoveY(0f, downSecound));
 		sequence.AppendCallback(() => {
+			
 			DiceNumSelect();
 			diceRotation.Rotation();
 		});
