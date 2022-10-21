@@ -6372,8 +6372,6 @@ MonoBehaviour:
   comboText: {fileID: 153698506798392891}
   bloodCt: {fileID: 1396408452}
   combo: 0
-<<<<<<< HEAD
-=======
 --- !u!1 &2016634194
 GameObject:
   m_ObjectHideFlags: 0
@@ -6456,7 +6454,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
->>>>>>> main
 --- !u!222 &153698506011921512
 CanvasRenderer:
   m_ObjectHideFlags: 0

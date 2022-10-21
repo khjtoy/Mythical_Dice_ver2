@@ -38,7 +38,7 @@ public class PlayerMove : UnitMove
 		}
 		else if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			DiceSkill.Instance.Spread()
+			//DiceSkill.Instance.Spread();
 		}
 	}
 
