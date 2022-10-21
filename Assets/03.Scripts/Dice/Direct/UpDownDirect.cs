@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class UpDownDirect : Dice, Direct
+public class UpDownDirect : DiceSelect, Direct
 {
 	[SerializeField]
 	private float upSecound;
@@ -13,13 +13,14 @@ public class UpDownDirect : Dice, Direct
 	[SerializeField]
 	private float upPos;
 
+	Dice Direct.dice { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
 	//[SerializeField]
 	//private DiceRotation diceRotation;
 
 	protected override void Awake()
 	{
 		base.Awake();
-		dice.directs.Add(this.GetType(), this.GetComponent<Direct>());
 	}
 	public void Direction(DiceRotation diceRotation)
 	{
@@ -29,7 +30,6 @@ public class UpDownDirect : Dice, Direct
 		sequence.Append(this.gameObject.transform.DOMoveY(upPos, upSecound));
 		sequence.Append(this.gameObject.transform.DOMoveY(0f, downSecound));
 		sequence.AppendCallback(() => {
-			
 			DiceNumSelect();
 			diceRotation.Rotation();
 		});
