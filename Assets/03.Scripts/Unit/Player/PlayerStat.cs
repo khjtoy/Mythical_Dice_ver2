@@ -50,7 +50,7 @@ public class PlayerStat : StatBase
         bloodCt.BloodFade(value);
         if (origin_hp * 0.5f >= hp)
             bloodCt.BloodSet(hp, origin_hp);
-        combo = 0;
+        //combo = 0;
         SetHPSlider();
         StatUI();
         isDamage = true;

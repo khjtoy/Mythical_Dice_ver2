@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering;
 
 public class PlayerAttack : CharacterBase
 {
@@ -16,15 +17,23 @@ public class PlayerAttack : CharacterBase
     private int hashAttack = Animator.StringToHash("Attack");
     private PlayerStat playerStat;
 
+    private CameraZoom cameraZoom;
+    private ShockyTrigger shockyTrigger;
+
+    private bool flagAction = false;
 
     private void Start()
     {
         playerStat = GetComponent<PlayerStat>();
         enemy = Define.EnemyTrans;
+        cameraZoom = Define.CameraTrans.GetComponent<CameraZoom>();
+        shockyTrigger = Define.CameraTrans.GetComponent<ShockyTrigger>();
+
+        EventManager.StartListening("STOPACTION", StopAction);
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z) && !flagAction)
         {
             CheckPos();
         }
@@ -65,7 +74,6 @@ public class PlayerAttack : CharacterBase
             playerStat.SetCombo(damage);
             bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
-            
             Define.EnemyStat.GetDamage(damage);
             GameObject particle = ObjectPool.Instance.GetObject(FlagCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
             particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
@@ -81,8 +89,33 @@ public class PlayerAttack : CharacterBase
         }
     }
 
+    public void LastAttack()
+    {
+        Debug.Log("LastAttack");
+        EventManager.TriggerEvent("STOPACTION", new EventParam());
+        cameraZoom.ZoomTriger = true;
+        //Time.timeScale = 0.4f;
+        //Invoke("OrginTime", 0.12f);
+        shockyTrigger.ShockyFired = true;
+    }
+
     private void OrginTime()
     {
         Time.timeScale = 1;
+    }
+
+    private void StopAction(EventParam eventParam)
+    {
+        flagAction = true;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening("STOPACTION", StopAction);
+    }
+
+    private void OnApplicationQuit()
+    {
+        EventManager.StopListening("STOPACTION", StopAction);
     }
 }

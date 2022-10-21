@@ -11,15 +11,26 @@ public class ShockyTrigger : MonoBehaviour
 
     private bool fired = false;
 
+    public bool ShockyFired
+    {
+        set { fired = value; }  
+    }
+
+    private void Start()
+    {
+        mat.SetFloat("_Percent", 2);
+    }
+
     private void Update()
     {
         if(fired)
         {
             percentage += Time.deltaTime / Duration;
             mat.SetFloat("_Percent", percentage);
-            if(percentage > 1)
+            if(percentage >= 2)
             {
                 percentage = 0;
+                mat.SetFloat("_Percent", 2);
                 fired = false;
             }
         }
@@ -28,6 +39,12 @@ public class ShockyTrigger : MonoBehaviour
         {
             percentage = 0;
             fired = true;
+            //ChangePos(0.45f, 0.2f);
         }
+    }
+
+    public void ChangePos(float x, float y)
+    {
+        mat.SetVector("_FocalPoint", new Vector4(x, y, 0, 0));
     }
 }
