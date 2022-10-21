@@ -42,6 +42,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void Start()
 	{
+		DOTween.SetTweensCapacity(1000, 1000);
 		if (SceneManager.sceneCount < 2)
 		{
 			SceneManager.LoadScene(0, LoadSceneMode.Additive);

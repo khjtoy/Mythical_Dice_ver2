@@ -61,7 +61,7 @@ public class SkillRough : EnemySkill
             seq.AppendCallback(() =>
             {
                 times = (times + 1) % 4;
-                DoAttack(unit, callback);
+                DoAttack(unit, ani, callback);
             });
         }
 

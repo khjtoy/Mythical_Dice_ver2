@@ -36,7 +36,7 @@ public class MapController : MonoSingleton<MapController>
 
 	[SerializeField]
 	private float floorChangeTime;
-	[Header("∏Ó√  »ƒ ∫Œº≠¡¸")]
+	[Header("???? ?? ?•Ï???")]
 	public float wait;
 
 	private Vector2 condition;
@@ -154,7 +154,7 @@ public class MapController : MonoSingleton<MapController>
 	{
 		mapNum[y, x] = dices[y, x].Randoms;
 
-		Debug.Log("ø”¥ı∆‹Ω∫");
+		Debug.Log("??????");
 		if (!isDual)
 		{
 			if (x == condition.x && y == condition.y)

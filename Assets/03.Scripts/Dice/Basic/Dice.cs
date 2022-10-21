@@ -19,7 +19,6 @@ public class Dice:MonoBehaviour
 	private int randoms;
 	public int Randoms => randoms;
 
-	[HideInInspector]
 	public Vector2Int Pos = Vector2Int.zero;
 
 	private enum DiceEffect { Snap}
@@ -32,6 +31,7 @@ public class Dice:MonoBehaviour
 	public void DiceNumSelect()
 	{
 		randoms = Random.Range(1, 7);
+		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		ParticleOn();
 		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
@@ -39,8 +39,10 @@ public class Dice:MonoBehaviour
 	public void DiceNumSelect(int value)
 	{
 		randoms = value;
+		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
+		ParticleOn();		
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
-		ParticleOn();
+
 		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap],SoundManager.Instance.effectSource);
 	}
 	public IEnumerator BasicDiceNumSelect(float wait, DiceRotation rotation)
