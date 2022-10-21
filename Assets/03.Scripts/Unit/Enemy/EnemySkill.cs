@@ -94,7 +94,7 @@ public abstract class EnemySkill
 
     protected IEnumerator SwimAttackCoroutine(Vector2Int pos, int times, float delay, int damage)
     {
-        for(int i = 1; i <= times; i++)
+        for(int i = 0; i <= times; i++)
         {
             RhombusWireAttack(pos, i, damage);
             yield return new WaitForSeconds(delay);
