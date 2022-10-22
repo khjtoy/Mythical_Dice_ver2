@@ -11,6 +11,8 @@ public class SkillSilent : EnemySkill
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         seq = DOTween.Sequence();
+        if(!unit.Sequence.Sequences.Contains(seq))
+            unit.Sequence.Sequences.Add(seq);
         Vector2Int pos = unit.GamePos;
         unit.CanVoid = true;
         int brokeNum = MapController.Instance.MapNum[pos.y, pos.x];

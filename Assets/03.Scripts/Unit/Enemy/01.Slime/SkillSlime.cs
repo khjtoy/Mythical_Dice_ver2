@@ -14,6 +14,8 @@ public class SkillSlime : EnemySkill
         EnemyMove enemyMove = Define.EnemyMove;
         unit.CanVoid = true;
         seq = DOTween.Sequence();
+        if(!unit.Sequence.Sequences.Contains(seq))
+            unit.Sequence.Sequences.Add(seq);
         seq.Append(baseTrm.DOLocalMoveY(1, 0.5f));
         seq.Append(baseTrm.DOLocalMoveX(Define.PlayerMove.WorldPos.x, 0.3f));
         seq.Join(baseTrm.DOLocalMoveZ(Define.PlayerMove.WorldPos.z, 0.3f));

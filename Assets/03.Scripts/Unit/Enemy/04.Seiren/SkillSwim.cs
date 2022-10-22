@@ -25,6 +25,8 @@ public class SkillSwim : EnemySkill
                 break;
         }
         seq = DOTween.Sequence();
+        if(!unit.Sequence.Sequences.Contains(seq))
+            unit.Sequence.Sequences.Add(seq);
         seq.Append(unit.transform.DOMoveX(Define.PlayerMove.WorldPos.x, 0.3f));
         seq.Join(unit.transform.DOMoveZ(Define.PlayerMove.WorldPos.z, 0.3f));
         seq.AppendCallback(() =>

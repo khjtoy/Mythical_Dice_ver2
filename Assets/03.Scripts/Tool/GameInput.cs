@@ -10,6 +10,11 @@ public class GameInput : MonoBehaviour
     [SerializeField] private GameObject settingCanvas = null;
     private bool isSettingOpen = false;
 
+    private void Start()
+    {
+        settingCanvas.SetActive(false);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
