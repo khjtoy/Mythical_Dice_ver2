@@ -19,6 +19,7 @@ public class PlayerAttack : CharacterBase
 
     private int hashAttack = Animator.StringToHash("Attack");
     private PlayerStat playerStat;
+    private PlayerSkill playerSkill;
 
     private CameraZoom cameraZoom;
     private ShockyTrigger shockyTrigger;
@@ -31,6 +32,7 @@ public class PlayerAttack : CharacterBase
     private void Start()
     {
         playerStat = GetComponent<PlayerStat>();
+        playerSkill = GetComponent<PlayerSkill>();
         enemy = Define.EnemyTrans;
         cameraZoom = Define.CameraTrans.GetComponent<CameraZoom>();
         shockyTrigger = Define.CameraTrans.GetComponent<ShockyTrigger>();
@@ -85,7 +87,8 @@ public class PlayerAttack : CharacterBase
         Debug.Log("Attack");
         if (nearEnemy)
         {
-            playerStat.SetCombo(damage);
+            //playerStat.SetCombo(damage);
+            playerSkill.StackDice(damage);
             bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
             Define.EnemyStat.GetDamage(damage);
@@ -141,7 +144,7 @@ public class PlayerAttack : CharacterBase
         Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
 
         Time.timeScale = 0.4f;
-        Invoke("OrginTime", 0.2f);
+        Invoke("OrginTime", 0.8f);
     }
 
     private void OnDestroy()
