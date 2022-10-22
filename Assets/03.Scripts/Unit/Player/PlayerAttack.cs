@@ -25,6 +25,9 @@ public class PlayerAttack : CharacterBase
 
     private bool flagAction = false;
 
+    private int difX;
+    private int difY;
+
     private void Start()
     {
         playerStat = GetComponent<PlayerStat>();
@@ -61,8 +64,8 @@ public class PlayerAttack : CharacterBase
     {
         if (timer > 0) return;
 
-        int difX = MapController.PosToArray(enemy.localPosition.x) - MapController.PosToArray(transform.localPosition.x);
-        int difY = MapController.PosToArray(enemy.localPosition.z) - MapController.PosToArray(transform.localPosition.z);
+        difX = MapController.PosToArray(enemy.localPosition.x) - MapController.PosToArray(transform.localPosition.x);
+        difY = MapController.PosToArray(enemy.localPosition.z) - MapController.PosToArray(transform.localPosition.z);
         Debug.Log($"difx:{difX}, difY:{difY}");
         bool nearEnemy = (Mathf.Abs(difX) + Mathf.Abs(difY)) == 1 ? true : false;
         Vector2Int pos = MapController.PosToArray(transform.localPosition);
@@ -115,10 +118,20 @@ public class PlayerAttack : CharacterBase
         // HP를 0으로 초기화
         Define.EnemyStat.GetDamage(Define.EnemyStat.HP);
 
-        if (enemy.transform.localPosition.x > transform.localPosition.x)
-            shockyTrigger.ChangePos(0.55f, 0.2f);
-        else if (enemy.transform.localPosition.x < transform.localPosition.x)
-            shockyTrigger.ChangePos(0.45f, 0.2f);
+        if (Mathf.Abs(difX) == 1)
+        {
+            if (enemy.transform.localPosition.x > transform.localPosition.x)
+                shockyTrigger.ChangePos(0.55f, 0.2f);
+            else if (enemy.transform.localPosition.x < transform.localPosition.x)
+                shockyTrigger.ChangePos(0.45f, 0.2f);
+        }
+        else if(Mathf.Abs(difY) == 1)
+        {
+            if (enemy.transform.localPosition.z > transform.localPosition.z)
+                shockyTrigger.ChangePos(0.5f, 0.3f);
+            else if (enemy.transform.localPosition.z < transform.localPosition.z)
+                shockyTrigger.ChangePos(0.5f, 0.1f);
+        }
 
         PlayAnimator(hashAttack);
 
