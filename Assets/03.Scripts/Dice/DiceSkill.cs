@@ -13,7 +13,7 @@ public class DiceSkill : MonoSingleton<DiceSkill>
                 for (int j = -l; j <= l; j++)
                 {
                     if (Mathf.Abs(i) == l || Mathf.Abs(j) == l)
-                        MapController.Instance.Boom(x + i, y * j, MapController.Instance.dices[x, y].Randoms);
+                        MapController.Instance.Boom(x + i, y * j, MapController.Instance.dices[x, y].DiceSelect.Randoms);
                     yield return new WaitForSeconds(speed);
                 }
             }
