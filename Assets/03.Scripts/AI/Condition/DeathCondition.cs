@@ -8,12 +8,6 @@ public class DeathCondition : AICondition
     public override bool Result()
     {
         bool isBossDead = _enemyStat.HP <= 0;
-
-        if(isBossDead)
-        {
-            Define.PlayerTrans.GetComponent<PlayerAttack>().LastAttack();
-        }
-
         Define.IsBossAlive = !isBossDead;
         return isBossDead;
     }

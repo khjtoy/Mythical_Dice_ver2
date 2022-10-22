@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Rendering;
+using UnityEngine.Playables;
 
 public class PlayerAttack : CharacterBase
 {
@@ -13,6 +14,8 @@ public class PlayerAttack : CharacterBase
     private float attackDelay;
     [SerializeField]
     private float impactOffeset = 1;
+    [SerializeField]
+    private PlayableDirector lastAttack;
 
     private int hashAttack = Animator.StringToHash("Attack");
     private PlayerStat playerStat;
@@ -62,15 +65,23 @@ public class PlayerAttack : CharacterBase
         int difY = MapController.PosToArray(enemy.localPosition.z) - MapController.PosToArray(transform.localPosition.z);
         Debug.Log($"difx:{difX}, difY:{difY}");
         bool nearEnemy = (Mathf.Abs(difX) + Mathf.Abs(difY)) == 1 ? true : false;
-        
+        Vector2Int pos = MapController.PosToArray(transform.localPosition);
+        int damage = MapController.Instance.MapNum[pos.y, pos.x];
+
+        // Last Attack 연출
+        if (nearEnemy && Define.EnemyStat.HP - damage <= 0)
+        {
+            EventManager.TriggerEvent("STOPACTION", new EventParam());
+            lastAttack.Play();
+            return;
+        }
+
         PlayAnimator(hashAttack);
         if (Define.IsBossAlive == false)
             return; 
         Debug.Log("Attack");
         if (nearEnemy)
         {
-            Vector2Int pos = MapController.PosToArray(transform.localPosition);
-            int damage = MapController.Instance.MapNum[pos.y, pos.x];
             playerStat.SetCombo(damage);
             bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
@@ -89,16 +100,6 @@ public class PlayerAttack : CharacterBase
         }
     }
 
-    public void LastAttack()
-    {
-        Debug.Log("LastAttack");
-        EventManager.TriggerEvent("STOPACTION", new EventParam());
-        cameraZoom.ZoomTriger = true;
-        //Time.timeScale = 0.4f;
-        //Invoke("OrginTime", 0.12f);
-        shockyTrigger.ShockyFired = true;
-    }
-
     private void OrginTime()
     {
         Time.timeScale = 1;
@@ -107,6 +108,27 @@ public class PlayerAttack : CharacterBase
     private void StopAction(EventParam eventParam)
     {
         flagAction = true;
+    }
+
+    public void AttackAnimation()
+    {
+        // HP를 0으로 초기화
+        Define.EnemyStat.GetDamage(Define.EnemyStat.HP);
+
+        if (enemy.transform.localPosition.x > transform.localPosition.x)
+            shockyTrigger.ChangePos(0.55f, 0.2f);
+        else if (enemy.transform.localPosition.x < transform.localPosition.x)
+            shockyTrigger.ChangePos(0.45f, 0.2f);
+
+        PlayAnimator(hashAttack);
+
+        GameObject particle = ObjectPool.Instance.GetObject(PoolObjectType.AttackParticle);
+        particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
+
+        Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
+
+        Time.timeScale = 0.4f;
+        Invoke("OrginTime", 0.2f);
     }
 
     private void OnDestroy()
