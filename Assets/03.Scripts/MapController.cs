@@ -72,11 +72,11 @@ public class MapController : MonoSingleton<MapController>
 	{
 		ref GameObject diceObject = ref diceObjectArr[y, x];
 		dices[y, x] = Instantiate(dicePrefabs, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Dice>();
-		dices[y, x].Pos = new Vector2Int(x, y);
+		dices[y, x].DiceSelect.Pos = new Vector2Int(x, y);
 		dices[y, x].transform.SetParent(root);
 
 		diceObject = dices[y, x].gameObject;
-		diceObject.transform.localPosition = ArrayToPos(dices[y, x].Pos);
+		diceObject.transform.localPosition = ArrayToPos(dices[y, x].DiceSelect.Pos);
 
 		diceObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 		diceObject.transform.localScale = new Vector3(1, 1, 1);
@@ -145,14 +145,12 @@ public class MapController : MonoSingleton<MapController>
 			}
 		}
 
-		DiceRotation rotationo;
-		dices[y, x].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
-		StartCoroutine(dices[y, x].BasicDiceNumSelect(x, y, wait, rotationo));
+		StartCoroutine(dices[y, x].DiceSelect.BasicDiceNumSelect(x, y, wait, dices[y,x].rotation[typeof(BasicRotation)]));
 	}
 
 	public void WaitFloor(int x, int y, bool isfirst)
 	{
-		mapNum[y, x] = dices[y, x].Randoms;
+		mapNum[y, x] = dices[y, x].DiceSelect.Randoms;
 
 		Debug.Log("??????");
 		if (!isDual)
@@ -209,7 +207,7 @@ public class MapController : MonoSingleton<MapController>
 	public void Boom(int x, int y)
 	{
 		int brokeNum = GameManager.Instance.BossNum;
-		if (dices[y, x].Randoms == brokeNum)
+		if (dices[y, x].DiceSelect.Randoms == brokeNum)
 		{
 			MeshRenderer renderer = dices[y, x].transform.GetChild(0).GetComponent<MeshRenderer>();
 			Sequence seq = DOTween.Sequence();
@@ -219,12 +217,7 @@ public class MapController : MonoSingleton<MapController>
 			int m = x;
 			seq.AppendCallback(() =>
 			{
-				//dices[n, m].DiceNumSelect();
-				//DiceRotation rotationo;
-				//dices[n, m].rotation.TryGetValue(typeof(BasicRotation), out rotationo);
-				//StartCoroutine(dices[n, m].BasicDiceNumSelect(floorChangeTime, rotationo));
-
-				dices[y, x].Direct(typeof(UpDownDirect), typeof(BasicRotation));
+				dices[n, m].Direct(typeof(UpDownDirect), typeof(BasicRotation));
 				GiveDamage(new Vector2Int(x, y), brokeNum);
 				seq.Kill();
 			});
@@ -234,7 +227,7 @@ public class MapController : MonoSingleton<MapController>
 	{
 		if (x >= GameManager.Instance.Size || x < 0 || y >= GameManager.Instance.Size || y < 0)
 			return;
-		dices[y, x].DiceNumSelect(value);
+		dices[y, x].DiceSelect.DiceNumSelect(value);
 		MapNum[y, x] = value;
 		GameManager.Instance.BossNum = value;
 		Boom(x, y);
@@ -244,7 +237,7 @@ public class MapController : MonoSingleton<MapController>
     {
 		if (pos.x >= GameManager.Instance.Size || pos.x < 0 || pos.y >= GameManager.Instance.Size || pos.y < 0)
 			return;
-		dices[pos.y, pos.x].DiceNumSelect(value);
+		dices[pos.y, pos.x].DiceSelect.DiceNumSelect(value);
 		MapNum[pos.y, pos.x] = value;
 		GameManager.Instance.BossNum = value;
 		Boom(pos.x, pos.y);
