@@ -14,8 +14,6 @@ public class PlayerStat : StatBase
     [SerializeField]
     private Image whiteSlider;
     [SerializeField]
-    private Text comboText;
-    [SerializeField]
     private BloodControl bloodCt;
     
     [SerializeField] protected int combo = 0;
@@ -52,7 +50,6 @@ public class PlayerStat : StatBase
             bloodCt.BloodSet(hp, origin_hp);
         //combo = 0;
         SetHPSlider();
-        StatUI();
         isDamage = true;
     }
     private void SetHPSlider()
@@ -75,17 +72,5 @@ public class PlayerStat : StatBase
                 whiteSliderRt.localScale = hpSliderRt.localScale;
             }
         }
-    }
-
-    public void SetCombo(int value = 0)
-    {
-        combo += value;
-        if (combo > 20) combo = 20;
-        StatUI();
-    }
-
-    public void StatUI()
-    {
-        comboText.text = $"{combo}";
     }
 }
