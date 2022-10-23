@@ -9,6 +9,8 @@ public class StagePanel : MonoBehaviour
     [SerializeField]
     private StageSO _stageSo;
 
+    private int _currentStage = 0;
+
     RectTransform _rect;
 
     Image _monsterImage;
@@ -27,6 +29,7 @@ public class StagePanel : MonoBehaviour
         _stageExplainText = transform.Find("StageExplain/Text").GetComponent<Text>();
         _stageClearInfoText = transform.Find("StageClearInfo").GetComponent<Text>();
         _startBtn = transform.Find("StartBtn").GetComponent<Button>();
+        _startBtn.onClick.AddListener(StartBtn);
         _backBtn = transform.Find("BackBtn").GetComponent<Button>();
         _backBtn.onClick.AddListener(BackBtn);
     }
@@ -47,7 +50,11 @@ public class StagePanel : MonoBehaviour
             IsOpenPanel = true;
         });
     }
-    public void BackBtn()
+    private void StartBtn()
+    {
+        StageContoller.Instance.HideBlackPanel(_currentStage);
+    }
+    private void BackBtn()
     {
         Sequence seq = DOTween.Sequence();
         seq.Append(_rect.DOAnchorPosX(-1500, 1));
@@ -59,11 +66,8 @@ public class StagePanel : MonoBehaviour
 
     public void SetPanelInfo(int id)
     {
-        id--;
+        _currentStage = id--;
         Stage stage = _stageSo.stages[id];
-        //stage.sprite = _stageSo.stages[id].sprite;
-        //stage.bossText = _stageSo.stages[id].bossText;
-        //stage.storyText = _stageSo.stages[id].storyText;
         _monsterImage.sprite = stage.sprite;
         _explainText.text = stage.bossText;
         _stageExplainText.text = stage.storyText;
