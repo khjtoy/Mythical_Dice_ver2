@@ -49,7 +49,7 @@ public class GameManager : MonoSingleton<GameManager>
 		int idx = PlayerPrefs.GetInt("NOWSTAGE", 0);
 		bool isHard = PlayerPrefs.GetInt("HARD") == 1 ? true : false;
 		idx = isHard ? idx + 3 : idx;
-		idx = idx - 1;
+		idx = idx;
 		GenerateBoss(SO[idx]);
 	}
 	
