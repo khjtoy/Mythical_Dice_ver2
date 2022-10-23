@@ -6,10 +6,14 @@ using UnityEngine;
 public class  UnitAnimation
 {
     [SerializeField]
-    private Animator animator;
+    private Animator _animator;
 
+    public void SetAnimator(Animator animator)
+    {
+        _animator = animator;
+    }
     public void PlayAnimator(int hash)
     {
-        animator.SetTrigger(hash);
+        _animator.SetTrigger(hash);
     }
 }

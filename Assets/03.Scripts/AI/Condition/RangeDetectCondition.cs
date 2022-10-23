@@ -18,4 +18,9 @@ public class RangeDetectCondition : AICondition
             }
         return false;
     }
+
+    public override void SetParam(float param)
+    {
+        range = (int)param;
+    }
 }
