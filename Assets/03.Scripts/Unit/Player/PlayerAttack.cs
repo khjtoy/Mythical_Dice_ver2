@@ -35,6 +35,8 @@ public class PlayerAttack : CharacterBase
     private bool isSkill = false;
     GameObject itemObject;
 
+    private List<Item> items = new List<Item>();
+
     private void Start()
     {
         playerStat = GetComponent<PlayerStat>();
@@ -124,6 +126,8 @@ public class PlayerAttack : CharacterBase
 
     private IEnumerator Skill(int dir)
     {
+        items.Clear();
+
         Vector2Int pos = MapController.PosToArray(transform.localPosition);
         int damage = MapController.Instance.MapNum[pos.y, pos.x];
         isAction = true;
@@ -159,6 +163,9 @@ public class PlayerAttack : CharacterBase
                 yield return new WaitForSeconds(0.2f);
             }
         }
+
+        isSkill = false;
+        isAction = false; 
     }
 
     private void SkillAction(int x, int z, int damage)
@@ -168,7 +175,16 @@ public class PlayerAttack : CharacterBase
         GameObject effect = ObjectPool.Instance.GetObject(PoolObjectType.SkillParticle);
         effect.transform.localPosition = new Vector3(skillPos.x, 1, skillPos.z);
         effect.GetComponent<Item>().damage = damage * 2;
+        items.Add(effect.GetComponent<Item>());
 
+    }
+
+    public void ClearDamage()
+    {
+        foreach(Item item in items)
+        {
+            item.isAttack = true;
+        }
     }
 
     private void OrginTime()

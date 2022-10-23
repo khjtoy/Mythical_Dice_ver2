@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
 
     public int damage;
 
-    private bool isAttack = false;
+    public bool isAttack = false;
 
     private void OnEnable()
     {
@@ -32,6 +32,7 @@ public class Item : MonoBehaviour
             if(MapController.PosToArray(enemy.localPosition) == MapController.PosToArray(transform.localPosition))
             {
                 isAttack = true;
+                Define.PlayerTrans.GetComponent<PlayerAttack>().ClearDamage();
                 Define.EnemyStat.GetDamage(damage);
                 Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
                 transform.DOScale(1.5f, 0.2f);
