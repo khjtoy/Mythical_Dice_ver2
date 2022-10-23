@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6928c6628c94532459a54bbbcb67c134
+guid: 43f379d81a059fc438ee0fd3991112fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2757812045084208150
-    second: BossHp2_0
+      213: -7041968999829581648
+    second: BossHp1_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +40,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -90,26 +90,38 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BossHp2_0
+      name: BossHp1_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 56
-        width: 109
-        height: 52
-      alignment: 9
-      pivot: {x: 0.49829227, y: 0.5894975}
+        x: 0
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae356777e884ab9d0800000000000000
-      internalID: -2757812045084208150
+      spriteID: 0b058dd2186e54e90800000000000000
+      internalID: -7041968999829581648
       vertices: []
       indices: 
       edges: []
