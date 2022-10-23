@@ -46,7 +46,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void Awake()
 	{
-		int idx = PlayerPrefs.GetInt("NOWSTAGE", 0);
+		int idx = PlayerPrefs.GetInt("NOWSTAGE", 1);
 		bool isHard = PlayerPrefs.GetInt("HARD") == 1 ? true : false;
 		idx = isHard ? idx + 3 : idx;
 		idx = idx - 1;
