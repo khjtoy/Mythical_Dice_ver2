@@ -73,7 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855f659c329a73c45b0ee347e6707d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0}
+  pos: {x: 0, y: 0}
+  total: 0
+  diceWeights: []
   upSecound: 0.1
   downSecound: 0.1
   upPos: 0.5
@@ -89,7 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6cd8f363234df45a402e14f94dcd94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0}
+  pos: {x: 0, y: 0}
+  total: 0
+  diceWeights: []
   speed: 50000
 --- !u!114 &574755713
 MonoBehaviour:
@@ -103,7 +107,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30a31e4b1fc8424f8a88a6ce5aef0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0}
+  pos: {x: 0, y: 0}
+  total: 0
+  diceWeights:
+  - num: 1
+    weight: 60
+  - num: 2
+    weight: 50
+  - num: 3
+    weight: 40
+  - num: 4
+    weight: 30
+  - num: 5
+    weight: 20
+  - num: 6
+    weight: 10
 --- !u!1001 &6819223620106587700
 PrefabInstance:
   m_ObjectHideFlags: 0

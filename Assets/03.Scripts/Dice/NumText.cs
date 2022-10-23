@@ -32,6 +32,11 @@ public class NumText : MonoBehaviour
 		Vector2 vec = Random.insideUnitCircle;
 		transform.position = new Vector3(pos.x, Random.Range(pos.y, pos.y + 1f), pos.z);
 		//transform.localEulerAngles = new Vector3(transform.rotation.x - 45, transform.rotation.y, transform.rotation.z);
+		if (text >= 10)
+			num.color = Color.red;
+		else
+			num.color = Color.yellow;
+
 		num.text = string.Format(text.ToString());
 		Sequence mySequence = DOTween.Sequence();
 		int a = vec.x > 0 ? 1 : -1;
