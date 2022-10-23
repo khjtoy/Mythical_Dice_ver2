@@ -1317,6 +1317,8 @@ MonoBehaviour:
   StageStart: 0
   thirdTutorial: 0
   mapController: {fileID: 1072753613}
+  _unitRootTrm: {fileID: 0}
+  slimeSO: {fileID: 0}
 --- !u!4 &806048599
 Transform:
   m_ObjectHideFlags: 0
