@@ -15,6 +15,7 @@ public class PlayerMove : UnitMove
 
 	Queue<Vector3> moveDir = new Queue<Vector3>();
 
+	Vector3 vec;
 	float movePos
 	{
 		get
@@ -42,12 +43,7 @@ public class PlayerMove : UnitMove
 		{
 			MapController.Instance.Boom(Vector2Int.zero, 1);
 		}
-		else if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			//DiceSkill.Instance.Spread();
-		}
 	}
-
 
 	public void InputMovement()
 	{
@@ -108,7 +104,7 @@ public class PlayerMove : UnitMove
 		seq.AppendCallback(() =>
 		{
 			_isMoving = false;
-			Debug.Log(GamePos);
+			//Debug.Log(GamePos);
 			seq.Kill();
 		});
 	}

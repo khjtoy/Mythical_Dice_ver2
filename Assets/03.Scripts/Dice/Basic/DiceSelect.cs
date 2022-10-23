@@ -13,7 +13,7 @@ public class DiceSelect : MonoBehaviour
 
 	private int randoms;
 	public int Randoms => randoms;
-	public Vector2Int Pos = Vector2Int.zero;
+	public Vector2Int pos = Vector2Int.zero;
 
 	protected virtual void Awake()
 	{
@@ -23,7 +23,7 @@ public class DiceSelect : MonoBehaviour
 	public void DiceNumSelect()
 	{
 		randoms = Random.Range(1, 7);
-		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
+		MapController.Instance.MapNum[pos.y, pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		ParticleOn();
 		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
@@ -31,28 +31,12 @@ public class DiceSelect : MonoBehaviour
 	public void DiceNumSelect(int value)
 	{
 		randoms = value;
-		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
+		MapController.Instance.MapNum[pos.y, pos.x] = randoms;
 		ParticleOn();
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 	}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <returns></returns>
-	public IEnumerator BasicDiceNumSelect(float wait, DiceRotation rotation)
-	{
-		rotation.Rotation();
-		transform.rotation = Quaternion.Euler(0, 0, 0);
-		yield return new WaitForSeconds(wait);
-		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
-		randoms = Random.Range(1, 7);
-		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
-		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
-		rotation.Rotation();
-		ParticleOn();
-	}
 
 	/// <summary>
 	/// mapcontrol에서만 쓰는 애
@@ -66,9 +50,7 @@ public class DiceSelect : MonoBehaviour
 		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 		MapController.Instance.WaitFloor(x, y, true);
 		rotation.Rotation();
-		randoms = Random.Range(1, 7);
-		MapController.Instance.MapNum[Pos.y, Pos.x] = randoms;
-		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
+		DiceNumSelect();
 		ParticleOn();
 	}
 

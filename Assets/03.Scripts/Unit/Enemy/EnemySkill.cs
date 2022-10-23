@@ -42,7 +42,7 @@ public abstract class EnemySkill
         {
             for (int j = -range; j <= range; j++)
             {
-                if(Mathf.Abs(i) == range || Mathf.Abs(j) == range)
+                if (Mathf.Abs(i) == range || Mathf.Abs(j) == range)
                     MapController.Instance.Boom(pos + Vector2Int.up * i + Vector2Int.right * j, damage);
             }
         }

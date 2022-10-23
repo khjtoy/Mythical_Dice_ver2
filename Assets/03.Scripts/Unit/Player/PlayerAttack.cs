@@ -92,6 +92,7 @@ public class PlayerAttack : CharacterBase
             bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
             Define.EnemyStat.GetDamage(damage);
+            ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(damage, Define.EnemyStat.transform.position);
             GameObject particle = ObjectPool.Instance.GetObject(FlagCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
             particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
             Define.CameraTrans.DOShakePosition(0.7f, 0.1f);

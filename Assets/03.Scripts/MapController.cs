@@ -72,11 +72,11 @@ public class MapController : MonoSingleton<MapController>
 	{
 		ref GameObject diceObject = ref diceObjectArr[y, x];
 		dices[y, x] = Instantiate(dicePrefabs, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Dice>();
-		dices[y, x].DiceSelect.Pos = new Vector2Int(x, y);
+		dices[y, x].DiceSelect.pos = new Vector2Int(x, y);
 		dices[y, x].transform.SetParent(root);
 
 		diceObject = dices[y, x].gameObject;
-		diceObject.transform.localPosition = ArrayToPos(dices[y, x].DiceSelect.Pos);
+		diceObject.transform.localPosition = ArrayToPos(dices[y, x].DiceSelect.pos);
 
 		diceObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 		diceObject.transform.localScale = new Vector3(1, 1, 1);
@@ -145,19 +145,17 @@ public class MapController : MonoSingleton<MapController>
 			}
 		}
 
-		StartCoroutine(dices[y, x].DiceSelect.BasicDiceNumSelect(x, y, wait, dices[y,x].rotation[typeof(BasicRotation)]));
+		StartCoroutine(dices[y, x].DiceSelect.BasicDiceNumSelect(x, y, wait, dices[y,x].Rotation[typeof(BasicRotation)]));
 	}
 
 	public void WaitFloor(int x, int y, bool isfirst)
 	{
 		mapNum[y, x] = dices[y, x].DiceSelect.Randoms;
 
-		Debug.Log("??????");
 		if (!isDual)
 		{
 			if (x == condition.x && y == condition.y)
 			{
-				Debug.Log(">");
 				GameManager.Instance.StageStart = true;
 				return;
 			}
@@ -232,9 +230,8 @@ public class MapController : MonoSingleton<MapController>
 		GameManager.Instance.BossNum = value;
 		Boom(x, y);
 	}
-
 	public void Boom(Vector2Int pos, int value)
-    {
+	{
 		if (pos.x >= GameManager.Instance.Size || pos.x < 0 || pos.y >= GameManager.Instance.Size || pos.y < 0)
 			return;
 		dices[pos.y, pos.x].DiceSelect.DiceNumSelect(value);
@@ -289,5 +286,11 @@ public class MapController : MonoSingleton<MapController>
 	{
 		if(Define.PlayerMove.GamePos == pos)
 			Define.PlayerStat.GetDamage(value);
+	}
+
+	public void GiveBossDamage(Vector2Int pos, int value)
+	{
+		if (Define.EnemyMove.GamePos == pos)
+			Define.EnemyStat.GetDamage(value);
 	}
 }

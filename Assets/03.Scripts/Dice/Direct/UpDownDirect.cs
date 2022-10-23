@@ -13,8 +13,6 @@ public class UpDownDirect : DiceSelect, Direct
 	[SerializeField]
 	private float upPos;
 
-	Dice Direct.dice { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
 	//[SerializeField]
 	//private DiceRotation diceRotation;
 
