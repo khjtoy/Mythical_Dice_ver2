@@ -7,7 +7,12 @@ public class EnemyStat : StatBase
 {
     [SerializeField]
     private HPSlider hpSlider;
-	public void GetDamage(int value)
+    public void InitStat(int hp)
+    {
+        origin_hp = hp;
+        base.hp = hp;
+    }
+    public void GetDamage(int value)
     {
         HP -= value;
         Debug.Log(HP);
