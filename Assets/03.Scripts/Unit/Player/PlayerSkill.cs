@@ -34,10 +34,17 @@ public class PlayerSkill : CharacterBase
 
     private CameraZoom cameraZoom;
 
+    private Sprite originSword;
+
     Sequence[] seq = new Sequence[4];
 
+    private Transform enemy;
+
+    private int damage;
     private void Start()
     {
+        originSword = swordImg.sprite;
+        enemy = Define.EnemyTrans;
         swordAnimator = swordImg.GetComponent<Animator>();
         cameraZoom = Define.CameraTrans.GetComponent<CameraZoom>();
         swordAnimator.enabled = false;
@@ -81,7 +88,10 @@ public class PlayerSkill : CharacterBase
                 }
             }
             if (isEqul)
+            {
+                damage = numbersIdx[0];
                 StartCoroutine("NumberMove");
+            }
             else Disapper();
         }
     }
@@ -90,10 +100,11 @@ public class PlayerSkill : CharacterBase
     {
         EventManager.TriggerEvent("STOPACTION", new EventParam());
         cameraZoom.ZoomTriger = true;
+        animation.SetTrigger("Combo");
         for (int i = 0; i < 4; i++)
         {
             SetSword(i);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.65f);
         }
     }
 
@@ -142,10 +153,18 @@ public class PlayerSkill : CharacterBase
                 ResetSkill();
             }
         });
+        seq[idx].InsertCallback(0.15f, () =>
+        {
+                ComboAttack(0.7f);
+        });
         seq[idx].InsertCallback(0.7f, ()=>
         {
             swordImg.sprite = swordSkills[idx];
-            animation.SetTrigger("Combo");
+            if(idx == 3)
+            {
+                StartCoroutine("Combo");
+            }
+            
         });
         seq[idx].AppendCallback(() => seq[idx].Kill());
     }
@@ -161,6 +180,27 @@ public class PlayerSkill : CharacterBase
             numbersTransform[i].GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             numbersTransform[i].GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
         }
+    }
+
+    private IEnumerator Combo()
+    {
+        yield return new WaitForSeconds(0.1f);
+        animation.SetTrigger("Last");
+        yield return new WaitForSeconds(0.5f);
+        ComboAttack(1, true);
+        swordImg.sprite = originSword;
+        yield return new WaitForSeconds(0.2f);
+        cameraZoom.OutTriger = true;
+        EventManager.TriggerEvent("PLAYACTION", new EventParam());
+    }
+
+    private void ComboAttack(float f, bool isCombo = false)
+    {
+        ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(isCombo ? damage * 4 : damage, Define.EnemyStat.transform.position);
+        Define.EnemyStat.GetDamage(isCombo ? damage * 4 : damage);
+        GameObject particle = ObjectPool.Instance.GetObject(isCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
+        particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + 1, enemy.localPosition.z);
+        Define.CameraTrans.DOShakePosition(f, 0.2f);
     }
 
     private void ResetNumber(int idx)

@@ -30,6 +30,7 @@ public class PlayerMove : UnitMove
 		WorldPos = transform.localPosition;
 
 		EventManager.StartListening("STOPACTION", StopAction);
+		EventManager.StartListening("PLAYACTION", PlayAction);
 	}
 
 	private void Update()
@@ -114,13 +115,20 @@ public class PlayerMove : UnitMove
         flagAction = true;
     }
 
+    private void PlayAction(EventParam eventParam)
+    {
+        flagAction = false;
+    }
+
     private void OnDestroy()
     {
         EventManager.StopListening("STOPACTION", StopAction);
+        EventManager.StopListening("PLAYACTION", PlayAction);
     }
 
     private void OnApplicationQuit()
     {
         EventManager.StopListening("STOPACTION", StopAction);
+        EventManager.StopListening("PLAYACTION", PlayAction);
     }
 }
