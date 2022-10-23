@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,17 @@ public class PlayerStat : StatBase
     
     [SerializeField] protected int combo = 0;
     public int COMBO { get => combo; }
+
+    private PlayerMove playerMove;
+    public PlayerMove PlayerMove
+    {
+        get
+        {
+            if (playerMove == null)
+                playerMove = GetComponent<PlayerMove>();
+            return playerMove;
+        }
+    }
 
     private PlayerSkill playerSkill;
 

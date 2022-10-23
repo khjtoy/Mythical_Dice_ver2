@@ -29,6 +29,12 @@ public class PlayerAttack : CharacterBase
     private int difX;
     private int difY;
 
+    private Vector3 itemPos;
+    private bool isItem = false;
+    private bool isAction = false;
+    private bool isSkill = false;
+    GameObject itemObject;
+
     private void Start()
     {
         playerStat = GetComponent<PlayerStat>();
@@ -39,10 +45,12 @@ public class PlayerAttack : CharacterBase
 
         EventManager.StartListening("STOPACTION", StopAction);
         EventManager.StartListening("PLAYACTION", PlayAction);
+
+        SpawnItem(new Vector3(-1.5f, 1.2f, -3f));
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z) && !flagAction)
+        if(Input.GetKeyDown(KeyCode.Z) && !flagAction && !isAction)
         {
             CheckPos();
         }
@@ -50,6 +58,16 @@ public class PlayerAttack : CharacterBase
         if (timer > 0)
         {
             timer -= Time.deltaTime;
+        }
+
+        if (isItem)
+        {
+            if (MapController.PosToArray(transform.position) == MapController.PosToArray(itemPos))
+            {
+                itemObject.SetActive(false);
+                isSkill = true;
+                isItem = false;
+            }
         }
     }
 
@@ -60,7 +78,10 @@ public class PlayerAttack : CharacterBase
         else if (enemy.transform.localPosition.x < transform.localPosition.x)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        AttackAction(MapController.PosToArray(transform.localPosition.x), MapController.PosToArray(transform.localPosition.y));
+        if (isSkill)
+            StartCoroutine(Skill(playerStat.PlayerMove.PlayerDir));
+        else
+            AttackAction(MapController.PosToArray(transform.localPosition.x), MapController.PosToArray(transform.localPosition.y));
     }
 
     private void AttackAction(int x, int y)
@@ -99,6 +120,55 @@ public class PlayerAttack : CharacterBase
 
             timer = attackDelay;
         }
+    }
+
+    private IEnumerator Skill(int dir)
+    {
+        Vector2Int pos = MapController.PosToArray(transform.localPosition);
+        int damage = MapController.Instance.MapNum[pos.y, pos.x];
+        isAction = true;
+        if(dir == 0)
+        {
+            for(int i = pos.x + 1; i < GameManager.Instance.Size; i++)
+            {
+                SkillAction(i, pos.y, damage);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+        else if (dir == 1)
+        {
+            for (int i = pos.x - 1; i >= 0; i--)
+            {
+                SkillAction(i, pos.y, damage);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+        else if (dir == 2)
+        {
+            for (int i = pos.y + 1; i < GameManager.Instance.Size; i++)
+            {
+                SkillAction(pos.x, i, damage);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+        else if (dir == 3)
+        {
+            for (int i = pos.y - 1; i >= 0; i--)
+            {
+                SkillAction(pos.x, i, damage);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+    }
+
+    private void SkillAction(int x, int z, int damage)
+    {
+        Vector3 skillPos = MapController.ArrayToPos(x, z);
+        //skillPos.z += 1;
+        GameObject effect = ObjectPool.Instance.GetObject(PoolObjectType.SkillParticle);
+        effect.transform.localPosition = new Vector3(skillPos.x, 1, skillPos.z);
+        effect.GetComponent<Item>().damage = damage * 2;
+
     }
 
     private void OrginTime()
@@ -147,8 +217,18 @@ public class PlayerAttack : CharacterBase
         DOTween.timeScale = 0.4f;
         Invoke("OrginTime", 0.8f);
     }
+    private void SpawnItem(Vector3 pos)
+    {
+        if (isItem) return;
 
-    private void OnDestroy()
+        itemPos = pos;
+        isItem = true;
+
+        itemObject = ObjectPool.Instance.GetObject(PoolObjectType.ItemParticle);
+        itemObject.transform.localPosition = new Vector3(itemPos.x, 1.2f, itemPos.z - 0.5f);
+    }
+
+private void OnDestroy()
     {
         EventManager.StopListening("STOPACTION", StopAction);
         EventManager.StopListening("PLAYACTION", PlayAction);
