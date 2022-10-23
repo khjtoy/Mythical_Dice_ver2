@@ -30,7 +30,6 @@ public class NumText : MonoBehaviour
 	{
 		num.alpha = 1;
 		Vector2 vec = Random.insideUnitCircle;
-		Debug.Log(vec);
 		transform.position = new Vector3(pos.x, Random.Range(pos.y, pos.y + 1f), pos.z);
 		//transform.localEulerAngles = new Vector3(transform.rotation.x - 45, transform.rotation.y, transform.rotation.z);
 		num.text = string.Format(text.ToString());
