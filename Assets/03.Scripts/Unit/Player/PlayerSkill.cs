@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PlayerSkill : MonoBehaviour
+public class PlayerSkill : CharacterBase
 {
     [SerializeField]
     private Transform dice;
@@ -32,11 +32,14 @@ public class PlayerSkill : MonoBehaviour
 
     bool isCheck = false;
 
+    private CameraZoom cameraZoom;
+
     Sequence[] seq = new Sequence[4];
 
     private void Start()
     {
         swordAnimator = swordImg.GetComponent<Animator>();
+        cameraZoom = Define.CameraTrans.GetComponent<CameraZoom>();
         swordAnimator.enabled = false;
         for (int i = 0; i < 4; i++)
         {
@@ -85,7 +88,9 @@ public class PlayerSkill : MonoBehaviour
 
     private IEnumerator NumberMove()
     {
-        for(int i = 0; i < 4; i++)
+        EventManager.TriggerEvent("STOPACTION", new EventParam());
+        cameraZoom.ZoomTriger = true;
+        for (int i = 0; i < 4; i++)
         {
             SetSword(i);
             yield return new WaitForSeconds(0.2f);
@@ -125,7 +130,7 @@ public class PlayerSkill : MonoBehaviour
         seq[idx].Kill();    
         seq[idx] = DOTween.Sequence();
         numbersTransform[idx].color = Color.blue;
-        seq[idx].Append(numbersTransform[idx].GetComponent<RectTransform>().DOLocalMove(targetPos.localPosition - new Vector3(15 * idx, 0, 0), 1f).SetEase(Ease.OutQuart));
+        seq[idx].Append(numbersTransform[idx].GetComponent<RectTransform>().DOLocalMove(targetPos.localPosition + new Vector3(30 * idx, 0, 0), 1f).SetEase(Ease.OutQuart));
         seq[idx].Join(numbersTransform[idx].GetComponent<RectTransform>().DOScale(0, 1)).OnComplete(() =>
         {
             numbersTransform[idx].gameObject.SetActive(false);
@@ -137,7 +142,11 @@ public class PlayerSkill : MonoBehaviour
                 ResetSkill();
             }
         });
-        seq[idx].InsertCallback(0.7f, ()=>swordImg.sprite = swordSkills[idx]);
+        seq[idx].InsertCallback(0.7f, ()=>
+        {
+            swordImg.sprite = swordSkills[idx];
+            animation.SetTrigger("Combo");
+        });
         seq[idx].AppendCallback(() => seq[idx].Kill());
     }
 

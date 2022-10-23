@@ -45,7 +45,7 @@ public class PlayerStat : StatBase
         bloodCt.BloodFade(value);
         if (origin_hp * 0.5f >= hp)
             bloodCt.BloodSet(hp, origin_hp);
-        playerSkill.Disapper();
+        //playerSkill.Disapper();
         SetHPSlider();
         isDamage = true;
     }
