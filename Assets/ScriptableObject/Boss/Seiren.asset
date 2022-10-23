@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04682038108aee4d907284c5f8a66ef, type: 3}
   m_Name: Seiren
   m_EditorClassIdentifier: 
-  Name: 
-  Hp: 0
-  MainSprite: {fileID: 0}
-  spriteOffset: {x: 0, y: 0, z: 0}
-  spriteSize: {x: 0, y: 0, z: 0}
+  Name: Seiren
+  Hp: 50
+  MainSprite: {fileID: 8372015513713460601, guid: 336bd5f7c81603f418b858dff45168ac, type: 3}
+  spriteOffset: {x: 0, y: 0.9, z: 0}
+  spriteSize: {x: 1, y: 1, z: 1}
   OutlineMat: {fileID: 0}
-  Controller: {fileID: 0}
-  Skills: []
+  Controller: {fileID: 9100000, guid: c67f2f4a0651f4647b2d6c75a64e5504, type: 2}
+  Skills:
+  - {fileID: 11400000, guid: 69fdead81c207364f8f3fdb1502fdac9, type: 2}
+  - {fileID: 11400000, guid: a94faee989042574da422d7310cbdfac, type: 2}
+  - {fileID: 11400000, guid: 9a870137a00cb914f8e3f99e5b4d7130, type: 2}

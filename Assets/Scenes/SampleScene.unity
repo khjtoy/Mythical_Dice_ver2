@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &164311437
 Transform:
   m_ObjectHideFlags: 0
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   mapController: {fileID: 1072753613}
   _unitRootTrm: {fileID: 1466149617}
   SO:
-  - {fileID: 11400000, guid: 29f52aa1a24264745a771d79899ec293, type: 2}
+  - {fileID: 11400000, guid: 89b5621bd2222a645b4343cd4b81f2a8, type: 2}
 --- !u!4 &806048599
 Transform:
   m_ObjectHideFlags: 0
