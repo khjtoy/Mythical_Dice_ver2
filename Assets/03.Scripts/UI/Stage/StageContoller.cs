@@ -30,18 +30,26 @@ public class StageContoller : MonoBehaviour
 
     private void Start()
     {
+        ShowBlackPanel();
+    }
+    private void ShowBlackPanel()
+    {
         _fadePanel.anchoredPosition = new Vector3(0, 0, 0);
         Sequence seq = DOTween.Sequence();
         seq.AppendInterval(1);
         seq.Append(_fadePanel.DOAnchorPos3DY(1080, 1f));
-        seq.AppendCallback(() => {
-            InitStage();
-        });
     }
-
-    private void InitStage()
+    public void HideBlackPanel(int stage)
     {
-
+        _fadePanel.anchoredPosition = new Vector3(0, 0, 0);
+        Sequence seq = DOTween.Sequence();
+        seq.Append(_fadePanel.DOAnchorPos3DY(-1080, 0f));
+        seq.Append(_fadePanel.DOAnchorPos3DY(0, 1f));
+        seq.AppendCallback(() =>
+        {
+            PlayerPrefs.SetInt("NOWSTAGE", stage);
+            SceneManager.LoadScene("SampleScene");
+        });
     }
 
     private void OnDisable()
