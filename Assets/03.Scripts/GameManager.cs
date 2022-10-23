@@ -27,6 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
 	private MapController mapController;
 
 	[SerializeField] private Transform _unitRootTrm;
+	[SerializeField] private RectTransform _hidePanel;
 	public float Offset => 0.75f * (size - 1);
 
 	[SerializeField] private List<BossSO> SO = new List<BossSO>();
@@ -112,6 +113,20 @@ public class GameManager : MonoSingleton<GameManager>
 
 		string str = DataManager.ObjectToJson(user);
 		DataManager.SaveJsonFile(Application.dataPath + "/Save", "SAVEFILE", str);
+    }
+	public void LoadStageScene()
+    {
+		Sequence seq = DOTween.Sequence();
+		seq.AppendInterval(3);
+		seq.AppendCallback(() =>
+		{
+			Time.timeScale = 1;
+		});
+		seq.Append(_hidePanel.DOAnchorPosY(0, 1));
+		seq.AppendCallback(() =>
+		{
+			SceneManager.LoadScene("Stage");
+		});
     }
 
 	public void GenerateBoss(BossSO bossSo)

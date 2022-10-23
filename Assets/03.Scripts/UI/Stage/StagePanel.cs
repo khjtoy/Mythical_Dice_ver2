@@ -41,7 +41,7 @@ public class StagePanel : MonoBehaviour
         if (IsOpenPanel == true)
             return;
 
-        SetPanelInfo(id);
+        SetPanelInfo(id, isHard);
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {

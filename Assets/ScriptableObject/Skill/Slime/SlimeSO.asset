@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c7b98cba8dd043b6263ce922fa722, type: 3}
   m_Name: SlimeSO
   m_EditorClassIdentifier: 
-  State: 3
+  State: 2
   Condition:
   - ConditionEnum: 0
     Parameter: 2
