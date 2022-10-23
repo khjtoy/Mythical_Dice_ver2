@@ -14,12 +14,12 @@ public class PlayerStat : StatBase
     [SerializeField]
     private Image whiteSlider;
     [SerializeField]
-    private Text comboText;
-    [SerializeField]
     private BloodControl bloodCt;
     
     [SerializeField] protected int combo = 0;
     public int COMBO { get => combo; }
+
+    private PlayerSkill playerSkill;
 
     private RectTransform hpSliderRt;
     private RectTransform whiteSliderRt;
@@ -30,18 +30,13 @@ public class PlayerStat : StatBase
     {
         hpSliderRt = playerHPSlider.GetComponent<RectTransform>();
         whiteSliderRt = whiteSlider.GetComponent<RectTransform>();
+        playerSkill = GetComponent<PlayerSkill>();
     }
 
     private void Update()
     {
         if (isDamage)
             UpdateSlider();
-
-        // To Do
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            GetDamage(10);
-        }
     }
 
     public void GetDamage(int value)
@@ -50,9 +45,8 @@ public class PlayerStat : StatBase
         bloodCt.BloodFade(value);
         if (origin_hp * 0.5f >= hp)
             bloodCt.BloodSet(hp, origin_hp);
-        combo = 0;
+        playerSkill.Disapper();
         SetHPSlider();
-        StatUI();
         isDamage = true;
     }
     private void SetHPSlider()
@@ -75,17 +69,5 @@ public class PlayerStat : StatBase
                 whiteSliderRt.localScale = hpSliderRt.localScale;
             }
         }
-    }
-
-    public void SetCombo(int value = 0)
-    {
-        combo += value;
-        if (combo > 20) combo = 20;
-        StatUI();
-    }
-
-    public void StatUI()
-    {
-        comboText.text = $"{combo}";
     }
 }

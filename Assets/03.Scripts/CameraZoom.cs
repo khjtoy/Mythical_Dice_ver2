@@ -27,9 +27,16 @@ public class CameraZoom : MonoBehaviour
         originSize = cam.orthographicSize;
     }
 
+    private bool fire = false;
+
+    public bool ZoomTriger
+    {
+        set { fire = value; }  
+    }
+
     public void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if(fire)
         {
             cam.DOOrthoSize(targerSize, sizeSpeed);
             transform.DOLocalMove(new Vector3(targetPos.localPosition.x, targetPos.localPosition.y + 3, targetPos.localPosition.z), moveSpeed);

@@ -11,6 +11,8 @@ public class PlayerMove : UnitMove
 	int hashCrouch = Animator.StringToHash("Crouch");
 	int hashRise = Animator.StringToHash("Rise");
 
+	private bool flagAction = false;
+
 	Queue<Vector3> moveDir = new Queue<Vector3>();
 
 	Vector3 vec;
@@ -26,12 +28,16 @@ public class PlayerMove : UnitMove
 		float offset = GameManager.Instance.Offset;
 		transform.localPosition = new Vector3(-offset, 0, -offset);
 		WorldPos = transform.localPosition;
+
+		EventManager.StartListening("STOPACTION", StopAction);
 	}
 
 	private void Update()
 	{
+		if (flagAction) return;
 		InputMovement();
-		PopMove();
+		if(!_isMoving)
+			PopMove();
 		//Dice Boom Debug
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
@@ -57,6 +63,9 @@ public class PlayerMove : UnitMove
 		if (moveDir.Count > 0 && !_isMoving)
 		{
 			Vector3 dir = moveDir.Dequeue();
+
+			if (MapController.PosToArray(transform.localPosition + dir) == MapController.PosToArray(Define.EnemyTrans.localPosition)) return;
+
 			if (dir == Vector3.left) transform.localScale = new Vector3Int(-1, 1, 1);
 			if (dir == Vector3.right) transform.localScale = Vector3Int.one;
 			ShootAnimation(dir);
@@ -99,4 +108,19 @@ public class PlayerMove : UnitMove
 			seq.Kill();
 		});
 	}
+
+    private void StopAction(EventParam eventParam)
+    {
+        flagAction = true;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening("STOPACTION", StopAction);
+    }
+
+    private void OnApplicationQuit()
+    {
+        EventManager.StopListening("STOPACTION", StopAction);
+    }
 }

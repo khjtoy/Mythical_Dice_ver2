@@ -16,6 +16,8 @@ public class SkillRough : EnemySkill
         Vector2Int pos = unit.GamePos;
         Vector2Int enemyPos = Define.PlayerMove.GamePos;
         seq = DOTween.Sequence();
+        if(!unit.Sequence.Sequences.Contains(seq))
+            unit.Sequence.Sequences.Add(seq);
         int size = GameManager.Instance.Size - 1;
         if (times == 0)
         {

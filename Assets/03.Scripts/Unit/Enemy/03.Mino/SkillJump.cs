@@ -9,11 +9,13 @@ public class SkillJump : EnemySkill
     Sequence seq = null;
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        seq = DOTween.Sequence();
+        if(!unit.Sequence.Sequences.Contains(seq))
+            unit.Sequence.Sequences.Add(seq);
         ani?.Invoke();
         Transform baseTrm = unit.transform;
         PlayerMove enemyMove = Define.PlayerMove;
         unit.transform.localScale = (baseTrm.localPosition.x - enemyMove.GamePos.x >= 0) ? new Vector3(1, 1 ,1): new Vector3(-1, 1 ,1);
-        seq = DOTween.Sequence();
         seq.Append(baseTrm.DOLocalMoveY(1.3f, 0.5f));
         seq.Join(baseTrm.DOLocalMoveX(Define.PlayerMove.WorldPos.x, 0.3f));
         seq.Join(baseTrm.DOLocalMoveZ(Define.PlayerMove.WorldPos.z, 0.3f));
