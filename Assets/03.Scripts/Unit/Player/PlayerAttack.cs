@@ -94,7 +94,6 @@ public class PlayerAttack : CharacterBase
             Define.EnemyStat.GetDamage(damage);
             GameObject particle = ObjectPool.Instance.GetObject(FlagCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
             particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + impactOffeset, enemy.localPosition.z);
-            
             Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
             if(FlagCombo)
             {
