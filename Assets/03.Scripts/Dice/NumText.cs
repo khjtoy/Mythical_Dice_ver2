@@ -12,7 +12,9 @@ public class NumText : MonoBehaviour
 
 
 	[SerializeField]
-	private float Power;
+	private float yPower;
+	[SerializeField]
+	private float xPower;
 	[SerializeField]
 	private float PowerSpeed;
 
@@ -28,12 +30,14 @@ public class NumText : MonoBehaviour
 	{
 		num.alpha = 1;
 		Vector2 vec = Random.insideUnitCircle;
+		Debug.Log(vec);
 		transform.position = new Vector3(pos.x, Random.Range(pos.y, pos.y + 1f), pos.z);
 		//transform.localEulerAngles = new Vector3(transform.rotation.x - 45, transform.rotation.y, transform.rotation.z);
 		num.text = string.Format(text.ToString());
 		Sequence mySequence = DOTween.Sequence();
-		mySequence.Append(transform.DOMoveX(vec.x, HoriSpeed).SetEase(Ease.Linear));
-		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + Power, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() => { num.DOFade(0, 0.35f);
+		int a = vec.x > 0 ? 1 : -1;
+		mySequence.Append(transform.DOMoveX((a* xPower + vec.x)+transform.position.x, HoriSpeed).SetEase(Ease.Linear));
+		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() => { num.DOFade(0, 0.35f);
 		});
 		mySequence.Append(transform.DOMoveY(Down, DownSpeed).SetEase(Ease.Linear)).AppendCallback(()=> { ObjectPool.Instance.ReturnObject(PoolObjectType.PopUpDamage, this.gameObject); });
 	}
