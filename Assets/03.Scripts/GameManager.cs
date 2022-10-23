@@ -58,6 +58,55 @@ public class GameManager : MonoSingleton<GameManager>
 			SceneManager.LoadScene(0, LoadSceneMode.Additive);
 		}
 	}
+	public void SaveUserData(int id, float clearTime, bool isHard = false)
+    {
+		User user = DataManager.LoadJsonFile<User>(Application.dataPath + "/Save", "SAVEFILE");
+		bool findStage = false;
+		if(!isHard)
+        {
+			user.userHardStages.ForEach(i =>
+			{
+				if(i.currentStage==id)
+                {
+					if (i.clearTime > clearTime)
+						i.clearTime = clearTime;
+					i.clearCount++;
+					findStage = true;
+
+				}
+			});
+        }
+		else
+        {
+			user.userStages.ForEach(i =>
+			{
+				if (i.currentStage == id)
+				{
+					if (i.clearTime > clearTime)
+						i.clearTime = clearTime;
+					i.clearCount++;
+					findStage = true;
+				}
+			});
+		}
+
+		if(findStage==false)
+        {
+			UserStageVO vo = new UserStageVO
+			{
+				currentStage = id,
+				clearTime = clearTime,
+				clearCount = 1
+			};
+			if (isHard)
+				user.userHardStages.Add(vo);
+			else
+				user.userStages.Add(vo);
+		}
+
+		string str = DataManager.ObjectToJson(user);
+		DataManager.SaveJsonFile(Application.dataPath + "/Save", "SAVEFILE", str);
+    }
 
 	public void GenerateBoss(BossSO bossSo)
 	{

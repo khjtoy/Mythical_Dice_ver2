@@ -14,6 +14,10 @@ public class StageContoller : MonoBehaviour
     private StagePanel _stagePanel;
     public StagePanel StagePanel => _stagePanel;
 
+    [SerializeField]
+    private User user = null;//자신이 저장하고자 하는 User정보
+    public User CurrentUser { get { return user; } }
+
     public bool OpenPanel { get; }
 
     private void Awake()
@@ -23,14 +27,33 @@ public class StageContoller : MonoBehaviour
             Debug.LogError("Multiple StageController");
         }
         Instance = this;
+
+        user = DataManager.LoadJsonFile<User>(Application.dataPath + "/Save", "SAVEFILE");
+
         Time.timeScale = 1;
-        PlayerPrefs.SetInt("CLEAR", 5);
-        PlayerPrefs.SetInt("OPEN", 5);
     }
 
     private void Start()
     {
         ShowBlackPanel();
+    }
+    public UserStageVO LoadUserData(int id, bool isHard)
+    {
+        UserStageVO vo = null;
+        if(isHard)
+            user.userHardStages.ForEach(i =>
+            {
+                if (i.currentStage == id)
+                    vo = i;
+            });
+        else
+            user.userStages.ForEach(i =>
+            {
+                if (i.currentStage == id)
+                    vo = i;
+            });
+
+        return vo;
     }
     private void ShowBlackPanel()
     {
