@@ -18,4 +18,9 @@ public class DirectDirectionCondition : AICondition
         return false;
 
     }
+
+    public override void SetParam(float param)
+    {
+        
+    }
 }
