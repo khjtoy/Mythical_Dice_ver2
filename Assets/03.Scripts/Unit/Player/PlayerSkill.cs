@@ -22,6 +22,8 @@ public class PlayerSkill : MonoBehaviour
     private Transform[] dices = new Transform[4];
     private Image[] numbersTransform = new Image[4];
 
+    private Animator swordAnimator;
+    private int hashSkill = Animator.StringToHash("IsSkill");
 
     public int currentIdx = 0;
 
@@ -31,6 +33,8 @@ public class PlayerSkill : MonoBehaviour
 
     private void Start()
     {
+        swordAnimator = swordImg.GetComponent<Animator>();
+        swordAnimator.enabled = false;
         for (int i = 0; i < 4; i++)
         {
             dices[i] = dice.GetChild(i).transform;
@@ -115,7 +119,11 @@ public class PlayerSkill : MonoBehaviour
             numbersTransform[idx].gameObject.SetActive(false);
 
             if (idx == 3)
+            {
+                //swordAnimator.enabled = true;
+                //swordAnimator.SetBool(hashSkill, true);
                 ResetSkill();
+            }
         });
         seq[idx].InsertCallback(0.7f, ()=>swordImg.sprite = swordSkills[idx]);
         seq[idx].AppendCallback(() => seq[idx].Kill());

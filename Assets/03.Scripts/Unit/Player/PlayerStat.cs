@@ -34,12 +34,6 @@ public class PlayerStat : StatBase
     {
         if (isDamage)
             UpdateSlider();
-
-        // To Do
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            GetDamage(10);
-        }
     }
 
     public void GetDamage(int value)

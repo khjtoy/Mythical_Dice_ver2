@@ -41,11 +41,6 @@ public class CameraZoom : MonoBehaviour
             cam.DOOrthoSize(targerSize, sizeSpeed);
             transform.DOLocalMove(new Vector3(targetPos.localPosition.x, targetPos.localPosition.y + 3, targetPos.localPosition.z), moveSpeed);
         }
-
-        if(Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            fire = true;
-        }
     }
 
 }

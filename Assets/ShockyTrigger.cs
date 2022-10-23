@@ -34,13 +34,6 @@ public class ShockyTrigger : MonoBehaviour
                 fired = false;
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            percentage = 0;
-            fired = true;
-            //ChangePos(0.45f, 0.2f);
-        }
     }
 
     public void ChangePos(float x, float y)
