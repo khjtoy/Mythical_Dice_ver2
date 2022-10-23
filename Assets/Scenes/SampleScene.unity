@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &164311437
 Transform:
   m_ObjectHideFlags: 0
@@ -1321,6 +1321,8 @@ MonoBehaviour:
   StageStart: 0
   thirdTutorial: 0
   mapController: {fileID: 1072753613}
+  _unitRootTrm: {fileID: 0}
+  slimeSO: {fileID: 0}
 --- !u!4 &806048599
 Transform:
   m_ObjectHideFlags: 0

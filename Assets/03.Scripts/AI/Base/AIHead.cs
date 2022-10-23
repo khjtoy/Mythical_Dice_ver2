@@ -12,9 +12,10 @@ public class AIHead : MonoBehaviour
 	private bool _canDoAgain = true;
 	private bool _isExcuting = false;
 
-	private void Awake()
+	public void Init(AIState state)
 	{
-			anyState = transform.Find("State/AnyState").GetComponent<AIState>();
+		_currentState = state;
+		anyState = transform.Find("State/ANY").GetComponent<AIState>();
 	}
 
 	protected virtual void Update()

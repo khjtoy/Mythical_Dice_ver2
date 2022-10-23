@@ -88,7 +88,7 @@ public class PlayerAttack : CharacterBase
         if (nearEnemy)
         {
             //playerStat.SetCombo(damage);
-            playerSkill.StackDice(damage);
+            playerSkill.StackDice(5);
             bool FlagCombo = playerStat.COMBO >= 20;
             // 파티클 생성
             Define.EnemyStat.GetDamage(damage);
@@ -99,6 +99,7 @@ public class PlayerAttack : CharacterBase
             if(FlagCombo)
             {
                 Time.timeScale = 0.4f;
+                DOTween.timeScale = 0.4f;
                 Invoke("OrginTime", 0.12f);
             }
 
@@ -109,6 +110,7 @@ public class PlayerAttack : CharacterBase
     private void OrginTime()
     {
         Time.timeScale = 1;
+        DOTween.timeScale = 1;
     }
 
     private void StopAction(EventParam eventParam)

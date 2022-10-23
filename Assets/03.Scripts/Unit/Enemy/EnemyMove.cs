@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public enum EnemyAIState{
 }
 public class EnemyMove : UnitMove
 {
-	[SerializeField] private UnitAnimation _animation = null;
+	[SerializeField] private UnitAnimation _animation = new UnitAnimation();
 	private Dictionary<EnemyAIState, EnemySkill> _enemySkillDict = new Dictionary<EnemyAIState, EnemySkill>();
 	[SerializeField] private List<EnemySkill> enemySkills = new List<EnemySkill>();
 	private List<int> hashes = new List<int>();
@@ -50,6 +51,12 @@ public class EnemyMove : UnitMove
 		transform.localPosition = new Vector3(offset, 0, offset);
 		WorldPos = transform.localPosition;
 	}
+
+	private void Start()
+	{
+		_animation.SetAnimator(transform.GetChild(0).GetChild(0).GetComponent<Animator>());
+	}
+
 	public void  DoSkill(EnemyAIState state, Action callback = null)
 	{
 		if (state == EnemyAIState.ANY || state == EnemyAIState.IDLE)

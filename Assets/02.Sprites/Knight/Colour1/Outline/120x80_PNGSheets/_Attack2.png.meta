@@ -17,6 +17,12 @@ TextureImporter:
   - first:
       213: -13754153453958871
     second: _Attack2_4
+  - first:
+      213: -9110880898248618877
+    second: _Attack2_5
+  - first:
+      213: 295306890520755552
+    second: _Attack2_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -61,7 +67,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,10 +127,10 @@ TextureImporter:
       name: _Attack2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 80
+        x: 240
+        y: 40
+        width: 120
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +148,10 @@ TextureImporter:
       name: _Attack2_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 0
-        width: 128
-        height: 80
+        width: 120
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +169,10 @@ TextureImporter:
       name: _Attack2_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 120
         y: 0
-        width: 128
-        height: 80
+        width: 120
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +190,10 @@ TextureImporter:
       name: _Attack2_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 240
         y: 0
-        width: 128
-        height: 80
+        width: 120
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +211,10 @@ TextureImporter:
       name: _Attack2_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 360
         y: 0
-        width: 128
-        height: 80
+        width: 120
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,6 +224,48 @@ TextureImporter:
       bones: []
       spriteID: 929c0399ba22fcff0800000000000000
       internalID: -13754153453958871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Attack2_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 120
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ccff43816af8180800000000000000
+      internalID: -9110880898248618877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Attack2_6
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 120
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06df6356d04291400800000000000000
+      internalID: 295306890520755552
       vertices: []
       indices: 
       edges: []

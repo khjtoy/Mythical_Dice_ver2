@@ -11,6 +11,7 @@ public class UnitRender : MonoBehaviour
 
     private void Start()
     {
+        _mainSprite = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         _subSprites = _mainSprite.GetComponentsInChildren<SpriteRenderer>().ToList().FindAll((x)=>x != _mainSprite);
     }
 
