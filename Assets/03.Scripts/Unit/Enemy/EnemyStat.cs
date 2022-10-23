@@ -7,7 +7,11 @@ public class EnemyStat : StatBase
 {
     [SerializeField]
     private HPSlider hpSlider;
-    public void InitStat(int hp)
+	public void Awake()
+	{
+        hpSlider=GameObject.Find("BossBar").GetComponent<HPSlider>();
+	}
+	public void InitStat(int hp)
     {
         origin_hp = hp;
         base.hp = hp;

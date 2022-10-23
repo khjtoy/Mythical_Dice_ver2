@@ -29,9 +29,16 @@ public class CameraZoom : MonoBehaviour
 
     private bool fire = false;
 
+    private bool outFire = false;
+
     public bool ZoomTriger
     {
         set { fire = value; }  
+    }
+
+    public bool OutTriger
+    {
+        set { outFire = value; }
     }
 
     public void LateUpdate()
@@ -39,7 +46,19 @@ public class CameraZoom : MonoBehaviour
         if(fire)
         {
             cam.DOOrthoSize(targerSize, sizeSpeed);
-            transform.DOLocalMove(new Vector3(targetPos.localPosition.x, targetPos.localPosition.y + 3, targetPos.localPosition.z), moveSpeed);
+            transform.DOLocalMove(new Vector3(targetPos.localPosition.x, targetPos.localPosition.y + 3, targetPos.localPosition.z), moveSpeed).OnComplete(() =>
+            {
+                fire = false;
+            });
+        }
+
+        if(outFire)
+        {
+            cam.DOOrthoSize(originSize, sizeSpeed);
+            transform.DOLocalMove(originPos, moveSpeed).OnComplete(() =>
+            {
+                outFire = false;
+            });
         }
     }
 

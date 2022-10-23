@@ -114,10 +114,11 @@ public class GameManager : MonoSingleton<GameManager>
 		go.tag = "Boss";
 		go.transform.SetParent(_unitRootTrm);
 		go.SetActive(false);
-		
+
 		EnemyMove bossMove = go.AddComponent<EnemyMove>();
 		EnemyStat bossStat = go.AddComponent<EnemyStat>();
 		bossStat.InitStat(bossSo.Hp);
+		
 		go.AddComponent<UnitRender>();
 		
 		GameObject sprite_anchor = new GameObject("Sprite_Anchor");
