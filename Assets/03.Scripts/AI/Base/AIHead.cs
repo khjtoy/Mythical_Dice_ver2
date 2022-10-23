@@ -20,7 +20,7 @@ public class AIHead : MonoBehaviour
 
 	protected virtual void Update()
 	{
-			SetState(anyState);
+		SetState(anyState);
 		if (_canDoAgain)
 		{
 			_isExcuting = true;

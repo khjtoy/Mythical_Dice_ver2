@@ -10,6 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b00c7b98cba8dd043b6263ce922fa722, type: 3}
-  m_Name: StampSO
+  m_Name: DashSO
   m_EditorClassIdentifier: 
-  _state: 3
+  State: 0
+  Condition: []
+  IsLoop: 0
+  IsPositiveAnd: 0
+  IsNegativeAnd: 0

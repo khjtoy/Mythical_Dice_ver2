@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a04682038108aee4d907284c5f8a66ef, type: 3}
-  m_Name: Slime
+  m_Name: Mino
   m_EditorClassIdentifier: 
-  Name: Slime
-  Hp: 20
-  MainSprite: {fileID: 21300000, guid: 8a5d6674afe83934a908d2275e12dad0, type: 3}
+  Name: 
+  Hp: 0
+  MainSprite: {fileID: 0}
   spriteOffset: {x: 0, y: 0, z: 0}
-  spriteSize: {x: 1, y: 1, z: 1}
+  spriteSize: {x: 0, y: 0, z: 0}
   OutlineMat: {fileID: 0}
-  Controller: {fileID: 9100000, guid: 10550e88b8c7e6f4f8566b52d86b5f49, type: 2}
-  Skills:
-  - {fileID: 11400000, guid: aa82eb4ac7f50e64a90383714ba528b9, type: 2}
+  Controller: {fileID: 0}
+  Skills: []

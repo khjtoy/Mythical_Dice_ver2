@@ -29,7 +29,7 @@ public class GameManager : MonoSingleton<GameManager>
 	[SerializeField] private Transform _unitRootTrm;
 	public float Offset => 0.75f * (size - 1);
 
-	[SerializeField] private BossSO slimeSO = null;
+	[SerializeField] private List<BossSO> SO = new List<BossSO>();
 
 	public int Size
 
@@ -46,8 +46,8 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void Awake()
 	{
-		GenerateBoss(slimeSO);
-		
+		int idx = PlayerPrefs.GetInt("STAGE", 0);
+		GenerateBoss(SO[idx]);
 	}
 	
 	private void Start()
@@ -126,17 +126,21 @@ public class GameManager : MonoSingleton<GameManager>
 		GameObject outline = new GameObject("Outline");
 		
 		sprite_anchor.transform.SetParent(go.transform);
-		sprite_anchor.transform.localPosition = Vector3.zero;
+		sprite_anchor.transform.localPosition = new Vector3(0, 0, -0.5f);
 		sprite_anchor.transform.eulerAngles = new Vector3(45, 0, 0);
 		sprite_anchor.transform.localScale = Vector3.one;
 		
 		main_sprite.transform.SetParent(sprite_anchor.transform);
 		main_sprite.transform.eulerAngles = new Vector3(45, 0, 0);
 		//TODO Get Transform Properties
+		main_sprite.transform.localPosition = bossSo.spriteOffset;
+		main_sprite.transform.localScale = bossSo.spriteSize;
 		main_sprite.AddComponent<SpriteRenderer>().sprite = bossSo.MainSprite;
 		main_sprite.AddComponent<Animator>().runtimeAnimatorController = bossSo.Controller;
 		outline.transform.SetParent(main_sprite.transform);
 		outline.transform.eulerAngles = new Vector3(45, 0, 0);
+		outline.transform.localPosition = Vector3.zero;
+		outline.transform.localScale = Vector3.one;
 		SpriteRenderer outlineRenderer = outline.AddComponent<SpriteRenderer>();
 		outlineRenderer.sprite = bossSo.MainSprite;
 		//outlineRenderer.material = bossSo.OutlineMat;
