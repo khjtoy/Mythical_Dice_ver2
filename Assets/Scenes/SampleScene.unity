@@ -453,7 +453,8 @@ MonoBehaviour:
     - {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
     - {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
     - {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
-    prefabCreateCounts: 140000000500000005000000
+    - {fileID: 287274016122660348, guid: d8a7b67f5ed940d4b97c219385736796, type: 3}
+    prefabCreateCounts: 1400000005000000050000000a000000
 --- !u!1 &265632404
 GameObject:
   m_ObjectHideFlags: 0
@@ -7219,6 +7220,7 @@ MonoBehaviour:
   - {fileID: -4326360533754234484, guid: c90b7430ec9e0374c96d0ffa568d0a75, type: 3}
   - {fileID: -2400559193241486504, guid: c90b7430ec9e0374c96d0ffa568d0a75, type: 3}
   currentIdx: 0
+  numbersIdx: 00000000000000000000000000000000
 --- !u!224 &153698506140732924
 RectTransform:
   m_ObjectHideFlags: 0
