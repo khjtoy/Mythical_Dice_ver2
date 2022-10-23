@@ -19,6 +19,8 @@ public class PlayerStat : StatBase
     [SerializeField] protected int combo = 0;
     public int COMBO { get => combo; }
 
+    private PlayerSkill playerSkill;
+
     private RectTransform hpSliderRt;
     private RectTransform whiteSliderRt;
 
@@ -28,6 +30,7 @@ public class PlayerStat : StatBase
     {
         hpSliderRt = playerHPSlider.GetComponent<RectTransform>();
         whiteSliderRt = whiteSlider.GetComponent<RectTransform>();
+        playerSkill = GetComponent<PlayerSkill>();
     }
 
     private void Update()
@@ -42,7 +45,7 @@ public class PlayerStat : StatBase
         bloodCt.BloodFade(value);
         if (origin_hp * 0.5f >= hp)
             bloodCt.BloodSet(hp, origin_hp);
-        //combo = 0;
+        playerSkill.Disapper();
         SetHPSlider();
         isDamage = true;
     }
