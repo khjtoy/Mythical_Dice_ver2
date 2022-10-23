@@ -46,7 +46,10 @@ public class GameManager : MonoSingleton<GameManager>
 
 	private void Awake()
 	{
-		int idx = PlayerPrefs.GetInt("STAGE", 0);
+		int idx = PlayerPrefs.GetInt("NOWSTAGE", 0);
+		bool isHard = PlayerPrefs.GetInt("HARD") == 1 ? true : false;
+		idx = isHard ? idx + 3 : idx;
+		idx = idx - 1;
 		GenerateBoss(SO[idx]);
 	}
 	
@@ -62,7 +65,9 @@ public class GameManager : MonoSingleton<GameManager>
     {
 		User user = DataManager.LoadJsonFile<User>(Application.dataPath + "/Save", "SAVEFILE");
 		bool findStage = false;
-		if(!isHard)
+		if (user.currentStage == id)
+			user.clearStage = id+1;
+		if (isHard)
         {
 			user.userHardStages.ForEach(i =>
 			{
@@ -70,6 +75,7 @@ public class GameManager : MonoSingleton<GameManager>
                 {
 					if (i.clearTime > clearTime)
 						i.clearTime = clearTime;
+
 					i.clearCount++;
 					findStage = true;
 
