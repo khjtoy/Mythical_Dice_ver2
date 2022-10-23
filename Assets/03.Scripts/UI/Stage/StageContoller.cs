@@ -62,7 +62,7 @@ public class StageContoller : MonoBehaviour
         seq.AppendInterval(1);
         seq.Append(_fadePanel.DOAnchorPos3DY(1080, 1f));
     }
-    public void HideBlackPanel(int stage)
+    public void HideBlackPanel(int stage,int isHard = 0)
     {
         _fadePanel.anchoredPosition = new Vector3(0, 0, 0);
         Sequence seq = DOTween.Sequence();
@@ -70,9 +70,17 @@ public class StageContoller : MonoBehaviour
         seq.Append(_fadePanel.DOAnchorPos3DY(0, 1f));
         seq.AppendCallback(() =>
         {
+            Debug.Log("Stage : " + stage + " HARD :" + isHard);
             PlayerPrefs.SetInt("NOWSTAGE", stage);
+            PlayerPrefs.SetInt("HARD", isHard);
             SceneManager.LoadScene("SampleScene");
         });
+    }
+    public void ClearStage(int id)
+    {
+        user.currentStage = id;
+        string str = DataManager.ObjectToJson(user);
+        DataManager.SaveJsonFile(Application.dataPath + "/Save", "SAVEFILE", str);
     }
 
     private void OnDisable()

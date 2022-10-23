@@ -64,10 +64,10 @@ public class StageSlot : MonoBehaviour
             if(clearStage - 1 >= _slotStage)
             _stageImage.sprite = _clearSprite;
         }
-        else if(clearStage  ==currentStage + 1 && clearStage == _slotStage)
+        else if(clearStage  == currentStage + 1 && clearStage == _slotStage)
         {
             OpenEvent();
-            PlayerPrefs.SetInt("OPEN", clearStage);
+            StageContoller.Instance.ClearStage(clearStage);
         }
     }
 

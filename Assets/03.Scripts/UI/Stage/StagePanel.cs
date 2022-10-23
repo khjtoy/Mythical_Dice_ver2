@@ -10,6 +10,7 @@ public class StagePanel : MonoBehaviour
     private StageSO _stageSo;
 
     private int _currentStage = 0;
+    private bool _isHard = false;
 
     RectTransform _rect;
 
@@ -54,7 +55,7 @@ public class StagePanel : MonoBehaviour
     }
     private void StartBtn()
     {
-        StageContoller.Instance.HideBlackPanel(_currentStage);
+        StageContoller.Instance.HideBlackPanel(_currentStage, _isHard ? 1:0);
     }
     private void BackBtn()
     {
@@ -68,6 +69,7 @@ public class StagePanel : MonoBehaviour
 
     public void SetPanelInfo(int id,bool isHead = false)
     {
+        _isHard = isHead;
         LoadStageAchieve(id, isHead);
         _currentStage = id--;
         Stage stage = _stageSo.stages[id];
