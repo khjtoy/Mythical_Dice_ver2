@@ -16,7 +16,8 @@ public class StagePanel : MonoBehaviour
     Image _monsterImage;
     Text _explainText;
     Text _stageExplainText;
-    Text _stageClearInfoText;
+    Text _stageClearTime;
+    Text _stageBossKillText;
     Button _startBtn;
     Button _backBtn;
 
@@ -27,13 +28,14 @@ public class StagePanel : MonoBehaviour
         _monsterImage = transform.Find("MonsterImageFrame/MonsterImage").GetComponent<Image>();
         _explainText = transform.Find("ExplainFrame/Text").GetComponent<Text>();
         _stageExplainText = transform.Find("StageExplain/Text").GetComponent<Text>();
-        _stageClearInfoText = transform.Find("StageClearInfo").GetComponent<Text>();
+        _stageClearTime = transform.Find("StageClearInfo/BossClearTimeText").GetComponent<Text>();
+        _stageBossKillText = transform.Find("StageClearInfo/BossKillText").GetComponent<Text>();
         _startBtn = transform.Find("StartBtn").GetComponent<Button>();
         _startBtn.onClick.AddListener(StartBtn);
         _backBtn = transform.Find("BackBtn").GetComponent<Button>();
         _backBtn.onClick.AddListener(BackBtn);
     }
-    public void OpenPanel(int id)
+    public void OpenPanel(int id,bool isHard = false)
     {
         if (IsOpenPanel == true)
             return;
@@ -64,13 +66,23 @@ public class StagePanel : MonoBehaviour
         });
     }
 
-    public void SetPanelInfo(int id)
+    public void SetPanelInfo(int id,bool isHead = false)
     {
+        LoadStageAchieve(id, isHead);
         _currentStage = id--;
         Stage stage = _stageSo.stages[id];
         _monsterImage.sprite = stage.sprite;
         _explainText.text = stage.bossText;
         _stageExplainText.text = stage.storyText;
+    }
+    private void LoadStageAchieve(int id,bool isHard)
+    {
+        UserStageVO vo = StageContoller.Instance.LoadUserData(id, isHard);
+        if (vo == null) return;
+
+        _stageClearTime.text = string.Format(vo.clearTime.ToString());
+        _stageBossKillText.text = string.Format(vo.clearCount.ToString());
+
     }
     private void OnDisable()
     {

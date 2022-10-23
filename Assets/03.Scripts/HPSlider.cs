@@ -10,8 +10,6 @@ public class HPSlider : MonoBehaviour
     private Image playerHPSlider;
     [SerializeField]
     private Image whiteSlider;
-    
-    public Image iconImage;
 
     [SerializeField] private float sliderSpeed;
 

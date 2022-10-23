@@ -38,7 +38,7 @@ public class StageSlot : MonoBehaviour
     private void Stage()
     {
         Debug.Log("Stage : " + _slotStage);
-        StageContoller.Instance.StagePanel.OpenPanel(_slotStage);
+        StageContoller.Instance.StagePanel.OpenPanel(_slotStage, _isHard);
 
     }
     private void SetStageSlot()
@@ -53,8 +53,8 @@ public class StageSlot : MonoBehaviour
 
         _slotStage = int.Parse(name); //스테이지 번호를 가져온다
 
-        int currentStage = PlayerPrefs.GetInt("OPEN");
-        int clearStage = PlayerPrefs.GetInt("CLEAR");
+        int currentStage = StageContoller.Instance.CurrentUser.currentStage;
+        int clearStage = StageContoller.Instance.CurrentUser.clearStage;
 
         _numberImage.sprite = _numberSprite[_slotStage-1];
 
