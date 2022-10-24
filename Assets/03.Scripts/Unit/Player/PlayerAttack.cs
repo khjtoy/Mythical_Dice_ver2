@@ -7,6 +7,13 @@ using UnityEngine.Playables;
 
 public class PlayerAttack : CharacterBase
 {
+    [SerializeField]
+    private AudioSource attackSource;
+    [SerializeField]
+    private BaseSound playerAttackSounds;
+
+    private enum AttackSounds { Slash, SlashFail}
+
     private Transform enemy;
     private float timer;
 
@@ -114,6 +121,7 @@ public class PlayerAttack : CharacterBase
         {
             //playerStat.SetCombo(damage);
             playerSkill.StackDice(5);
+            SoundManager.Instance.AudioChange(playerAttackSounds.audioClips[(int)AttackSounds.Slash], attackSource);
             // 파티클 생성
             Define.EnemyStat.GetDamage(damage);
             ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(damage, Define.EnemyStat.transform.position);
@@ -123,6 +131,8 @@ public class PlayerAttack : CharacterBase
 
             timer = attackDelay;
         }
+        else
+            SoundManager.Instance.AudioChange(playerAttackSounds.audioClips[(int)AttackSounds.SlashFail], attackSource);
     }
 
     private IEnumerator Skill(int dir)

@@ -20,6 +20,6 @@ public class BossIcon : MonoBehaviour
 	}
 	private void ChangeSprite()
 	{
-		image .sprite = sprites[PlayerPrefs.GetInt("NOWSTAGE") - 1];
+		image .sprite = sprites[PlayerPrefs.GetInt("NOWSTAGE")];
 	}
 }

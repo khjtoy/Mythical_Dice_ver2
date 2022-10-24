@@ -6,6 +6,13 @@ using UnityEngine.Rendering;
 
 public class PlayerMove : UnitMove
 {
+	[SerializeField]
+	private AudioSource moveSource;
+	[SerializeField]
+	private BaseSound playerMoveSounds;
+
+	private enum PlayerMoveSound { BaseMove = 0}
+
 	Sequence seq = null;
 	int hashMove = Animator.StringToHash("Move");
 	int hashCrouch = Animator.StringToHash("Crouch");
@@ -109,6 +116,7 @@ public class PlayerMove : UnitMove
 		if (_isMoving || flagAction)
 			return;
 		_isMoving = true;
+		SoundManager.Instance.AudioChange(playerMoveSounds.audioClips[(int)PlayerMoveSound.BaseMove], moveSource);
 		Vector3 original = _pos;
 		float offset = GameManager.Instance.Offset;
 		_pos += pos;
