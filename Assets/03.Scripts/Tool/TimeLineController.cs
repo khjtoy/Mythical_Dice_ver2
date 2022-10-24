@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using DG.Tweening;
 
 public class TimeLineController : MonoBehaviour
 {
     private PlayableDirector _playableDirector;
+
+    bool _isStop = false;
     private void Awake()
     {
 
@@ -15,15 +18,28 @@ public class TimeLineController : MonoBehaviour
     {
 
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.X)&&_isStop)
+        {
+            StartTimeline();
+        }
+    }
 
     public void StopTime()
     {
+        _isStop = true;
+        _playableDirector.Pause();
         Time.timeScale = 0;
-        _playableDirector.Stop();
+        //Sequence seq = DOTween.Sequence();
+        //seq.AppendInterval(1);
+        //seq.AppendCallback(() => {  });
     }
+
 
     public void StartTimeline()
     {
+        _isStop = false;
         Time.timeScale = 1;
         _playableDirector.Play();
     }
