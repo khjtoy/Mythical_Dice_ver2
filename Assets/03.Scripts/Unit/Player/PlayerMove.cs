@@ -15,6 +15,13 @@ public class PlayerMove : UnitMove
 
 	Queue<Vector3> moveDir = new Queue<Vector3>();
 
+	private PlayerStat playerStat;
+
+	private int playerDir; // 0:Right 1:Left 2:Up 3:Down
+
+	public int PlayerDir => playerDir;
+
+	Vector3 vec;
 	float movePos
 	{
 		get
@@ -24,11 +31,13 @@ public class PlayerMove : UnitMove
 	}
 	private void Start()
 	{
+		playerStat = GetComponent<PlayerStat>();
 		float offset = GameManager.Instance.Offset;
 		transform.localPosition = new Vector3(-offset, 0, -offset);
 		WorldPos = transform.localPosition;
 
 		EventManager.StartListening("STOPACTION", StopAction);
+		EventManager.StartListening("PLAYACTION", PlayAction);
 	}
 
 	private void Update()
@@ -42,12 +51,7 @@ public class PlayerMove : UnitMove
 		{
 			MapController.Instance.Boom(Vector2Int.zero, 1);
 		}
-		else if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			//DiceSkill.Instance.Spread();
-		}
 	}
-
 
 	public void InputMovement()
 	{
@@ -67,6 +71,7 @@ public class PlayerMove : UnitMove
 		if (moveDir.Count > 0 && !_isMoving)
 		{
 			Vector3 dir = moveDir.Dequeue();
+			SetDir(dir);
 
 			if (MapController.PosToArray(transform.localPosition + dir) == MapController.PosToArray(Define.EnemyTrans.localPosition)) return;
 
@@ -76,6 +81,18 @@ public class PlayerMove : UnitMove
 			Translate(dir * movePos);
 		}
 	}
+
+	private void SetDir(Vector3 dir)
+	{
+		if (Input.GetKeyDown(KeyCode.RightArrow))
+			playerDir = 0;
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
+			playerDir = 1;
+		if (Input.GetKeyDown(KeyCode.UpArrow))
+			playerDir = 2;
+		if (Input.GetKeyDown(KeyCode.DownArrow))
+			playerDir = 3;
+    }
 
 	public void ShootAnimation(Vector3 dir)
 	{
@@ -108,7 +125,7 @@ public class PlayerMove : UnitMove
 		seq.AppendCallback(() =>
 		{
 			_isMoving = false;
-			Debug.Log(GamePos);
+			//Debug.Log(GamePos);
 			seq.Kill();
 		});
 	}
@@ -118,13 +135,20 @@ public class PlayerMove : UnitMove
         flagAction = true;
     }
 
+    private void PlayAction(EventParam eventParam)
+    {
+        flagAction = false;
+    }
+
     private void OnDestroy()
     {
         EventManager.StopListening("STOPACTION", StopAction);
+        EventManager.StopListening("PLAYACTION", PlayAction);
     }
 
     private void OnApplicationQuit()
     {
         EventManager.StopListening("STOPACTION", StopAction);
+        EventManager.StopListening("PLAYACTION", PlayAction);
     }
 }

@@ -4,8 +4,11 @@ using UnityEngine;
 using System;
 public class Dice:MonoBehaviour
 {
-	public Dictionary<System.Type, Direct> directs = new Dictionary<System.Type, Direct>();
-	public Dictionary<System.Type, DiceRotation> rotation = new Dictionary<System.Type, DiceRotation>();
+	public Dictionary<Type, Direct> Directs => directs;
+	public Dictionary<Type, DiceRotation> Rotation => rotation;
+
+	private Dictionary<Type, Direct> directs = new Dictionary<System.Type, Direct>();
+	private Dictionary<Type, DiceRotation> rotation = new Dictionary<System.Type, DiceRotation>();
 
 	public DiceSelect DiceSelect => diceSelect;
 	private DiceSelect diceSelect;
@@ -25,8 +28,8 @@ public class Dice:MonoBehaviour
 		}
 	}
 
-	public void Direct(System.Type diceType, System.Type rotationType)
+	public void Direct(Type diceType,Type rotationType)
 	{
-		directs[diceType].Direction(rotation[rotationType]);
+		Directs[diceType].Direction(Rotation[rotationType]);
 	}
 }

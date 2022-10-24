@@ -26,4 +26,9 @@ public class TimeCondition : AICondition
         }
         return false;
     }
+
+    public override void SetParam(float param)
+    {
+        _goalTime = param;
+    }
 }

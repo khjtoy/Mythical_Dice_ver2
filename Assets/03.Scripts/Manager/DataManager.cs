@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour 
 {
-    public static string ObjectToJson(object obj)
+	public static string ObjectToJson(object obj)
     { 
         return JsonUtility.ToJson(obj, true);
     }

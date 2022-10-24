@@ -9,12 +9,16 @@ public class StagePanel : MonoBehaviour
     [SerializeField]
     private StageSO _stageSo;
 
+    private int _currentStage = 0;
+    private bool _isHard = false;
+
     RectTransform _rect;
 
     Image _monsterImage;
     Text _explainText;
     Text _stageExplainText;
-    Text _stageClearInfoText;
+    Text _stageClearTime;
+    Text _stageBossKillText;
     Button _startBtn;
     Button _backBtn;
 
@@ -25,17 +29,19 @@ public class StagePanel : MonoBehaviour
         _monsterImage = transform.Find("MonsterImageFrame/MonsterImage").GetComponent<Image>();
         _explainText = transform.Find("ExplainFrame/Text").GetComponent<Text>();
         _stageExplainText = transform.Find("StageExplain/Text").GetComponent<Text>();
-        _stageClearInfoText = transform.Find("StageClearInfo").GetComponent<Text>();
+        _stageClearTime = transform.Find("StageClearInfo/BossClearTimeText").GetComponent<Text>();
+        _stageBossKillText = transform.Find("StageClearInfo/BossKillText").GetComponent<Text>();
         _startBtn = transform.Find("StartBtn").GetComponent<Button>();
+        _startBtn.onClick.AddListener(StartBtn);
         _backBtn = transform.Find("BackBtn").GetComponent<Button>();
         _backBtn.onClick.AddListener(BackBtn);
     }
-    public void OpenPanel(int id)
+    public void OpenPanel(int id,bool isHard = false)
     {
         if (IsOpenPanel == true)
             return;
 
-        SetPanelInfo(id);
+        SetPanelInfo(id, isHard);
         Sequence seq = DOTween.Sequence();
         seq.AppendCallback(() =>
         {
@@ -47,7 +53,11 @@ public class StagePanel : MonoBehaviour
             IsOpenPanel = true;
         });
     }
-    public void BackBtn()
+    private void StartBtn()
+    {
+        StageContoller.Instance.HideBlackPanel(_currentStage, _isHard ? 1:0);
+    }
+    private void BackBtn()
     {
         Sequence seq = DOTween.Sequence();
         seq.Append(_rect.DOAnchorPosX(-1500, 1));
@@ -57,16 +67,24 @@ public class StagePanel : MonoBehaviour
         });
     }
 
-    public void SetPanelInfo(int id)
+    public void SetPanelInfo(int id,bool isHead = false)
     {
-        id--;
+        _isHard = isHead;
+        LoadStageAchieve(id, isHead);
+        _currentStage = id--;
         Stage stage = _stageSo.stages[id];
-        //stage.sprite = _stageSo.stages[id].sprite;
-        //stage.bossText = _stageSo.stages[id].bossText;
-        //stage.storyText = _stageSo.stages[id].storyText;
         _monsterImage.sprite = stage.sprite;
         _explainText.text = stage.bossText;
         _stageExplainText.text = stage.storyText;
+    }
+    private void LoadStageAchieve(int id,bool isHard)
+    {
+        UserStageVO vo = StageContoller.Instance.LoadUserData(id, isHard);
+        if (vo == null) return;
+
+        _stageClearTime.text = string.Format(vo.clearTime.ToString());
+        _stageBossKillText.text = string.Format(vo.clearCount.ToString());
+
     }
     private void OnDisable()
     {

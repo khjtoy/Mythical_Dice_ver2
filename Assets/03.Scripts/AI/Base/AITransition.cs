@@ -10,4 +10,56 @@ public class AITransition : MonoBehaviour
     public AIState goalState = null;
     public bool IsPositiveAnd = false;
     public bool IsNegativeAnd = false;
+
+    public void SetGoalState(AIState state)
+    {
+        goalState = state;
+    }
+
+    public void SetIdleCondition(EnemyState idleState)
+    {
+        SetGoalState(idleState);
+    }
+
+    public void SetDeathCondition(EnemyStat stat)
+    {
+        DeathCondition condition = gameObject.AddComponent<DeathCondition>();
+        condition.EnemyStat = stat;
+        PositiveCondition.Add(condition);
+    }
+
+    public AICondition SetCondition(Conditions condition)
+    {
+        switch (condition)
+        {   
+            case Conditions.TIME:
+                return gameObject.AddComponent<TimeCondition>();
+            case Conditions.RANGEDETECT:
+                return gameObject.AddComponent<RangeDetectCondition>();
+            case Conditions.DIRECTDIRECTION:
+                return gameObject.AddComponent<DirectDirectionCondition>();
+        }
+
+        return null;
+    }
+    public void SetCondition(SkillSO skill)
+    {
+        foreach (var condition in skill.Condition)
+        {
+            AICondition currentCondition = null;
+            currentCondition = SetCondition(condition.ConditionEnum);
+            currentCondition.SetParam(condition.Parameter);
+            if (condition.IsPositive)
+            {
+                PositiveCondition.Add(currentCondition);
+            }
+            else
+            {
+                NegativeCondition.Add(currentCondition);
+            }
+        }
+
+        IsPositiveAnd = skill.IsPositiveAnd;
+        IsNegativeAnd = skill.IsNegativeAnd;
+    }
 }
