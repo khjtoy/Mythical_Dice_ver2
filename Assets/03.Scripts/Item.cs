@@ -27,6 +27,8 @@ public class Item : MonoBehaviour
     private void Update()
     {
         if (isAttack) return;
+        if (particleSystem.time >= 0.4f)
+            isAttack = true;
         if(particleSystem.IsAlive())
         {
             if(MapController.PosToArray(enemy.localPosition) == MapController.PosToArray(transform.localPosition))

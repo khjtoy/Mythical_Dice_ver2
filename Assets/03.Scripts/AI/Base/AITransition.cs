@@ -44,7 +44,7 @@ public class AITransition : MonoBehaviour
     }
     public void SetCondition(SkillSO skill)
     {
-        foreach (var condition in skill.Condition)
+        foreach (var condition in skill.FromIdleCondition)
         {
             AICondition currentCondition = null;
             currentCondition = SetCondition(condition.ConditionEnum);

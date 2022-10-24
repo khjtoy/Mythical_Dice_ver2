@@ -54,6 +54,7 @@ public class PlayerAttack : CharacterBase
     {
         if(Input.GetKeyDown(KeyCode.Z) && !flagAction && !isAction)
         {
+            playerStat.PlayerMove.moveDir.Clear();
             CheckPos();
         }
 

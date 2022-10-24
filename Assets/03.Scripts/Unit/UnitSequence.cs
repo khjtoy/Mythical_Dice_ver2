@@ -13,7 +13,6 @@ public class UnitSequence
     {
         foreach (var seq in _sequences)
         {
-            Debug.Log(seq);
             seq.Kill();
         }
     }
