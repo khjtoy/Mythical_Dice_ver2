@@ -21,6 +21,11 @@
             "currentStage": 4,
             "clearCount": 3,
             "clearTime": 30.0
+        },
+        {
+            "currentStage": 0,
+            "clearCount": 7,
+            "clearTime": 30.0
         }
     ],
     "userHardStages": []
