@@ -1116,9 +1116,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1717884881}
     - target: {fileID: 2078367647, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
-      propertyPath: m_SceneBindings.Array.data[8].value
+      propertyPath: m_SceneBindings.Array.data[7].value
       value: 
       objectReference: {fileID: 1717884879}
+    - target: {fileID: 2078367647, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].value
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4160154648287246749, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
       propertyPath: m_Name
       value: Timeline_Tutorial
