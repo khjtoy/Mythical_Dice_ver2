@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class TimeLineController : MonoBehaviour
 {
-    private PlayableDirector _playableDirector;
+    private PlayableDirector _director;
 
     bool _isStop = false;
     private void Awake()
     {
 
-        _playableDirector = GetComponent<PlayableDirector>();
+        _director = GetComponent<PlayableDirector>();
     }
     private void Start()
     {
@@ -29,7 +30,7 @@ public class TimeLineController : MonoBehaviour
     public void StopTime()
     {
         _isStop = true;
-        _playableDirector.Pause();
+        _director.Pause();
         Time.timeScale = 0;
         //Sequence seq = DOTween.Sequence();
         //seq.AppendInterval(1);
@@ -41,7 +42,18 @@ public class TimeLineController : MonoBehaviour
     {
         _isStop = false;
         Time.timeScale = 1;
-        _playableDirector.Play();
+        _director.Play();
     }
-
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene("Start");
+    }
+    public void StopTimeLine()
+    {
+        _director.Pause();
+    }
+    public void PlayTimeLine()
+    {
+        _director.Play();
+    }
 }
