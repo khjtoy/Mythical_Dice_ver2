@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24300002, guid: 8ca475c5c04bcf046929446479aa30f5, type: 2}
-  BackGroundSound: {fileID: 11400000, guid: 84cdc233d8d4b3d4fbf232ae4e820a6d, type: 2}
+  backGroundSoundSo: {fileID: 11400000, guid: 84cdc233d8d4b3d4fbf232ae4e820a6d, type: 2}
   BackGroundSource: {fileID: 265632405}
   effectSource: {fileID: 265632408}
 --- !u!4 &265632407
@@ -1358,6 +1358,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d07b3c68939de274889dc7609ab886e2, type: 2}
   - {fileID: 11400000, guid: 29f52aa1a24264745a771d79899ec293, type: 2}
   - {fileID: 11400000, guid: 89b5621bd2222a645b4343cd4b81f2a8, type: 2}
+  _mixer: {fileID: 24100000, guid: 8ca475c5c04bcf046929446479aa30f5, type: 2}
 --- !u!4 &806048599
 Transform:
   m_ObjectHideFlags: 0
@@ -7458,10 +7459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbf7e34439701a4580dce8e721d265f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   _pos: {x: -3, y: 0, z: -3}
   canVoid: 0
+  SkillAudioClips: []
   moveSource: {fileID: 1913501731}
-  playerMoveSounds: {fileID: 11400000, guid: cd52d031f53025c40b8a4ad3085be76d, type: 2}
+  playerMoveSoundsSo: {fileID: 11400000, guid: cd52d031f53025c40b8a4ad3085be76d, type: 2}
 --- !u!114 &1962720375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7487,8 +7490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a67ba91d83dc634ca8ba6a1dd6428f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   attackSource: {fileID: 2134345369}
-  playerAttackSounds: {fileID: 11400000, guid: c5511205af4735941b47dd07126ff643, type: 2}
+  playerAttackSoundsSo: {fileID: 11400000, guid: c5511205af4735941b47dd07126ff643, type: 2}
   attackDelay: 0.5
   impactOffeset: 1.5
   lastAttack: {fileID: 539554377}
@@ -7504,6 +7508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8d5493ea16c1446a51d03a2b29084b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   origin_hp: 50
   hp: 50
   bloodCt: {fileID: 1396408452}
@@ -7521,6 +7526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0601e9aa5ff914c998a5d1d66bd2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   dice: {fileID: 592564273}
   numbers:
   - {fileID: 395798815673279726, guid: 6b1c2d1ceb1578e42bafd8b33d7aa10a, type: 3}
@@ -7550,6 +7556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83967cfcf4ca3e047b741704c8ab9a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   fade: {fileID: 1963570678}
 --- !u!1 &1963570677
 GameObject:
