@@ -70,7 +70,7 @@ public class Setting : MonoBehaviour
         {
             _input.ToggleSetting();
             if(SceneManager.GetSceneByName("SampleScene").isLoaded)
-                GameManager.Instance.LoadStageScene(6);
+                GameManager.Instance.LoadStageScene(3);
         });
         buttons[(int)Buttons.EXIT].onClick.AddListener(() =>
         {
