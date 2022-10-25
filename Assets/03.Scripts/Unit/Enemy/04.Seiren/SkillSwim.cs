@@ -12,6 +12,7 @@ public class SkillSwim : EnemySkill
     bool isUnderWater = false;
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        unit.PlaySound(unit.SkillAudioClips[0]);
         switch(times)
         {
             case 0:

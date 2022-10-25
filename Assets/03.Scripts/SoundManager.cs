@@ -28,6 +28,11 @@ public class SoundManager : MonoSingleton<SoundManager>
 		audioSource.Play();
 	}
 
+	//public void SetPitchChange(AudioSource audioSource, float speed)
+	//{
+		
+	//}
+
 	public void SetAudioSpeed(AudioSource audioSource, float speed)
 	{
 		if (audioSource == null)

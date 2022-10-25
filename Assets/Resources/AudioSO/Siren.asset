@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Siren
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: d3a6844e3be342d488b5a62b05966810, type: 3}
+  - {fileID: 8300000, guid: 9cb98c493c3012f4ba6f002c6fb8d8de, type: 3}

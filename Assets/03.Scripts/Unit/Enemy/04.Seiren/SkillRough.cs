@@ -46,6 +46,7 @@ public class SkillRough : EnemySkill
         seq.AppendCallback(() =>
         {
             unit.WorldPos = unit.transform.localPosition;
+            unit.PlaySound(unit.SkillAudioClips[1]);
             unit.StartCoroutine(LineWaveAttack(wavePos, 6, 0.2f));
         });
         if (times == 3)

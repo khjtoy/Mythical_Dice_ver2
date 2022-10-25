@@ -698,6 +698,8 @@ PlayableDirector:
     value: {fileID: 1260589229}
   - key: {fileID: 6635632528117054565, guid: 4d6ec01f51928224ebe2ddb9f0379017, type: 2}
     value: {fileID: 423522560}
+  - key: {fileID: -5137441459945749622, guid: 4d6ec01f51928224ebe2ddb9f0379017, type: 2}
+    value: {fileID: 567621694}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &567621694
@@ -717,6 +719,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f7e1e55d9fbdcaf49b90cc6c8d440cd7, type: 2}
     - {fileID: 11400000, guid: a3d8099c04245cc418b7b1dda32369dc, type: 2}
     - {fileID: 11400000, guid: b3ef0e814bcf93d46b631cb77a0ee0b4, type: 2}
+    - {fileID: 11400000, guid: 548a28c57f5eb0f4da55700ab21bcf34, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -751,6 +754,20 @@ MonoBehaviour:
         - m_Target: {fileID: 138812246}
           m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
           m_MethodName: PrintSentence
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 567621691}
+          m_TargetAssemblyTypeName: TimeLineController, Assembly-CSharp
+          m_MethodName: LoadStartScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
