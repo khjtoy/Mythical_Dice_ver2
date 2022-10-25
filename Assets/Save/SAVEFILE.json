@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "clearStage": 2,
     "currentStage": 2,
     "userStages": [
@@ -8,5 +9,10 @@
             "clearTime": 30.0
         }
     ],
+=======
+    "clearStage": 1,
+    "currentStage": 1,
+    "userStages": [],
+>>>>>>> main
     "userHardStages": []
 }
