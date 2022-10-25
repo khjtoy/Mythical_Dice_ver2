@@ -22,4 +22,10 @@ public class UnitRender : MonoBehaviour
             sprite.sprite = _mainSprite.sprite;
         }
     }
+
+    public void SetSortingLayer()
+    {
+        _mainSprite.sortingOrder = GameManager.Instance.Size - 1 - MapController.PosToArray(transform.position.z) + GameManager.Instance.Size;
+
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class Item : MonoBehaviour
     private void Start()
     {
        particleSystem = GetComponent<ParticleSystem>();
-        enemy = Define.EnemyTrans;
+       enemy = Define.EnemyTrans;
     }
 
     private void Update()
