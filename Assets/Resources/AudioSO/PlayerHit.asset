@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00c7b98cba8dd043b6263ce922fa722, type: 3}
-  m_Name: SlimeSO
+  m_Script: {fileID: 11500000, guid: f5568860ad259db4c89deeb73eec0b65, type: 3}
+  m_Name: PlayerHit
   m_EditorClassIdentifier: 
-  State: 2
-  FromIdleCondition:
-  - ConditionEnum: 1
-    Parameter: 3
-    IsPositive: 1
-  IsLoop: 0
-  IsPositiveAnd: 0
-  IsNegativeAnd: 0
+  audioClips:
+  - {fileID: 8300000, guid: c43af22968a09f146999b924ac56bf3e, type: 3}

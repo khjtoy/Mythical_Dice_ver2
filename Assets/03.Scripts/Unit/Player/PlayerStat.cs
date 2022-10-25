@@ -5,9 +5,16 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class PlayerStat : StatBase
 {
+    [SerializeField]
+    private AudioSource hitSource;
+    [FormerlySerializedAs("playerMoveSounds")][SerializeField]
+    private SoundSO hitSoundsSo;
+
+    private enum PlayerHitSound { PlayerHit = 0 }
 
     [SerializeField]
     private BloodControl bloodCt;
@@ -52,6 +59,7 @@ public class PlayerStat : StatBase
         spriteMaterial.SetFloat("_SordColor", 0f);
         spriteMaterial.DisableKeyword("_SordColor");
         Define.CameraTrans.DOShakePosition(0.3f);
+        SoundManager.Instance.AudioChange(hitSoundsSo.audioClips[(int)PlayerHitSound.PlayerHit], hitSource);
         if (HP <= 0) 
             GetComponent<PlayerDie>().DieAction();
         if (origin_hp * 0.5f >= hp)

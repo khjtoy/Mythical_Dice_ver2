@@ -36,7 +36,7 @@ public class MapController : MonoSingleton<MapController>
 
 	[SerializeField]
 	private float floorChangeTime;
-	[Header("???? ?? ?¥ì???")]
+	[Header("???? ?? ??????")]
 	public float wait;
 
 	private Vector2 condition;
