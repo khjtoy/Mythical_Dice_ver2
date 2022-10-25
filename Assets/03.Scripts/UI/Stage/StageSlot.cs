@@ -73,7 +73,18 @@ public class StageSlot : MonoBehaviour
 
     private void OpenEvent()
     {
-        Debug.Log("OpenStage: " + _slotStage);
-        
+        Debug.Log ("["+gameObject.name + "] OpenStage: " + _slotStage);
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(1);
+        seq.Append(_lockImage.transform.DOShakePosition(2, 10, 5));
+        seq.AppendCallback(() =>
+        {
+            _lockImage.gameObject.SetActive(false);
+        });
+    }
+
+    private void OnDisable()
+    {
+        DOTween.KillAll();
     }
 }
