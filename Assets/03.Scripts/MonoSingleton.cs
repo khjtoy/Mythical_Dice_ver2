@@ -45,7 +45,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 
     protected virtual void Init()
     {
-        DontDestroyOnLoad(_instance);
+        //DontDestroyOnLoad(_instance);
     }
 
 
