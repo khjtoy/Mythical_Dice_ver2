@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class Define
 {
+    public static bool IsUsingSkill { get; set; } = false;
     private static Transform _cameraTrans;
     private static Transform _enemyTrans;
     private static Transform _playerTrans;

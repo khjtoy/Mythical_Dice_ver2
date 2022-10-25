@@ -90,7 +90,6 @@ public class PlayerSkill : CharacterBase
             if (isEqul)
             {
                 damage = numbersIdx[0];
-                EventManager.TriggerEvent("STOPACTION", new EventParam());  
                 StartCoroutine("NumberMove");
             }
             else Disapper();
@@ -99,6 +98,8 @@ public class PlayerSkill : CharacterBase
 
     private IEnumerator NumberMove()
     {
+        Define.IsUsingSkill = true;
+        EventManager.TriggerEvent("STOPACTION", new EventParam());  
         yield return new WaitForSeconds(0.4f);
         cameraZoom.ZoomTriger = true;
         animation.SetTrigger("Combo");

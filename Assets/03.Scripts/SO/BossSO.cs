@@ -12,6 +12,7 @@ public class BossSO : ScriptableObject
     public Vector3 spriteSize = Vector3.zero;
     public Material OutlineMat = null;
     public RuntimeAnimatorController Controller = null;
+    public List<Condition> ToIdleCondition = new List<Condition>();
     public List<SkillSO> Skills = new List<SkillSO>();
 
 }
