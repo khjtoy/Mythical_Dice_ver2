@@ -63,6 +63,7 @@ public class EnemyMove : UnitMove
 	{
 		if (state == EnemyAIState.ANY || state == EnemyAIState.IDLE)
 		{
+			render.SetSortingLayer();
 			callback?.Invoke();
 			return;
 		}

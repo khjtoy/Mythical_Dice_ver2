@@ -9,12 +9,20 @@ public abstract class UnitMove : CharacterBase
     [SerializeField] protected UnitSequence _sequence = new UnitSequence();
     [SerializeField] protected Vector3 _pos;
     [SerializeField] private bool canVoid = false;
+
+    protected UnitRender render = null;
     
     public List<AudioClip> SkillAudioClips = new List<AudioClip>();
     
     public bool CanVoid { get => canVoid; set => canVoid = value; }
     public UnitSequence Sequence => _sequence;
-    
+
+    protected override void Start()
+    {
+        base.Start();
+        render = GetComponent<UnitRender>();
+    }
+
     public Vector3 WorldPos
     {
         get { return _pos; }
