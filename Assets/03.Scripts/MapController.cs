@@ -66,7 +66,7 @@ public class MapController : MonoSingleton<MapController>
 			}
 		}
 		FloorInit();
-	}
+    }
 
 	private void MapInitSet(int y, int x)
 	{
