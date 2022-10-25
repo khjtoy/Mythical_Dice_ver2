@@ -6,7 +6,12 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour 
 {
-	public static string ObjectToJson(object obj)
+    private string SAVE_PATH = "";
+    private void Awake()
+    {
+       
+    }
+    public static string ObjectToJson(object obj)
     { 
         return JsonUtility.ToJson(obj, true);
     }
@@ -21,8 +26,12 @@ public class DataManager : MonoBehaviour
         fileStream.Write(data, 0, data.Length); fileStream.Close();
     }
     public static T LoadJsonFile<T>(string loadPath, string fileName) where T : new()
-    { 
-        if(!File.Exists(string.Format("{0}/{1}.json", loadPath, fileName)))
+    {
+        if (!Directory.Exists(loadPath))
+        {
+            Directory.CreateDirectory(loadPath);
+        }
+        if (!File.Exists(string.Format("{0}/{1}.json", loadPath, fileName)))
         {
             SaveJsonFile(loadPath, fileName, ObjectToJson(new T())); 
         }

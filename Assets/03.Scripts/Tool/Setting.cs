@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 enum Buttons
 {
-    CONTINUE,
-    MENU,
-    EXIT,
+    CONTINUE = 0,
+    MENU = 1,
+    EXIT = 2,
     COUNT
 }
 
@@ -65,14 +65,14 @@ public class Setting : MonoBehaviour
             }
         );
         
-        buttons[(int)Buttons.CONTINUE].onClick.AddListener(_input.ToggleSetting);
-        buttons[(int)Buttons.MENU].onClick.AddListener(() =>
+        buttons[0].onClick.AddListener(_input.ToggleSetting);
+        buttons[1].onClick.AddListener(() =>
         {
             _input.ToggleSetting();
-            if(SceneManager.GetSceneByName("SampleScene").isLoaded)
-                GameManager.Instance.LoadStageScene(3);
+            if(SceneManager.GetSceneByBuildIndex(4).isLoaded)
+                GameManager.Instance.LoadStageScene(0);
         });
-        buttons[(int)Buttons.EXIT].onClick.AddListener(() =>
+        buttons[2].onClick.AddListener(() =>
         {
             _input.ToggleSetting();
             Application.Quit();
