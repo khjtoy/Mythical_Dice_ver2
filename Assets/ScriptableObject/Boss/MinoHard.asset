@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Mino
   Hp: 50
-  MainSprite: {fileID: 8711451971818167039, guid: f64326a43e876574d8626b54470e27b9, type: 3}
+  MainSprite: {fileID: 4745361709021058591, guid: f3b4c0f116d8a074ba27f7cd2f5a2d1d, type: 3}
   spriteOffset: {x: -0.6, y: 1.8, z: 0}
   spriteSize: {x: 1, y: 1, z: 1}
   OutlineMat: {fileID: 0}
-  Controller: {fileID: 9100000, guid: 3bfdb7ef21749bb48b649589c701f564, type: 2}
+  Controller: {fileID: 9100000, guid: 88842d1fd3a1c024692ce428c44d08cc, type: 2}
   ToIdleCondition:
   - ConditionEnum: 0
     Parameter: 0
