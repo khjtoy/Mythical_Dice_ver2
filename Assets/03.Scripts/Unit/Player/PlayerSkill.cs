@@ -108,6 +108,9 @@ public class PlayerSkill : CharacterBase
             SetSword(i);
             yield return new WaitForSeconds(0.65f);
         }
+
+        yield return new WaitForSeconds(0.5f);
+        Define.IsUsingSkill = false;
     }
 
     public void Disapper()

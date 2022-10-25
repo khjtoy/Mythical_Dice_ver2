@@ -244,7 +244,7 @@ public class PlayerAttack : CharacterBase
         DOTween.timeScale = 0.4f;
         Invoke("OrginTime", 0.8f);
     }
-    private void SpawnItem(Vector3 pos)
+    public void SpawnItem(Vector3 pos)
     {
         if (isItem) return;
 
