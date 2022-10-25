@@ -46,4 +46,9 @@ public class SoundManager : MonoSingleton<SoundManager>
 
 		audioSource.pitch = speed;
 	}
+
+	protected override void Init()
+	{
+		
+	}
 }

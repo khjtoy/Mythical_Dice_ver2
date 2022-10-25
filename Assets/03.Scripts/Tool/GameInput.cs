@@ -19,11 +19,16 @@ public class GameInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isSettingOpen = !isSettingOpen;
-            int timeScale = isSettingOpen ? 0 : 1;
-            Time.timeScale = timeScale;
-            DOTween.timeScale = timeScale;
-            settingCanvas.SetActive(isSettingOpen);
+            ToggleSetting();
         }
+    }
+
+    public void ToggleSetting()
+    {
+        isSettingOpen = !isSettingOpen;
+        int timeScale = isSettingOpen ? 0 : 1;
+        Time.timeScale = timeScale;
+        DOTween.timeScale = timeScale;
+        settingCanvas.SetActive(isSettingOpen);
     }
 }

@@ -49,6 +49,12 @@ public class MapController : MonoSingleton<MapController>
 	{
 		InitMap();
 	}
+
+	protected override void Init()
+	{
+		
+	}
+
 	public void InitMap()
 	{
 		diceObjectArr = new GameObject[GameManager.Instance.Size, GameManager.Instance.Size];
