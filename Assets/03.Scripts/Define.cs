@@ -8,6 +8,9 @@ public static class Define
     private static Transform _cameraTrans;
     private static Transform _enemyTrans;
     private static Transform _playerTrans;
+    private static PlayerAttack _playerAttack;
+
+
     private static PlayerMove _playerMove;
     private static PlayerStat _playerStat;
     private static EnemyStat _enemyStat;
@@ -46,6 +49,18 @@ public static class Define
                 _playerTrans = GameObject.Find("Player").GetComponent<Transform>();
             }
             return _playerTrans;
+        }
+    }
+    
+    public static PlayerAttack PlayerAttack
+    {
+        get
+        {
+            if (_playerAttack == null)
+            {
+                _playerAttack = GameObject.Find("Player").GetComponent<PlayerAttack>();
+            }
+            return _playerAttack;
         }
     }
 
