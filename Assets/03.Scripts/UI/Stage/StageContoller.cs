@@ -40,7 +40,7 @@ public class StageContoller : MonoBehaviour
         DOTween.SetTweensCapacity(1000, 1000);
         if (SceneManager.sceneCount < 2)
         {
-            SceneManager.LoadScene(0, LoadSceneMode.Additive);
+            SceneManager.LoadScene(5, LoadSceneMode.Additive);
         }
     }
     public UserStageVO LoadUserData(int id, bool isHard)
