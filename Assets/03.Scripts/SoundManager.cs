@@ -16,15 +16,9 @@ public class SoundManager : MonoSingleton<SoundManager>
 	private AudioSource BackGroundSource;
 	public AudioSource effectSource;
 
-	private void Start()
+	private void Update()
 	{
-		//??? ???????? ??????? ???? ???? ??????? ??
-		if (SceneManager.GetSceneByName("SampleScene").isLoaded)
-			AudioChange(BackGroundSound.audioClips[PlayerPrefs.GetInt("NOWSTAGE")+1], BackGroundSource);
-		else if(SceneManager.GetSceneByName("Intro").isLoaded)
-			AudioChange(BackGroundSound.audioClips[0], BackGroundSource);
-		else if(SceneManager.GetSceneByName("Stage").isLoaded)
-			AudioChange(BackGroundSound.audioClips[1], BackGroundSource);
+		Check();
 	}
 
 	public void AudioChange(AudioClip audioClip, AudioSource audioSource = null)
@@ -42,6 +36,17 @@ public class SoundManager : MonoSingleton<SoundManager>
 		audioSource.pitch = speed;
 	}
 
+	public void Check()
+	{
+		if (SceneManager.GetSceneByName("SampleScene").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[PlayerPrefs.GetInt("NOWSTAGE") + 1])
+		{
+			AudioChange(BackGroundSound.audioClips[PlayerPrefs.GetInt("NOWSTAGE") + 1], BackGroundSource);
+		}
+		else if (SceneManager.GetSceneByName("Intro").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[0])
+			AudioChange(BackGroundSound.audioClips[0], BackGroundSource);
+		else if (SceneManager.GetSceneByName("Stage").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[1])
+			AudioChange(BackGroundSound.audioClips[1], BackGroundSource);
+	}
 	protected override void Init()
 	{
 		base.Init();
