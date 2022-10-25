@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b00c7b98cba8dd043b6263ce922fa722, type: 3}
-  m_Name: DashSO
+  m_Name: SwimHardSO
   m_EditorClassIdentifier: 
-  State: 5
+  State: 6
   FromIdleCondition:
   - ConditionEnum: 1
-    Parameter: 1.2
-    IsPositive: 1
-  - ConditionEnum: 3
     Parameter: 1
     IsPositive: 1
+  - ConditionEnum: 2
+    Parameter: 1
+    IsPositive: 0
+  - ConditionEnum: 3
+    Parameter: 0
+    IsPositive: 0
   IsLoop: 0
   IsPositiveAnd: 1
-  IsNegativeAnd: 0
+  IsNegativeAnd: 1

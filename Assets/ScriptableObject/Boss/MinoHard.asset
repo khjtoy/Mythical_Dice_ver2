@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MinoHard
   m_EditorClassIdentifier: 
   Name: Mino
-  Hp: 50
+  Hp: 120
   MainSprite: {fileID: 8711451971818167039, guid: f64326a43e876574d8626b54470e27b9, type: 3}
   spriteOffset: {x: -0.6, y: 1.8, z: 0}
   spriteSize: {x: 1, y: 1, z: 1}
@@ -24,6 +24,6 @@ MonoBehaviour:
     Parameter: 0
     IsPositive: 1
   Skills:
-  - {fileID: 11400000, guid: dfcd858091797d141beba8b93eab0968, type: 2}
-  - {fileID: 11400000, guid: 4e383d7e361ca614cb4ec9de47f899e3, type: 2}
+  - {fileID: 11400000, guid: 38393e4331604f5469910d2c732e3365, type: 2}
+  - {fileID: 11400000, guid: 941eba9cc8f0d644fac4f80b3c7495a2, type: 2}
   SkillSounds: {fileID: 11400000, guid: 1315f1db0ddb68648a8dc702d786e16c, type: 2}

@@ -1,18 +1,17 @@
 {
-<<<<<<< HEAD
-    "clearStage": 2,
-    "currentStage": 2,
+    "clearStage": 3,
+    "currentStage": 3,
     "userStages": [
         {
             "currentStage": 1,
-            "clearCount": 2,
+            "clearCount": 3,
+            "clearTime": 30.0
+        },
+        {
+            "currentStage": 2,
+            "clearCount": 1,
             "clearTime": 30.0
         }
     ],
-=======
-    "clearStage": 1,
-    "currentStage": 1,
-    "userStages": [],
->>>>>>> main
     "userHardStages": []
 }

@@ -1500,6 +1500,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d07b3c68939de274889dc7609ab886e2, type: 2}
   - {fileID: 11400000, guid: 29f52aa1a24264745a771d79899ec293, type: 2}
   - {fileID: 11400000, guid: 89b5621bd2222a645b4343cd4b81f2a8, type: 2}
+  - {fileID: 11400000, guid: bd9c4f385f3a4174890529e2520682b0, type: 2}
+  - {fileID: 11400000, guid: ad849d2fc833cad4ba12d9676e2f2e38, type: 2}
+  - {fileID: 11400000, guid: 02d9db6335d3dbd48b4bde052f25584b, type: 2}
   _mixer: {fileID: 24100000, guid: 8ca475c5c04bcf046929446479aa30f5, type: 2}
 --- !u!4 &806048599
 Transform:
