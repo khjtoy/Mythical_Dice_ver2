@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Jobs;
 using UnityEngine.SceneManagement;
 
@@ -32,6 +33,8 @@ public class GameManager : MonoSingleton<GameManager>
 	public float Offset => 0.75f * (size - 1);
 
 	[SerializeField] private List<BossSO> SO = new List<BossSO>();
+
+	[SerializeField] private AudioMixer _mixer = null;
 
 	public int Size
 
@@ -137,7 +140,8 @@ public class GameManager : MonoSingleton<GameManager>
 		go.transform.SetParent(_unitRootTrm);
 		go.SetActive(false);
 
-		go.AddComponent<AudioSource>();
+		go.AddComponent<AudioSource>().outputAudioMixerGroup = _mixer.FindMatchingGroups("Effect")[0];
+		
 		EnemyMove bossMove = go.AddComponent<EnemyMove>();
 		bossMove.SkillAudioClips.AddRange(bossSo.SkillSounds.audioClips.ToList());
 		EnemyStat bossStat = go.AddComponent<EnemyStat>();
