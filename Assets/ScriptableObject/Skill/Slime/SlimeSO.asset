@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SlimeSO
   m_EditorClassIdentifier: 
   State: 2
-  Condition:
-  - ConditionEnum: 0
+  FromIdleCondition:
+  - ConditionEnum: 1
     Parameter: 2
     IsPositive: 1
   IsLoop: 0

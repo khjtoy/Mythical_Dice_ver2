@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SkillSlime : EnemySkill
 {
     Sequence seq = null;
+
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         ani?.Invoke();
@@ -27,6 +29,13 @@ public class SkillSlime : EnemySkill
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
             SquareRangeAttack(unit.GamePos, 1, MapController.Instance.MapNum[pos.y, pos.x]);
+            
+            int random = Random.Range(0, 5);
+
+            if(random == 0)
+            {
+                Define.PlayerAttack.SpawnItem(unit.WorldPos);
+            }
 
             callback?.Invoke();
             seq.Kill();

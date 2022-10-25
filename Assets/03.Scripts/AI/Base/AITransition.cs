@@ -32,6 +32,8 @@ public class AITransition : MonoBehaviour
     {
         switch (condition)
         {   
+            case Conditions.IDLE:
+                return gameObject.AddComponent<PlayerSkillCondition>();
             case Conditions.TIME:
                 return gameObject.AddComponent<TimeCondition>();
             case Conditions.RANGEDETECT:
@@ -44,7 +46,8 @@ public class AITransition : MonoBehaviour
     }
     public void SetCondition(SkillSO skill)
     {
-        foreach (var condition in skill.Condition)
+        
+        foreach (var condition in skill.FromIdleCondition)
         {
             AICondition currentCondition = null;
             currentCondition = SetCondition(condition.ConditionEnum);
@@ -61,5 +64,27 @@ public class AITransition : MonoBehaviour
 
         IsPositiveAnd = skill.IsPositiveAnd;
         IsNegativeAnd = skill.IsNegativeAnd;
+    }
+    
+    public void SetCondition(List<Condition> conditions)
+    {
+        
+        foreach (var condition in conditions)
+        {
+            AICondition currentCondition = null;
+            currentCondition = SetCondition(condition.ConditionEnum);
+            currentCondition.SetParam(condition.Parameter);
+            if (condition.IsPositive)
+            {
+                PositiveCondition.Add(currentCondition);
+            }
+            else
+            {
+                NegativeCondition.Add(currentCondition);
+            }
+        }
+
+        IsPositiveAnd = true;
+        IsNegativeAnd = true;
     }
 }

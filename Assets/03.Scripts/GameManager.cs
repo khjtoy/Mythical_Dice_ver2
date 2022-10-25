@@ -190,11 +190,18 @@ public class GameManager : MonoSingleton<GameManager>
 		toDeathTransition.SetGoalState(DeathState);
 		toDeathTransition.SetDeathCondition(bossStat);
 		
+		
 		GameObject idleState = new GameObject("IDLE");
 		idleState.transform.SetParent(State.transform);
 		EnemyState IdleState = idleState.AddComponent<EnemyState>();
 		IdleState.GetEnemyState(EnemyAIState.IDLE, bossMove, false);
 
+		GameObject IdleTransition = new GameObject("ToIDLE");
+		IdleTransition.transform.SetParent(anyState.transform);
+		AITransition ToIdleTransition = IdleTransition.AddComponent<AITransition>();
+		ToIdleTransition.SetGoalState(IdleState);
+		ToIdleTransition.SetCondition(bossSo.ToIdleCondition);
+		
 		head.Init(IdleState);
 		foreach (var state in bossSo.Skills)
 		{
@@ -213,7 +220,7 @@ public class GameManager : MonoSingleton<GameManager>
 			GameObject idleTransition = new GameObject("ToIDLE");
 			idleTransition.transform.SetParent(skillState.transform);
 			AITransition toIdleTransition = idleTransition.AddComponent<AITransition>();
-			toIdleTransition.SetIdleCondition(IdleState);
+			toIdleTransition.SetGoalState(IdleState);
 		}
 		
 		

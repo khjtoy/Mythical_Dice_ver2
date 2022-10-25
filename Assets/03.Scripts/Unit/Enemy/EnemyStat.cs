@@ -19,7 +19,6 @@ public class EnemyStat : StatBase
     public void GetDamage(int value)
     {
         HP -= value;
-        Debug.Log(HP);
         hpSlider.SetHPSlider(HP, origin_hp);
     }
 }

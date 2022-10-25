@@ -66,7 +66,7 @@ public class PlayerSkill : CharacterBase
         dices[currentIdx].GetComponent<Animator>().Play("Dice");
         dices[currentIdx].DOShakePosition(2f, 0.4f);
         ResetNumber(currentIdx);
-        Invoke("ShowNumber", 0.4f);
+        ShowNumber();
     }
 
     public void ShowNumber()
@@ -98,7 +98,9 @@ public class PlayerSkill : CharacterBase
 
     private IEnumerator NumberMove()
     {
-        EventManager.TriggerEvent("STOPACTION", new EventParam());
+        Define.IsUsingSkill = true;
+        EventManager.TriggerEvent("STOPACTION", new EventParam());  
+        yield return new WaitForSeconds(0.4f);
         cameraZoom.ZoomTriger = true;
         animation.SetTrigger("Combo");
         for (int i = 0; i < 4; i++)
@@ -106,6 +108,9 @@ public class PlayerSkill : CharacterBase
             SetSword(i);
             yield return new WaitForSeconds(0.65f);
         }
+
+        yield return new WaitForSeconds(0.5f);
+        Define.IsUsingSkill = false;
     }
 
     public void Disapper()

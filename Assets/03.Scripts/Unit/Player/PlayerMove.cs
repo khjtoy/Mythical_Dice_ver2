@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 using UnityEngine.Rendering;
 
 public class PlayerMove : UnitMove
@@ -20,7 +21,7 @@ public class PlayerMove : UnitMove
 
 	private bool flagAction = false;
 
-	Queue<Vector3> moveDir = new Queue<Vector3>();
+	public Queue<Vector3> moveDir = new Queue<Vector3>();
 
 	private PlayerStat playerStat;
 
@@ -51,7 +52,7 @@ public class PlayerMove : UnitMove
 	{
 		if (flagAction) return;
 		InputMovement();
-		if(!_isMoving)
+		if(!_isMoving || flagAction)
 			PopMove();
 		//Dice Boom Debug
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -113,7 +114,7 @@ public class PlayerMove : UnitMove
 
 	public override void Translate(Vector3 pos)
 	{
-		if (_isMoving)
+		if (_isMoving || flagAction)
 			return;
 		_isMoving = true;
 		SoundManager.Instance.AudioChange(playerMoveSounds.audioClips[(int)PlayerMoveSound.BaseMove], moveSource);
@@ -140,12 +141,18 @@ public class PlayerMove : UnitMove
 
     private void StopAction(EventParam eventParam)
     {
+		moveDir.Clear();
+		seq.Kill();
+		seq.timeScale = 0;
+		_isMoving = true;
         flagAction = true;
     }
 
     private void PlayAction(EventParam eventParam)
     {
         flagAction = false;
+		_isMoving = false;
+		seq.timeScale = 1;
     }
 
     private void OnDestroy()
