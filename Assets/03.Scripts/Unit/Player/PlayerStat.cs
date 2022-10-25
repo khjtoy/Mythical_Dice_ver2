@@ -53,7 +53,10 @@ public class PlayerStat : StatBase
         if (HP <= 0) 
             GetComponent<PlayerDie>().DieAction();
         if (origin_hp * 0.5f >= hp)
+		{
+            SoundManager.Instance.SetAudioSpeed(null, 1.5f);
             bloodCt.BloodSet(hp, origin_hp);
+		}
         playerSkill.Disapper();
         hpSlider.SetHPSlider(HP, origin_hp);
     }
