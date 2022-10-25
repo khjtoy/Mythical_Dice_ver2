@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum Conditions
 {
+    IDLE,
     TIME,
     RANGEDETECT,
     DIRECTDIRECTION,

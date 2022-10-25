@@ -54,8 +54,6 @@ public class PlayerAttack : CharacterBase
 
         EventManager.StartListening("STOPACTION", StopAction);
         EventManager.StartListening("PLAYACTION", PlayAction);
-
-        SpawnItem(new Vector3(-1.5f, 1.2f, -3f));
     }
     private void Update()
     {
@@ -120,7 +118,7 @@ public class PlayerAttack : CharacterBase
         if (nearEnemy)
         {
             //playerStat.SetCombo(damage);
-            playerSkill.StackDice(5);
+            playerSkill.StackDice(damage);
             SoundManager.Instance.AudioChange(playerAttackSounds.audioClips[(int)AttackSounds.Slash], attackSource);
             // 파티클 생성
             Define.EnemyStat.GetDamage(damage);
@@ -244,7 +242,7 @@ public class PlayerAttack : CharacterBase
         DOTween.timeScale = 0.4f;
         Invoke("OrginTime", 0.8f);
     }
-    private void SpawnItem(Vector3 pos)
+    public void SpawnItem(Vector3 pos)
     {
         if (isItem) return;
 

@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 2
   FromIdleCondition:
-  - ConditionEnum: 0
+  - ConditionEnum: 1
     Parameter: 2
     IsPositive: 1
-  ToIdleCondition: []
   IsLoop: 0
   IsPositiveAnd: 0
   IsNegativeAnd: 0

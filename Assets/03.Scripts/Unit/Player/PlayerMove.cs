@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 using UnityEngine.Rendering;
 
 public class PlayerMove : UnitMove
@@ -150,6 +151,7 @@ public class PlayerMove : UnitMove
     private void PlayAction(EventParam eventParam)
     {
         flagAction = false;
+		_isMoving = false;
 		seq.timeScale = 1;
     }
 

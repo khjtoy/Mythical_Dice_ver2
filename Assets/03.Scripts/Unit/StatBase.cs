@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatBase : MonoBehaviour
+public class StatBase : CharacterBase
 {
     [SerializeField] protected int origin_hp = 0;
     [SerializeField] protected int hp = 0;
