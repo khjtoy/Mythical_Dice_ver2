@@ -10,6 +10,7 @@ public class TimeLineController : MonoBehaviour
     private PlayableDirector _director;
 
     bool _isStop = false;
+    float playTime = 0;
     private void Awake()
     {
 
@@ -21,7 +22,12 @@ public class TimeLineController : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X)&&_isStop)
+        playTime += Time.deltaTime;
+        if(playTime >8 && Input.GetKeyDown(KeyCode.Z))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.X)&&_isStop)
         {
             StartTimeline();
         }

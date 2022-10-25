@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2078367647, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2078367647, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[7].key
       value: 
       objectReference: {fileID: 4345186219227787843, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    - target: {fileID: 2078367647, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
+      propertyPath: m_SceneBindings.Array.data[8].key
+      value: 
+      objectReference: {fileID: 8259715629887268135, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
     - target: {fileID: 2078367647, guid: 9a4d592e2aaf6b0498d443f11ab3a7a6, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
@@ -7834,6 +7838,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   origin_hp: 50
   hp: 50
+  hitSource: {fileID: 0}
+  hitSoundsSo: {fileID: 0}
   bloodCt: {fileID: 1396408452}
   hpSlider: {fileID: 153698506193318263}
   combo: 0
