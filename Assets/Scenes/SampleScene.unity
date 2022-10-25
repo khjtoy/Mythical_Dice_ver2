@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24300002, guid: 8ca475c5c04bcf046929446479aa30f5, type: 2}
-  backGroundSoundSo: {fileID: 11400000, guid: 84cdc233d8d4b3d4fbf232ae4e820a6d, type: 2}
+  BackGroundSound: {fileID: 0}
   BackGroundSource: {fileID: 265632405}
   effectSource: {fileID: 265632408}
 --- !u!4 &265632407
