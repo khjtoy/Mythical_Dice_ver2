@@ -4,17 +4,30 @@
     "userStages": [
         {
             "currentStage": 1,
+<<<<<<< HEAD
             "clearCount": 21,
+=======
+            "clearCount": 18,
+>>>>>>> origin/KhjWork
             "clearTime": 30.0
         },
         {
             "currentStage": 2,
+<<<<<<< HEAD
             "clearCount": 6,
+=======
+            "clearCount": 3,
+>>>>>>> origin/KhjWork
             "clearTime": 30.0
         },
         {
             "currentStage": 3,
             "clearCount": 6,
+            "clearTime": 30.0
+        },
+        {
+            "currentStage": 4,
+            "clearCount": 1,
             "clearTime": 30.0
         },
         {

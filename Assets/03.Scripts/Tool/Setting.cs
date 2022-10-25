@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 enum Buttons
@@ -25,6 +26,8 @@ public class Setting : MonoBehaviour
     [SerializeField] private AudioMixer _audioMixer = null;
     [SerializeField] private List<Button> buttons = new List<Button>();
     [SerializeField] private List<Slider> sliders = new List<Slider>();
+
+    [SerializeField] private GameInput _input = null;
 
     private void Awake()
     {
@@ -62,6 +65,18 @@ public class Setting : MonoBehaviour
             }
         );
         
+        buttons[(int)Buttons.CONTINUE].onClick.AddListener(_input.ToggleSetting);
+        buttons[(int)Buttons.MENU].onClick.AddListener(() =>
+        {
+            _input.ToggleSetting();
+            if(SceneManager.GetSceneByName("SampleScene").isLoaded)
+                GameManager.Instance.LoadStageScene(0);
+        });
+        buttons[(int)Buttons.EXIT].onClick.AddListener(() =>
+        {
+            _input.ToggleSetting();
+            Application.Quit();
+        });
     }
 
     private void Start()

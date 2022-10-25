@@ -118,10 +118,10 @@ public class GameManager : MonoSingleton<GameManager>
 		string str = DataManager.ObjectToJson(user);
 		DataManager.SaveJsonFile(Application.dataPath + "/Save", "SAVEFILE", str);
     }
-	public void LoadStageScene()
+	public void LoadStageScene(float timeToWait)
     {
 		Sequence seq = DOTween.Sequence();
-		seq.AppendInterval(3);
+		seq.AppendInterval(timeToWait);
 		seq.AppendCallback(() =>
 		{
 			Time.timeScale = 1;
