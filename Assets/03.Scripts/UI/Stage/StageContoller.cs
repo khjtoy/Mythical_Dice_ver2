@@ -81,7 +81,7 @@ public class StageContoller : MonoBehaviour
             PlayerPrefs.SetInt("HARD", isHard);
             if(stage==1)
             {
-                SceneManager.LoadScene("Tutorial");
+                SceneManager.LoadScene("Tutorial2");
             }
             else
             {

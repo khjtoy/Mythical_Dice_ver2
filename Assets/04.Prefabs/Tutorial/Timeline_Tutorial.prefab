@@ -58,6 +58,24 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: -5507993886886283967, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5108490110045017944, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 72298963128824422, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8022498511419861501, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7184611749521951165, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2954232450371579220, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1899483364784717182, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4345186219227787843, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8259715629887268135, guid: 8cd21bfee59249a42b48ab56ac5a90bc, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
