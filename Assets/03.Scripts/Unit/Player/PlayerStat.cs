@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,8 +30,11 @@ public class PlayerStat : StatBase
 
     private PlayerSkill playerSkill;
 
+    private Material spriteMaterial;
+
     private void Start()
     {
+        spriteMaterial = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().material;
         playerSkill = GetComponent<PlayerSkill>();
     }
 
@@ -38,6 +42,16 @@ public class PlayerStat : StatBase
     {
         HP -= value;
         bloodCt.BloodFade(value);
+        Vector3 pos = transform.GetChild(0).GetChild(0).localPosition;
+        pos.y += 0.8f;
+         transform.GetChild(0).GetChild(0).localPosition = pos;
+        animation.SetTrigger("Hit");
+        spriteMaterial.EnableKeyword("_SordColor");
+        spriteMaterial.SetFloat("_SordColor", 0f);
+        spriteMaterial.DisableKeyword("_SordColor");
+        Define.CameraTrans.DOShakePosition(0.3f);
+        if (HP <= 0) 
+            GetComponent<PlayerDie>().DieAction();
         if (origin_hp * 0.5f >= hp)
             bloodCt.BloodSet(hp, origin_hp);
         playerSkill.Disapper();

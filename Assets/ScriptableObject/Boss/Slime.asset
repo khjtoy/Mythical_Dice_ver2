@@ -19,5 +19,9 @@ MonoBehaviour:
   spriteSize: {x: 1, y: 1, z: 1}
   OutlineMat: {fileID: 0}
   Controller: {fileID: 9100000, guid: 10550e88b8c7e6f4f8566b52d86b5f49, type: 2}
+  ToIdleCondition:
+  - ConditionEnum: 0
+    Parameter: 0
+    IsPositive: 1
   Skills:
   - {fileID: 11400000, guid: aa82eb4ac7f50e64a90383714ba528b9, type: 2}
