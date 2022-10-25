@@ -38,5 +38,5 @@ Material:
     m_Floats:
     - _SordColor: 1
     m_Colors:
-    - Color_71a84161a61042dbbb469c92163c71ee: {r: 1, g: 1, b: 1, a: 0}
+    - Color_71a84161a61042dbbb469c92163c71ee: {r: 11.984314, g: 11.984314, b: 11.984314, a: 1}
   m_BuildTextureStacks: []

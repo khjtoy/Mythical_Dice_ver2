@@ -14,14 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stages:
   - sprite: {fileID: 21300000, guid: 961fd9aaa1b33ff4e8b9f1c60a800a1d, type: 3}
-    bossText: "\uC2AC\uB77C\uC784"
-    storyText: "(\uADC0\uC5EC\uC6C0)"
+    bossText: "\uD558\uAE09 \uC2AC\uB77C\uC784"
+    storyText: "\uD0D1\uC758 \uCD5C\uD558\uCE35\uC5D0 \uC0B4\uACE0\uC788\uB294 \uC2AC\uB77C\uC784"
   - sprite: {fileID: 21300000, guid: d7eb0121e3f7a7c4196c1ac0d1fb5d66, type: 3}
-    bossText: "\uCC9C\uC0AC"
-    storyText: "(\uCC98\uB140\uBE57\uCE58)"
+    bossText: "\uC2E0\uC131\uD55C \uC11D\uC0C1"
+    storyText: "\uC2E0\uC131\uD55C \uD798\uC73C\uB85C \uC2A4\uC2A4\uB85C \uC6C0\uC9C1\uC774\uB294
+      \uCC9C\uC0AC \uC870\uAC01\uC0C1.                                           
+      \uD0D1\uC5D0 \uB3C4\uC804\uD558\uB294 \uC790\uB4E4\uC758 \uCCAB\uBC88\uC9F8
+      \uC2DC\uB828"
   - sprite: {fileID: 21300000, guid: f9c492aeaa940d94a96235701c00b488, type: 3}
-    bossText: 1
-    storyText: "(\uAC80\uC5F4\uB428)"
+    bossText: "\uBBF8\uAD81\uC758 \uBB38\uC9C0\uAE30"
+    storyText: "\uB05D\uC744 \uC54C \uC218 \uC5C6\uB294 \uBBF8\uB85C\uC758 \uAD34\uC218
+      \uBBF8\uB178\uD0C0\uC6B0\uB974\uC2A4                                                 
+      \uAC15\uB825\uD55C \uB3CC\uC9C4 \uACF5\uACA9\uACFC \uB099\uD558 \uACF5\uACA9\uC744
+      \uD37C\uBD93\uB294\uB2E4."
   - sprite: {fileID: 21300000, guid: 37114b3bf60100c4f82927ae490213bf, type: 3}
-    bossText: 1
-    storyText: "\uC5E5\uC774"
+    bossText: "\uC2EC\uD574\uC758 \uD30C\uB3C4 \uBD80\uB974\uBBF8"
+    storyText: "\uAE4A\uC740 \uC2EC\uD574\uC18D\uC758 \uC874\uC7AC                                                   
+      \uB178\uB7AB\uC18C\uB9AC\uB97C \uB118\uC5B4 \uD30C\uB3C4\uB97C \uBD80\uB9AC\uBA70
+      \uACF5\uACA9\uD55C\uB2E4"
