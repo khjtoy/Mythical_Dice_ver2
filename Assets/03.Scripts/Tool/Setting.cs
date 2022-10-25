@@ -69,7 +69,8 @@ public class Setting : MonoBehaviour
         buttons[(int)Buttons.MENU].onClick.AddListener(() =>
         {
             _input.ToggleSetting();
-            GameManager.Instance.LoadStageScene(0);
+            if(SceneManager.GetSceneByName("SampleScene").isLoaded)
+                GameManager.Instance.LoadStageScene(0);
         });
         buttons[(int)Buttons.EXIT].onClick.AddListener(() =>
         {

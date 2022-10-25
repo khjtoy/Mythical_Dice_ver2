@@ -33,19 +33,19 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
     }
 
     private static void create_instance(Object instance)
-    {
+    { 
         _instance = instance as T;
-        _instance.Init();
+        Instance.Init();
     }
 
     void Awake()
     {
-        create_instance(this);
+        create_instance(Instance);
     }
 
     protected virtual void Init()
     {
-        //DontDestroyOnLoad(_instance);
+        DontDestroyOnLoad(_instance);
     }
 
 
