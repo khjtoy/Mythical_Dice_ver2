@@ -252,8 +252,10 @@ public class PlayerAttack : CharacterBase
         itemPos = pos;
         isItem = true;
 
-        itemObject = ObjectPool.Instance.GetObject(PoolObjectType.ItemParticle);
-        itemObject.transform.localPosition = new Vector3(itemPos.x, 1.2f, itemPos.z - 0.5f);
+        itemObject = ObjectPool.Instance.GetObject(PoolObjectType.ItemParticle, false);
+        itemObject.transform.localPosition = new Vector3(itemPos.x, 1.2f, itemPos.z - 0.5f); 
+        itemObject.SetActive(true);
+
     }
 
 private void OnDestroy()

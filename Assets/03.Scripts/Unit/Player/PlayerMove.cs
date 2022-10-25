@@ -137,6 +137,7 @@ public class PlayerMove : UnitMove
 		{
 			_isMoving = false;
 			//Debug.Log(GamePos);
+			render.SetSortingLayer();
 			seq.Kill();
 		});
 	}

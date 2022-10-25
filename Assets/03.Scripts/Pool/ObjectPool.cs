@@ -37,20 +37,20 @@ public class ObjectPool : MonoBehaviour
         return newObj;
     }
 
-    public GameObject GetObject(PoolObjectType type)
+    public GameObject GetObject(PoolObjectType type, bool isActive = true)
     {
         if (Instance.poolObjectMap[type].Count > 0)
         {
             var obj = Instance.poolObjectMap[type].Dequeue();
             obj.transform.SetParent(transform);
-            obj.gameObject.SetActive(true);
+            obj.gameObject.SetActive(isActive);
             //obj.GetComponent<ItemEffect>()?.CreateEffect();
             return obj;
         }
         else
         {
             var newObj = Instance.CreateNewObject((int)type);
-            newObj.gameObject.SetActive(true);
+            newObj.gameObject.SetActive(isActive);
             newObj.transform.SetParent(transform);
 
             return newObj;
