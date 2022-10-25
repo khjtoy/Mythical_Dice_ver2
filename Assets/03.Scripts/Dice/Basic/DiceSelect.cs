@@ -74,7 +74,7 @@ public class DiceSelect : MonoBehaviour
 		rotation.Rotation();
 		DiceNumSelect();
 		ParticleOn();
-	}
+    }
 
 	private void ParticleOn()
 	{

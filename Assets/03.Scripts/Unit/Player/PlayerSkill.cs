@@ -59,7 +59,7 @@ public class PlayerSkill : CharacterBase
 
     public void StackDice(int number)
     {
-        if (currentIdx >= 4) return;
+        if (currentIdx >= 4 || number == 0) return;
         Debug.Log($"numbers {number - 1}");
         numbersTransform[currentIdx].sprite = numbers[number - 1];
         numbersIdx[currentIdx] = number;

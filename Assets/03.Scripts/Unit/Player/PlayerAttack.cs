@@ -105,6 +105,7 @@ public class PlayerAttack : CharacterBase
         Vector2Int pos = MapController.PosToArray(transform.localPosition);
         int damage = MapController.Instance.MapNum[pos.y, pos.x];
 
+        if (damage == 0) return;
         // Last Attack ø¨√‚
         if (nearEnemy && Define.EnemyStat.HP - damage <= 0)
         {
