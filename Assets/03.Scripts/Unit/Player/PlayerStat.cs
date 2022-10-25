@@ -44,16 +44,17 @@ public class PlayerStat : StatBase
     {
         HP -= value;
         bloodCt.BloodFade(value);
-        Vector3 pos = transform.GetChild(0).GetChild(0).localPosition;
-        pos.y += 0.8f;
-         transform.GetChild(0).GetChild(0).localPosition = pos;
+        //Vector3 pos = transform.GetChild(0).GetChild(0).localPosition;
+        //pos.y += 0.8f;
+        //transform.GetChild(0).GetChild(0).localPosition = pos;
         animation.SetTrigger("Hit");
         spriteMaterial.EnableKeyword("_SordColor");
         spriteMaterial.SetFloat("_SordColor", 0f);
         spriteMaterial.DisableKeyword("_SordColor");
         Define.CameraTrans.DOShakePosition(0.3f);
-        if (HP <= 0) 
-            GetComponent<PlayerDie>().DieAction();
+        if (HP <= 0)
+            if (GetComponent<PlayerDie>() != null)
+                GetComponent<PlayerDie>().DieAction();
         if (origin_hp * 0.5f >= hp)
 		{
             SoundManager.Instance.SetAudioSpeed(null, 1.5f);

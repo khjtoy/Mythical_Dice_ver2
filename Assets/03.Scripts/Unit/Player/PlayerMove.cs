@@ -65,7 +65,7 @@ public class PlayerMove : UnitMove
 
 	public void InputMovement()
 	{
-		if (moveDir.Count > 3) return;
+		if (moveDir.Count > 2) return;
 		if (Input.GetKeyDown(KeyCode.UpArrow))
 			moveDir.Enqueue(Vector3.forward);
 		if (Input.GetKeyDown(KeyCode.DownArrow))
