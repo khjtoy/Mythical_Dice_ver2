@@ -36,6 +36,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	[SerializeField] private AudioMixer _mixer = null;
 
+	public float Timer;
 	public int Size
 
 	{
@@ -47,6 +48,12 @@ public class GameManager : MonoSingleton<GameManager>
 	
 	protected override void Init()
 	{
+	}
+
+	private void Update()
+	{
+		if (StageStart)
+			Timer += Time.deltaTime;
 	}
 
 	private void Awake()
@@ -79,7 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
 				if(i.currentStage==id)
                 {
 					if (i.clearTime > clearTime)
-						i.clearTime = clearTime;
+						i.clearTime = (int)clearTime;
 
 					i.clearCount++;
 					findStage = true;
@@ -94,7 +101,7 @@ public class GameManager : MonoSingleton<GameManager>
 				if (i.currentStage == id)
 				{
 					if (i.clearTime > clearTime)
-						i.clearTime = clearTime;
+						i.clearTime = (int)clearTime;
 					i.clearCount++;
 					findStage = true;
 				}
@@ -106,7 +113,7 @@ public class GameManager : MonoSingleton<GameManager>
 			UserStageVO vo = new UserStageVO
 			{
 				currentStage = id,
-				clearTime = clearTime,
+				clearTime = (int)clearTime,
 				clearCount = 1
 			};
 			if (isHard)
