@@ -32,9 +32,6 @@ public class TimeLineController : MonoBehaviour
         _isStop = true;
         _director.Pause();
         Time.timeScale = 0;
-        //Sequence seq = DOTween.Sequence();
-        //seq.AppendInterval(1);
-        //seq.AppendCallback(() => {  });
     }
 
 
