@@ -151,11 +151,7 @@ public class PlayerMove : UnitMove
     private void PlayAction(EventParam eventParam)
     {
         flagAction = false;
-<<<<<<< HEAD
 		_isMoving = false;
-=======
-        _isMoving = false;
->>>>>>> origin/main
 		seq.timeScale = 1;
     }
 
