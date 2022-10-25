@@ -79,7 +79,15 @@ public class StageContoller : MonoBehaviour
             Debug.Log("Stage : " + stage + " HARD :" + isHard);
             PlayerPrefs.SetInt("NOWSTAGE", stage);
             PlayerPrefs.SetInt("HARD", isHard);
-            SceneManager.LoadScene("SampleScene");
+            if(stage==1)
+            {
+                SceneManager.LoadScene("Tutorial");
+            }
+            else
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+            
         });
     }
     public void ClearStage(int id)
