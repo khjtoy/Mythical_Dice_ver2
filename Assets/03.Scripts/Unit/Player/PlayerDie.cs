@@ -13,8 +13,9 @@ public class PlayerDie : CharacterBase
     private bool isDie;
 
     private Material spriteMaterial;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         spriteMaterial = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().material;
         isDie = false;
     }

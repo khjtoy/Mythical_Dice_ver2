@@ -46,7 +46,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 			AudioChange(BackGroundSound.audioClips[0], BackGroundSource);
 		else if (SceneManager.GetSceneByName("Start").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[1])
 			AudioChange(BackGroundSound.audioClips[1], BackGroundSource);
-		else if (SceneManager.GetSceneByName("Stage").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[1])
+		else if (SceneManager.GetSceneByName("Stage").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[2])
 			AudioChange(BackGroundSound.audioClips[2], BackGroundSource);
 	}
 	protected override void Init()
