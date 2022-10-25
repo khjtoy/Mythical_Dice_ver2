@@ -17,7 +17,6 @@ public class DeathState : EnemySkill
         {
             _firstDead = false;
             GameManager.Instance.SaveUserData(PlayerPrefs.GetInt("NOWSTAGE") ,30 , PlayerPrefs.GetInt("HARD") == 1 ? true : false);
-            GameManager.Instance.LoadStageScene(3);
         }
          
     }

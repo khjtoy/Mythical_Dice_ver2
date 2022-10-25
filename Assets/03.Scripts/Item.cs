@@ -37,6 +37,11 @@ public class Item : MonoBehaviour
                 isAttack = true;
                 Define.PlayerTrans.GetComponent<PlayerAttack>().ClearDamage();
                 Define.EnemyStat.GetDamage(damage);
+                if (Define.EnemyStat.HP <= 0)
+                {
+                    EventManager.TriggerEvent("STOPACTION", new EventParam());
+                    GameManager.Instance.LoadStageScene(2);
+                }
                 Define.CameraTrans.DOShakePosition(0.7f, 0.1f);
                 transform.DOScale(1.5f, 0.2f);
                 ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(damage, Define.EnemyStat.transform.position);

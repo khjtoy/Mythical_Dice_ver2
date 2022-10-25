@@ -9,19 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8cd8c7e792c4294792c6f1ac118b75c, type: 3}
-  m_Name: WeightSO
+  m_Script: {fileID: 11500000, guid: f5568860ad259db4c89deeb73eec0b65, type: 3}
+  m_Name: PlayerHit
   m_EditorClassIdentifier: 
-  diceWeights:
-  - num: 1
-    weight: 70
-  - num: 2
-    weight: 60
-  - num: 3
-    weight: 50
-  - num: 4
-    weight: 40
-  - num: 5
-    weight: 30
-  - num: 6
-    weight: 20
+  audioClips:
+  - {fileID: 8300000, guid: c43af22968a09f146999b924ac56bf3e, type: 3}

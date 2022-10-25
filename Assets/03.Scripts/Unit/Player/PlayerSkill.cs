@@ -195,9 +195,13 @@ public class PlayerSkill : CharacterBase
         yield return new WaitForSeconds(0.5f);
         ComboAttack(1, true);
         swordImg.sprite = originSword;
-        yield return new WaitForSeconds(0.2f);
-        cameraZoom.OutTriger = true;
-        EventManager.TriggerEvent("PLAYACTION", new EventParam());
+        if (Define.EnemyStat.HP <= 0) GameManager.Instance.LoadStageScene(2);
+        else
+        {
+            yield return new WaitForSeconds(0.2f);
+            cameraZoom.OutTriger = true;
+            EventManager.TriggerEvent("PLAYACTION", new EventParam());
+        }
     }
 
     private void ComboAttack(float f, bool isCombo = false)
