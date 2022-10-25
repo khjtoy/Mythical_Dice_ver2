@@ -750,7 +750,7 @@ Animator:
   m_GameObject: {fileID: 7904570817149137985}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3bfdb7ef21749bb48b649589c701f564, type: 2}
+  m_Controller: {fileID: 9100000, guid: 88842d1fd3a1c024692ce428c44d08cc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -806,10 +806,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322659f6bb197114db047e15ac71c65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   _pos: {x: 0, y: 0, z: 0}
   canVoid: 0
+  SkillAudioClips: []
   _animation:
-    animator: {fileID: 1670965967}
+    _animator: {fileID: 0}
 --- !u!114 &8678142049655726889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,8 +824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e474b5a4c63e67342b28266b42c6425d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   origin_hp: 50
   hp: 50
+  hpSlider: {fileID: 0}
 --- !u!114 &1277356749
 MonoBehaviour:
   m_ObjectHideFlags: 0

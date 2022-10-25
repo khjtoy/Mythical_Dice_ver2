@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceWeights:
   - num: 1
-    weight: 60
+    weight: 70
   - num: 2
-    weight: 50
+    weight: 60
   - num: 3
-    weight: 40
+    weight: 50
   - num: 4
-    weight: 30
+    weight: 40
   - num: 5
-    weight: 20
+    weight: 30
   - num: 6
-    weight: 10
+    weight: 20
