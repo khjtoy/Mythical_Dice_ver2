@@ -20,9 +20,9 @@ public class HitAnimationAction : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 pos = animator.transform.localPosition;
-        pos.y -= 0.8f;
-        animator.transform.localPosition = pos;
+        //Vector3 pos = animator.transform.localPosition;
+        //pos.y -= 0.8f;
+        //animator.transform.localPosition = pos;
 
         if (spriteMaterial == null)
             spriteMaterial = animator.transform.GetComponent<SpriteRenderer>().material;
