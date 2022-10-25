@@ -6,9 +6,15 @@ using UnityEngine;
 
 public class SkillDash : EnemySkill
 {
+    enum Sound
+    {
+        START,
+    }
     Sequence seq;
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        unit.PlaySound(unit.SkillAudioClips[(int)Sound.START]);
+
         seq = DOTween.Sequence();
         if (!unit.Sequence.Sequences.Contains(seq))
         {

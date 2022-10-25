@@ -4,13 +4,14 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 public class PlayerMove : UnitMove
 {
 	[SerializeField]
 	private AudioSource moveSource;
-	[SerializeField]
-	private BaseSound playerMoveSounds;
+	[FormerlySerializedAs("playerMoveSounds")] [SerializeField]
+	private SoundSO playerMoveSoundsSo;
 
 	private enum PlayerMoveSound { BaseMove = 0}
 
@@ -37,8 +38,9 @@ public class PlayerMove : UnitMove
 			return MapController.Instance.Distance;
 		}
 	}
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		playerStat = GetComponent<PlayerStat>();
 		float offset = GameManager.Instance.Offset;
 		transform.localPosition = new Vector3(-offset, 0, -offset);
@@ -117,7 +119,7 @@ public class PlayerMove : UnitMove
 		if (_isMoving || flagAction)
 			return;
 		_isMoving = true;
-		SoundManager.Instance.AudioChange(playerMoveSounds.audioClips[(int)PlayerMoveSound.BaseMove], moveSource);
+		SoundManager.Instance.AudioChange(playerMoveSoundsSo.audioClips[(int)PlayerMoveSound.BaseMove], moveSource);
 		Vector3 original = _pos;
 		float offset = GameManager.Instance.Offset;
 		_pos += pos;

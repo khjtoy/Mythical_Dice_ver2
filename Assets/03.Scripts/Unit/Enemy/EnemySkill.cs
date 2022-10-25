@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 [System.Serializable]
 public abstract class EnemySkill
 {
-    public AudioSource audioSource;
 
     public abstract void DoAttack(UnitMove unit, Action ani = null, Action callback = null);
 

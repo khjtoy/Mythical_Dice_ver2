@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StampSO
   m_EditorClassIdentifier: 
   State: 3
-  Condition:
-  - ConditionEnum: 0
+  FromIdleCondition:
+  - ConditionEnum: 1
     Parameter: 2
     IsPositive: 1
   IsLoop: 0

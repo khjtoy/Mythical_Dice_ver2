@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
 	[SerializeField]
 	private AudioMixerGroup audioMixer;
 
-	[SerializeField]
-	private BaseSound BackGroundSound;
+	[FormerlySerializedAs("BackGroundSound")] [SerializeField]
+	private SoundSO backGroundSoundSo;
 
 	[SerializeField]
 	private AudioSource BackGroundSource;
@@ -22,13 +23,13 @@ public class SoundManager : MonoSingleton<SoundManager>
 
 	private void Start()
 	{
-		//이걸 스테이지 시작할때 마다 실행 시켜주면 됨
+		//??? ???????? ??????? ???? ???? ??????? ??
 		if (SceneManager.GetActiveScene().name == "SampleScene")
-			AudioChange(BackGroundSound.audioClips[PlayerPrefs.GetInt("NOWSTAGE")+1], BackGroundSource);
+			AudioChange(backGroundSoundSo.audioClips[PlayerPrefs.GetInt("NOWSTAGE")+1], BackGroundSource);
 		else if(SceneManager.GetActiveScene().name == "Intro")
-			AudioChange(BackGroundSound.audioClips[0], BackGroundSource);
+			AudioChange(backGroundSoundSo.audioClips[0], BackGroundSource);
 		else if(SceneManager.GetActiveScene().name == "Stage")
-			AudioChange(BackGroundSound.audioClips[1], BackGroundSource);
+			AudioChange(backGroundSoundSo.audioClips[1], BackGroundSource);
 	}
 
 	public void AudioChange(AudioClip audioClip, AudioSource audioSource = null)

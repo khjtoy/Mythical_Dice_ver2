@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
 public class SkillStamp : EnemySkill
 {
+    enum Sound
+    {
+        START,
+        END,
+    }
     Sequence seq = null;
 
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
@@ -15,6 +21,8 @@ public class SkillStamp : EnemySkill
         EnemyMove enemyMove = Define.EnemyMove;
         unit.CanVoid = true;
         seq = DOTween.Sequence();
+        unit.PlaySound(unit.SkillAudioClips[(int)Sound.START]);
+        seq.AppendInterval(0.3f);
         if(!unit.Sequence.Sequences.Contains(seq))
             unit.Sequence.Sequences.Add(seq);
         seq.Append(baseTrm.DOLocalMoveY(1, 0.5f));
@@ -41,7 +49,8 @@ public class SkillStamp : EnemySkill
                     }
             }
 
-            
+            unit.PlaySound(unit.SkillAudioClips[(int)Sound.END]);
+
             callback?.Invoke();
             seq.Kill();
         });

@@ -6,9 +6,16 @@ using UnityEngine;
 
 public class SkillJump : EnemySkill
 {
+    enum Sound
+    {
+        START = 1,
+        END,
+    }
     Sequence seq = null;
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
+        unit.PlaySound(unit.SkillAudioClips[(int)Sound.START]);
+
         seq = DOTween.Sequence();
         if(!unit.Sequence.Sequences.Contains(seq))
             unit.Sequence.Sequences.Add(seq);
@@ -26,6 +33,8 @@ public class SkillJump : EnemySkill
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
             unit.StartCoroutine(WaveAttackCoroutine(pos, damage, 0.3f));
+            unit.PlaySound(unit.SkillAudioClips[(int)Sound.END]);
+
             callback?.Invoke();
         });
     }

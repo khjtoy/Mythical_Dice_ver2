@@ -1,10 +1,20 @@
 {
-    "clearStage": 2,
-    "currentStage": 2,
+    "clearStage": 4,
+    "currentStage": 4,
     "userStages": [
         {
             "currentStage": 1,
-            "clearCount": 6,
+            "clearCount": 14,
+            "clearTime": 30.0
+        },
+        {
+            "currentStage": 2,
+            "clearCount": 2,
+            "clearTime": 30.0
+        },
+        {
+            "currentStage": 3,
+            "clearCount": 2,
             "clearTime": 30.0
         }
     ],

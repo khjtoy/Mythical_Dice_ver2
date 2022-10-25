@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class CharacterBase : MonoBehaviour
 {
     protected Animator animation;
+    [SerializeField]
     protected AudioSource audioSource;
 
-    private void Awake()
+    protected virtual void Start()
     {
         audioSource = transform.GetComponent<AudioSource>();
         animation = transform.GetChild(0).GetChild(0).GetComponent<Animator>();

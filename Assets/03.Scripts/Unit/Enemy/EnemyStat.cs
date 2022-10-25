@@ -11,7 +11,8 @@ public class EnemyStat : StatBase
 	{
         hpSlider=GameObject.Find("BossBar").GetComponent<HPSlider>();
 	}
-	public void InitStat(int hp)
+
+    public void InitStat(int hp)
     {
         origin_hp = hp;
         base.hp = hp;

@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Jobs;
@@ -136,7 +137,9 @@ public class GameManager : MonoSingleton<GameManager>
 		go.transform.SetParent(_unitRootTrm);
 		go.SetActive(false);
 
+		go.AddComponent<AudioSource>();
 		EnemyMove bossMove = go.AddComponent<EnemyMove>();
+		bossMove.SkillAudioClips.AddRange(bossSo.SkillSounds.audioClips.ToList());
 		EnemyStat bossStat = go.AddComponent<EnemyStat>();
 		bossStat.InitStat(bossSo.Hp);
 		
@@ -153,7 +156,6 @@ public class GameManager : MonoSingleton<GameManager>
 		
 		main_sprite.transform.SetParent(sprite_anchor.transform);
 		main_sprite.transform.eulerAngles = new Vector3(45, 0, 0);
-		//TODO Get Transform Properties
 		main_sprite.transform.localPosition = bossSo.spriteOffset;
 		main_sprite.transform.localScale = bossSo.spriteSize;
 		main_sprite.AddComponent<SpriteRenderer>().sprite = bossSo.MainSprite;

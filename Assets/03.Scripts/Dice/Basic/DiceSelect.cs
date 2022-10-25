@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class DiceSelect : MonoBehaviour
 {
-	private BaseSound baseSound;
+	private SoundSO _soundSo;
 
 	private Vector3[] DiceRotationVector = new Vector3[]
 { new Vector3(0,0,0), new Vector3(90,0,0), new Vector3(0,0,-90),
@@ -19,7 +19,7 @@ public class DiceSelect : MonoBehaviour
 	private WeightSO weightSO;
 	protected virtual void Awake()
 	{
-		baseSound = Resources.Load("AudioSO/DiceSoundEffectSO") as BaseSound;
+		_soundSo = Resources.Load("AudioSO/DiceSoundEffectSO") as SoundSO;
 		weightSO = Resources.Load("SO/WeightSO") as WeightSO;
 
 		for (int i = 0; i < weightSO.diceWeights.Count; i++)
@@ -48,7 +48,7 @@ public class DiceSelect : MonoBehaviour
 		MapController.Instance.MapNum[pos.y, pos.x] = randoms;
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
 		ParticleOn();
-		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
+		SoundManager.Instance.AudioChange(_soundSo.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 	}
 	public void DiceNumSelect(int value)
 	{
@@ -56,12 +56,12 @@ public class DiceSelect : MonoBehaviour
 		MapController.Instance.MapNum[pos.y, pos.x] = randoms;
 		ParticleOn();
 		transform.localRotation = Quaternion.Euler(DiceRotationVector[randoms - 1]);
-		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
+		SoundManager.Instance.AudioChange(_soundSo.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 	}
 
 
 	/// <summary>
-	/// mapcontrol에서만 쓰는 애
+	/// mapcontrol?????? ???? ??
 	/// </summary>
 	/// <returns></returns>
 	public IEnumerator BasicDiceNumSelect(int x, int y, float wait, DiceRotation rotation)
@@ -69,7 +69,7 @@ public class DiceSelect : MonoBehaviour
 		rotation.Rotation();
 		transform.rotation = Quaternion.Euler(0, 0, 0);
 		yield return new WaitForSeconds(wait);
-		SoundManager.Instance.AudioChange(baseSound.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
+		SoundManager.Instance.AudioChange(_soundSo.audioClips[(int)DiceEffect.Snap], SoundManager.Instance.effectSource);
 		MapController.Instance.WaitFloor(x, y, true);
 		rotation.Rotation();
 		DiceNumSelect();

@@ -41,8 +41,9 @@ public class PlayerSkill : CharacterBase
     private Transform enemy;
 
     private int damage;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         originSword = swordImg.sprite;
         enemy = Define.EnemyTrans;
         swordAnimator = swordImg.GetComponent<Animator>();

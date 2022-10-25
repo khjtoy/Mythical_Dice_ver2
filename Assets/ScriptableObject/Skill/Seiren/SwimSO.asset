@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: SwimSO
   m_EditorClassIdentifier: 
   State: 6
-  Condition:
-  - ConditionEnum: 0
+  FromIdleCondition:
+  - ConditionEnum: 1
     Parameter: 2
     IsPositive: 1
-  - ConditionEnum: 1
+  - ConditionEnum: 2
     Parameter: 1
     IsPositive: 0
-  - ConditionEnum: 2
-    Parameter: 0
+  - ConditionEnum: 3
+    Parameter: 2
     IsPositive: 0
   IsLoop: 0
   IsPositiveAnd: 1

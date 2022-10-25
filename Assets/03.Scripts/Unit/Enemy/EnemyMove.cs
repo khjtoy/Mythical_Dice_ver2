@@ -24,7 +24,8 @@ public class EnemyMove : UnitMove
 	private Dictionary<EnemyAIState, EnemySkill> _enemySkillDict = new Dictionary<EnemyAIState, EnemySkill>();
 	[SerializeField] private List<EnemySkill> enemySkills = new List<EnemySkill>();
 	private List<int> hashes = new List<int>();
-
+	
+	
 	public void Awake()
 	{
 		_enemySkillDict.Add(EnemyAIState.IDLE, null);
@@ -52,8 +53,9 @@ public class EnemyMove : UnitMove
 		WorldPos = transform.localPosition;
 	}
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		_animation.SetAnimator(transform.GetChild(0).GetChild(0).GetComponent<Animator>());
 	}
 

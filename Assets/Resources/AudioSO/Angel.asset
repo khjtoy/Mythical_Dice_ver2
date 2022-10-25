@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Angel
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 0914abde8d5a21f4098e93b3571687da, type: 3}
   - {fileID: 8300000, guid: 406c5289554c2944a9f3ef9e9a0463ab, type: 3}
+  - {fileID: 8300000, guid: 0914abde8d5a21f4098e93b3571687da, type: 3}

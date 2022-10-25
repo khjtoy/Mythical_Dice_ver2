@@ -4,13 +4,14 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Rendering;
 using UnityEngine.Playables;
+using UnityEngine.Serialization;
 
 public class PlayerAttack : CharacterBase
 {
     [SerializeField]
     private AudioSource attackSource;
-    [SerializeField]
-    private BaseSound playerAttackSounds;
+    [FormerlySerializedAs("playerAttackSounds")] [SerializeField]
+    private SoundSO playerAttackSoundsSo;
 
     private enum AttackSounds { Slash, SlashFail}
 
@@ -44,8 +45,9 @@ public class PlayerAttack : CharacterBase
 
     private List<Item> items = new List<Item>();
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         playerStat = GetComponent<PlayerStat>();
         playerSkill = GetComponent<PlayerSkill>();
         enemy = Define.EnemyTrans;
@@ -119,7 +121,7 @@ public class PlayerAttack : CharacterBase
         {
             //playerStat.SetCombo(damage);
             playerSkill.StackDice(damage);
-            SoundManager.Instance.AudioChange(playerAttackSounds.audioClips[(int)AttackSounds.Slash], attackSource);
+            SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
             // 파티클 생성
             Define.EnemyStat.GetDamage(damage);
             ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(damage, Define.EnemyStat.transform.position);
@@ -130,7 +132,7 @@ public class PlayerAttack : CharacterBase
             timer = attackDelay;
         }
         else
-            SoundManager.Instance.AudioChange(playerAttackSounds.audioClips[(int)AttackSounds.SlashFail], attackSource);
+            SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.SlashFail], attackSource);
     }
 
     private IEnumerator Skill(int dir)

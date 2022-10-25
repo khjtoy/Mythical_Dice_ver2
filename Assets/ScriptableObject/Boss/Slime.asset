@@ -25,3 +25,4 @@ MonoBehaviour:
     IsPositive: 1
   Skills:
   - {fileID: 11400000, guid: aa82eb4ac7f50e64a90383714ba528b9, type: 2}
+  SkillSounds: {fileID: 11400000, guid: 1098e24d6540f91468a8acf9a42ba1e3, type: 2}

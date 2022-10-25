@@ -14,5 +14,6 @@ public class BossSO : ScriptableObject
     public RuntimeAnimatorController Controller = null;
     public List<Condition> ToIdleCondition = new List<Condition>();
     public List<SkillSO> Skills = new List<SkillSO>();
+    public SoundSO SkillSounds;
 
 }

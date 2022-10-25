@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DashSO
   m_EditorClassIdentifier: 
   State: 5
-  Condition:
-  - ConditionEnum: 0
+  FromIdleCondition:
+  - ConditionEnum: 1
     Parameter: 2
     IsPositive: 1
-  - ConditionEnum: 2
+  - ConditionEnum: 3
     Parameter: 1
     IsPositive: 1
   IsLoop: 0
