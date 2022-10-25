@@ -151,7 +151,7 @@ public class PlayerMove : UnitMove
     private void PlayAction(EventParam eventParam)
     {
         flagAction = false;
-        _isMoving = false;
+		_isMoving = false;
 		seq.timeScale = 1;
     }
 
