@@ -1182,6 +1182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3306271081880381903, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
     - target: {fileID: 3306271082144850570, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -1194,10 +1198,56 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3306271082715544764, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
+    - target: {fileID: 3306271082892955951, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
+    - target: {fileID: 3306271082913333873, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
+    - target: {fileID: 3306271083242206467, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
+    - target: {fileID: 3306271083409511505, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_Text
+      value: "\uD328\uD134\uC5D0 \uB530\uB77C \uBC14\uB2E5\uC758 \uC8FC\uC0AC\uC704\uC758
+        \uC0C9\uAE54\uC774 \uBE68\uAC04\uC0C9\uC73C\uB85C \uBCC0\uD558\uBA74\uC11C
+        \uC2DC\uAC04\uC774 \uC9C0\uB098\uBA74 \uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C
+        \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306271083409511505, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
     - target: {fileID: 5027757050827232177, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5027757050828693580, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_Text
+      value: "\uACF5\uACA9\uC740 Z\uD0A4\uB97C \uC785\uB825\uD560 \uC2DC \uC790\uC2E0\uC758
+        \uAE30\uC900 \uC0C1 \uD558 \uC88C \uC6B0 \uC5D0 \uBCF4\uC2A4\uAC00 \uC788\uB2E4\uBA74
+        \n\uBC11\uC5D0 \uC788\uB294 \uC8FC\uC0AC\uC704 \uAC12 \uB9CC\uD07C \uBCF4\uC2A4\uC5D0\uAC8C
+        \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027757050828693580, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
+    - target: {fileID: 7865431362123439073, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
+    - target: {fileID: 8269683708694754301, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 86e3bc227c453d44e86559400e4e657d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3e8057db951bbb499199053e70fec9d, type: 3}
 --- !u!1 &487633788 stripped
@@ -1621,6 +1671,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29f52aa1a24264745a771d79899ec293, type: 2}
   - {fileID: 11400000, guid: 89b5621bd2222a645b4343cd4b81f2a8, type: 2}
   _mixer: {fileID: 24100000, guid: 8ca475c5c04bcf046929446479aa30f5, type: 2}
+  Timer: 0
 --- !u!4 &806048599
 Transform:
   m_ObjectHideFlags: 0
@@ -7834,6 +7885,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   origin_hp: 50
   hp: 50
+  hitSource: {fileID: 0}
+  hitSoundsSo: {fileID: 0}
   bloodCt: {fileID: 1396408452}
   hpSlider: {fileID: 153698506193318263}
   combo: 0
