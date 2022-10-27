@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -52,13 +53,13 @@ public abstract class EnemySkill
         {
             int offset = range - Mathf.Abs(i);
             Vector2Int de = new Vector2Int(offset, i);
-            MapController.Instance.Boom(pos + de, 1);
+            MapController.Instance.Boom(pos + de, damage);
         }
         for (int i = -range; i < range; i++)
         {
             int offset = -range + Mathf.Abs(i);
             Vector2Int de = new Vector2Int(offset, i);
-            MapController.Instance.Boom(pos + de, 1);
+            MapController.Instance.Boom(pos + de, damage);
         }
     }
     protected void PushAttack(Vector2Int pos, Vector2Int direction, int damage)

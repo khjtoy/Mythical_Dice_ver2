@@ -113,7 +113,7 @@ public class GameManager : MonoSingleton<GameManager>
 			UserStageVO vo = new UserStageVO
 			{
 				currentStage = id,
-				clearTime = (int)clearTime,
+				clearTime = clearTime,
 				clearCount = 1
 			};
 			if (isHard)
@@ -142,6 +142,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 	public void GenerateBoss(BossSO bossSo)
 	{
+		size = bossSo.MapSize;
 		GameObject go = new GameObject(bossSo.Name);
 		go.tag = "Boss";
 		go.transform.SetParent(_unitRootTrm);

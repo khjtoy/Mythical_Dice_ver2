@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class BossSO : ScriptableObject
 {
     public string Name = "";
+    public int MapSize = 5;
     public int Hp = 0;
     public Sprite MainSprite = null;
     public Vector3 spriteOffset = Vector3.zero;
