@@ -22,6 +22,8 @@ public class MapController : MonoSingleton<MapController>
 		get { return distance; }
 	}
 
+	private UnitSequence Sequence = new UnitSequence();
+	
 	private GameObject[,] diceObjectArr;
 	public GameObject[,] DiceObject { get => diceObjectArr; }
 
@@ -52,7 +54,7 @@ public class MapController : MonoSingleton<MapController>
 
 	protected override void Init()
 	{
-		
+		DOTween.KillAll();
 	}
 
 	public void InitMap()
