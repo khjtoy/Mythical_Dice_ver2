@@ -5,19 +5,13 @@
         {
             "currentStage": 1,
             "clearCount": 1,
-            "clearTime": 16.0
+            "clearTime": 7.0
         },
         {
             "currentStage": 2,
-            "clearCount": 2,
-            "clearTime": 32.0
+            "clearCount": 1,
+            "clearTime": 40.0
         }
     ],
-    "userHardStages": [
-        {
-            "currentStage": 2,
-            "clearCount": 2,
-            "clearTime": 24.0
-        }
-    ]
+    "userHardStages": []
 }
