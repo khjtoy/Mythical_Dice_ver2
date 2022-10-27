@@ -14,9 +14,9 @@ public class BloodControl : MonoBehaviour
 	private Image blood;
 	public void BloodSet(float hp, float mHp)
 	{
-		//Color a = attackBlood.color;
-		//a.a = 0.5f - (0.5f * ((float)(hp / mHp * 100) / 100));
-		//attackBlood.color = a;
+		Color a = attackBlood.color;
+		a.a = 0.5f - (0.5f * ((float)(hp / mHp * 100) / 100));
+		attackBlood.color = a;
 	}
 	public void BloodFade(int damage)
 	{
