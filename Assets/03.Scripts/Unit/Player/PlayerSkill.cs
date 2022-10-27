@@ -113,6 +113,7 @@ public class PlayerSkill : CharacterBase
         yield return new WaitForSeconds(0.4f);
         cameraZoom.ZoomTriger = true;
         animation.SetTrigger("Combo");
+        SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
         for (int i = 0; i < 4; i++)
         {
             SetSword(i);
@@ -170,7 +171,7 @@ public class PlayerSkill : CharacterBase
         });
         seq[idx].InsertCallback(0.15f, () =>
         {
-                ComboAttack(idx, 0.7f);
+                ComboAttack(/*idx,*/ 0.7f);
         });
         seq[idx].InsertCallback(0.7f, ()=>
         {
@@ -202,7 +203,7 @@ public class PlayerSkill : CharacterBase
         yield return new WaitForSeconds(0.1f);
         animation.SetTrigger("Last");
         yield return new WaitForSeconds(0.5f);
-        ComboAttack(4, 1, true);
+        ComboAttack(/*4,*/ 1, true);
         swordImg.sprite = originSword;
         if (Define.EnemyStat.HP <= 0) GameManager.Instance.LoadStageScene(2);
         else
@@ -213,27 +214,27 @@ public class PlayerSkill : CharacterBase
         }
     }
 
-    private void ComboAttack(int index, float f, bool isCombo = false)
+    private void ComboAttack(/*int index,*/ float f, bool isCombo = false)
     {
-        switch(index)
-		{
-            case 0:
-                SoundManager.Instance.SetAudioSpeed(attackSource,1f);
-                SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-                break;
-            case 1:
-                SoundManager.Instance.SetAudioSpeed(attackSource, 0.7f);
-                SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-                break;
-            case 2:
-                SoundManager.Instance.SetAudioSpeed(attackSource, 1.3f);
-                SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-                break;
-            case 3:
-                SoundManager.Instance.SetAudioSpeed(attackSource,1f);
-                SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
-                break;
-        }
+  //      switch(index)
+		//{
+  //          case 0:
+  //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
+  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
+  //              break;
+  //          case 1:
+  //              SoundManager.Instance.SetAudioSpeed(attackSource, 0.7f);
+  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
+  //              break;
+  //          case 2:
+  //              SoundManager.Instance.SetAudioSpeed(attackSource, 1.3f);
+  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
+  //              break;
+  //          case 3:
+  //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
+  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
+  //              break;
+  //      }
         ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(isCombo ? damage * 4 : damage, Define.EnemyStat.transform.position);
         Define.EnemyStat.GetDamage(isCombo ? damage * 4 : damage);
         GameObject particle = ObjectPool.Instance.GetObject(isCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
