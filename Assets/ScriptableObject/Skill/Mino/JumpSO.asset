@@ -18,7 +18,7 @@ MonoBehaviour:
     Parameter: 1.8
     IsPositive: 1
   - ConditionEnum: 3
-    Parameter: 0
+    Parameter: 1
     IsPositive: 0
   IsLoop: 0
   IsPositiveAnd: 0

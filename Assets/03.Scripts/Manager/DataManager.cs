@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour 
 {
-    private string SAVE_PATH = "";
-    private void Awake()
-    {
-       
-    }
     public static string ObjectToJson(object obj)
     { 
         return JsonUtility.ToJson(obj, true);
