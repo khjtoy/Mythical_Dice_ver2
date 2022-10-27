@@ -32,4 +32,9 @@ public class UpDownDirect : DiceSelect, Direct
 			diceRotation.Rotation();
 		});
 	}
+
+	public void OnDestroy()
+	{
+		DOTween.KillAll();
+	}
 }

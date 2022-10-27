@@ -113,7 +113,7 @@ public class GameManager : MonoSingleton<GameManager>
 			UserStageVO vo = new UserStageVO
 			{
 				currentStage = id,
-				clearTime = (int)clearTime,
+				clearTime = clearTime,
 				clearCount = 1
 			};
 			if (isHard)
