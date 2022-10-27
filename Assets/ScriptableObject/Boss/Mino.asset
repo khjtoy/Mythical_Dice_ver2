@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mino
   m_EditorClassIdentifier: 
   Name: Mino
+  MapSize: 6
   Hp: 120
   MainSprite: {fileID: 8711451971818167039, guid: f64326a43e876574d8626b54470e27b9, type: 3}
   spriteOffset: {x: -0.6, y: 1.8, z: 0}
