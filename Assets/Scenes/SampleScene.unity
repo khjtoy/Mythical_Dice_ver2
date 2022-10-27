@@ -7656,8 +7656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  origin_hp: 30
-  hp: 30
+  origin_hp: 20
+  hp: 20
   hitSource: {fileID: 48703352}
   hitSoundsSo: {fileID: 11400000, guid: 84c483c06683ce3468438899d2122fdf, type: 2}
   bloodCt: {fileID: 1396408452}

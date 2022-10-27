@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Seiren
   m_EditorClassIdentifier: 
   Name: Seiren
-  MapSize: 10
-  Hp: 140
+  MapSize: 7
+  Hp: 110
   MainSprite: {fileID: 8372015513713460601, guid: 336bd5f7c81603f418b858dff45168ac, type: 3}
   spriteOffset: {x: 0, y: 0.9, z: 0}
   spriteSize: {x: 1, y: 1, z: 1}
