@@ -55,8 +55,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 		}
 		else if (SceneManager.GetSceneByName("Stage").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[2])
 		{
-			Debug.Log("?");
 			AudioChange(BackGroundSound.audioClips[2], BackGroundSource);
+			SetAudioSpeed(BackGroundSource, 1f);
 		}
 		else if (SceneManager.GetSceneByName("Tutorial").isLoaded && BackGroundSource.clip != BackGroundSound.audioClips[3])
 			AudioChange(BackGroundSound.audioClips[3], BackGroundSource);
