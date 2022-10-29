@@ -50,6 +50,9 @@ public class PlayerSkill : CharacterBase
     private Transform enemy;
 
     private int damage;
+    private int accDamage;
+
+    private bool isEqul;
     protected override void Start()
     {
         base.Start();
@@ -88,8 +91,8 @@ public class PlayerSkill : CharacterBase
         {
             currentIdx = 0;
             //NumberMove();
-            bool isEqul = true;
-            for(int i = 1; i < 4; i++)
+            isEqul = true;
+            for (int i = 1; i < 4; i++)
             {
                 if (numbersIdx[0] != numbersIdx[i])
                 {
@@ -97,19 +100,15 @@ public class PlayerSkill : CharacterBase
                     break;
                 }
             }
-            if (isEqul)
-            {
-                damage = numbersIdx[0];
-                StartCoroutine("NumberMove");
-            }
-            else Disapper();
+            accDamage = 0;
+            StartCoroutine("NumberMove");
         }
     }
 
     private IEnumerator NumberMove()
     {
         Define.IsUsingSkill = true;
-        EventManager.TriggerEvent("STOPACTION", new EventParam());  
+        EventManager.TriggerEvent("STOPACTION", new EventParam());
         yield return new WaitForSeconds(0.4f);
         cameraZoom.ZoomTriger = true;
         animation.SetTrigger("Combo");
@@ -128,12 +127,12 @@ public class PlayerSkill : CharacterBase
     {
         currentIdx = 0;
         isCheck = true;
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             DisapperaNumber(i);
             dices[currentIdx].GetComponent<Animator>().ResetTrigger("Dice");
         }
-    }    
+    }
 
     private void DisapperaNumber(int idx)
     {
@@ -154,7 +153,7 @@ public class PlayerSkill : CharacterBase
 
     private void SetSword(int idx)
     {
-        seq[idx].Kill();    
+        seq[idx].Kill();
         seq[idx] = DOTween.Sequence();
         numbersTransform[idx].color = Color.blue;
         seq[idx].Append(numbersTransform[idx].GetComponent<RectTransform>().DOLocalMove(targetPos.localPosition + new Vector3(30 * idx, 0, 0), 1f).SetEase(Ease.OutQuart));
@@ -171,16 +170,20 @@ public class PlayerSkill : CharacterBase
         });
         seq[idx].InsertCallback(0.15f, () =>
         {
+            damage = numbersIdx[idx];
+            accDamage += damage;
+
+            if(isEqul)
                 ComboAttack(/*idx,*/ 0.7f);
         });
-        seq[idx].InsertCallback(0.7f, ()=>
+        seq[idx].InsertCallback(0.7f, () =>
         {
             swordImg.sprite = swordSkills[idx];
-            if(idx == 3)
+            if (idx == 3)
             {
                 StartCoroutine("Combo");
             }
-            
+
         });
         seq[idx].AppendCallback(() => seq[idx].Kill());
     }
@@ -189,7 +192,7 @@ public class PlayerSkill : CharacterBase
     {
         currentIdx = 0;
         isCheck = false;
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             numbersIdx[i] = 0;
             numbersTransform[i].color = Color.white;
@@ -203,6 +206,8 @@ public class PlayerSkill : CharacterBase
         yield return new WaitForSeconds(0.1f);
         animation.SetTrigger("Last");
         yield return new WaitForSeconds(0.5f);
+        damage = accDamage;
+        //Debug.Log($"Damage:{damage}");
         ComboAttack(/*4,*/ 1, true);
         swordImg.sprite = originSword;
         if (Define.EnemyStat.HP <= 0) GameManager.Instance.LoadStageScene(2);
@@ -216,27 +221,27 @@ public class PlayerSkill : CharacterBase
 
     private void ComboAttack(/*int index,*/ float f, bool isCombo = false)
     {
-  //      switch(index)
-		//{
-  //          case 0:
-  //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
-  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-  //              break;
-  //          case 1:
-  //              SoundManager.Instance.SetAudioSpeed(attackSource, 0.7f);
-  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-  //              break;
-  //          case 2:
-  //              SoundManager.Instance.SetAudioSpeed(attackSource, 1.3f);
-  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-  //              break;
-  //          case 3:
-  //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
-  //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
-  //              break;
-  //      }
-        ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(isCombo ? damage * 4 : damage, Define.EnemyStat.transform.position);
-        Define.EnemyStat.GetDamage(isCombo ? damage * 4 : damage);
+        //      switch(index)
+        //{
+        //          case 0:
+        //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
+        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
+        //              break;
+        //          case 1:
+        //              SoundManager.Instance.SetAudioSpeed(attackSource, 0.7f);
+        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
+        //              break;
+        //          case 2:
+        //              SoundManager.Instance.SetAudioSpeed(attackSource, 1.3f);
+        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
+        //              break;
+        //          case 3:
+        //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
+        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
+        //              break;
+        //      }
+        ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(damage, Define.EnemyStat.transform.position);
+        Define.EnemyStat.GetDamage(damage);
         GameObject particle = ObjectPool.Instance.GetObject(isCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
         particle.transform.position = new Vector3(enemy.localPosition.x, enemy.localPosition.y + 1, enemy.localPosition.z);
         Define.CameraTrans.DOShakePosition(f, 0.2f);
