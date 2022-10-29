@@ -40,8 +40,8 @@ Material:
     - Vector1_3ec30fa3fe4349748821a0dd1c7f3a13: 1
     - Vector1_4b24b1b831a44fa7b36d961153fbea93: 1.777
     - Vector1_61a91a79ffda46c9bb33e9cfbbc8e0d1: 0.1
-    - _Percent: 2
+    - _Percent: 0.5072009
     m_Colors:
     - Vector2_4a8252128af34ae7a22ac60a0158be5d: {r: 0.45, g: 0.2, b: 0, a: 0}
-    - _FocalPoint: {r: 0.45, g: 0.2, b: 0, a: 0}
+    - _FocalPoint: {r: 0.55, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

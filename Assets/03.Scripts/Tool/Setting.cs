@@ -68,6 +68,7 @@ public class Setting : MonoBehaviour
         );
         buttons[(int)Buttons.RESTART].onClick.AddListener(() =>
         {
+            _input.ToggleSetting();
             DOTween.KillAll();
             if(SceneManager.GetSceneByBuildIndex(4).isLoaded)
                 SceneManager.LoadScene("SampleScene");
