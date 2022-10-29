@@ -58,6 +58,16 @@ public class StageSlot : MonoBehaviour
 
         _numberImage.sprite = _numberSprite[_slotStage-1];
 
+        if(_isHard)
+        {
+            if(clearStage > 4)
+            {
+                _lockImage.gameObject.SetActive(false);
+            }
+
+            return;
+        }
+
         if(currentStage >= _slotStage)
         {
             _lockImage.gameObject.SetActive(false);

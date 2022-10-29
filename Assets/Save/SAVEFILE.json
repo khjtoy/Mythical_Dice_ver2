@@ -5,23 +5,29 @@
         {
             "currentStage": 1,
             "clearCount": 1,
-            "clearTime": 10.54295825958252
+            "clearTime": 10.618643760681153
         },
         {
             "currentStage": 2,
             "clearCount": 2,
-            "clearTime": 18.0
+            "clearTime": 20.0
         },
         {
             "currentStage": 3,
             "clearCount": 1,
-            "clearTime": 41.289974212646487
+            "clearTime": 31.450326919555665
         },
         {
             "currentStage": 4,
             "clearCount": 1,
-            "clearTime": 24.156652450561525
+            "clearTime": 41.46774673461914
         }
     ],
-    "userHardStages": []
+    "userHardStages": [
+        {
+            "currentStage": 2,
+            "clearCount": 2,
+            "clearTime": 21.778465270996095
+        }
+    ]
 }
