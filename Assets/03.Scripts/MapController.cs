@@ -34,6 +34,8 @@ public class MapController : MonoSingleton<MapController>
 		set { mapNum = value; }
 	}
 
+	private bool[,] isV;
+
 	public Dice[,] dices;
 
 	[SerializeField]
@@ -62,6 +64,7 @@ public class MapController : MonoSingleton<MapController>
 		diceObjectArr = new GameObject[GameManager.Instance.Size, GameManager.Instance.Size];
 		dices = new Dice[GameManager.Instance.Size, GameManager.Instance.Size];
 		mapNum = new int[GameManager.Instance.Size, GameManager.Instance.Size];
+		isV = new bool[GameManager.Instance.Size, GameManager.Instance.Size];
 		SpawnMap();
 	}
 	private void SpawnMap()
@@ -97,6 +100,11 @@ public class MapController : MonoSingleton<MapController>
 		{
 			return;
 		}
+
+		if (isV[x, y])
+			return;
+
+		isV[x, y] = true;
 
 		if (isDown && !isfirst)
 		{
