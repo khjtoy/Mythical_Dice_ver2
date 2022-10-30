@@ -74,6 +74,8 @@ public class DiceSelect : MonoBehaviour
 		rotation.Rotation();
 		DiceNumSelect();
 		ParticleOn();
+		if (x >= GameManager.Instance.Size - 1 && y >= GameManager.Instance.Size - 1)
+			Define.IsMapLoaded = true;
     }
 
 	private void ParticleOn()

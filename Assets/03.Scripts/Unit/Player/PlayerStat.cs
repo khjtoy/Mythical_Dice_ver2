@@ -48,6 +48,8 @@ public class PlayerStat : StatBase
 
     public void GetDamage(int value)
     {
+        if(Define.IsUsingSkill || !Define.IsBossAlive)
+            return;
         HP -= value;
         bloodCt.BloodFade(value);
         animation.SetTrigger("Hit");

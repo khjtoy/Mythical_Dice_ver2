@@ -59,6 +59,7 @@ public class MapController : MonoSingleton<MapController>
 
 	public void InitMap()
 	{
+		Define.IsMapLoaded = false;
 		diceObjectArr = new GameObject[GameManager.Instance.Size, GameManager.Instance.Size];
 		dices = new Dice[GameManager.Instance.Size, GameManager.Instance.Size];
 		mapNum = new int[GameManager.Instance.Size, GameManager.Instance.Size];
