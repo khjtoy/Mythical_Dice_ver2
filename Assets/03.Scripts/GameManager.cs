@@ -73,8 +73,9 @@ public class GameManager : MonoSingleton<GameManager>
 			SceneManager.LoadScene(5, LoadSceneMode.Additive);
 		}
 	}
-	public void SaveUserData(int id, float clearTime, bool isHard = false)
+	public void SaveUserData(int id, float clearTime)
     {
+		bool isHard = PlayerPrefs.GetInt("HARD") == 1 ? true : false;
 		User user = DataManager.LoadJsonFile<User>(Application.dataPath + "/Save", "SAVEFILE");
 		bool findStage = false;
 		if (user.currentStage == id)

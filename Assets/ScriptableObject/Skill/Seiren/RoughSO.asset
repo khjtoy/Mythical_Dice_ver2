@@ -15,13 +15,13 @@ MonoBehaviour:
   State: 7
   FromIdleCondition:
   - ConditionEnum: 1
-    Parameter: 2
+    Parameter: 1.5
     IsPositive: 1
   - ConditionEnum: 2
     Parameter: 1
     IsPositive: 0
   - ConditionEnum: 3
-    Parameter: 0.5
+    Parameter: 1
     IsPositive: 1
   IsLoop: 0
   IsPositiveAnd: 1

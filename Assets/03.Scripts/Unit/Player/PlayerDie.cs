@@ -25,6 +25,7 @@ public class PlayerDie : CharacterBase
         if (!isDie)
         {
             DOTween.KillAll(true);
+            EventManager.TriggerEvent("STOPACTION", new EventParam());
             isDie = true;
             spriteMaterial.EnableKeyword("_SordColor");
             spriteMaterial.SetFloat("_SordColor", 1f);

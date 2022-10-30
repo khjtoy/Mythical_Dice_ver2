@@ -9,6 +9,7 @@ public enum Conditions
     RANGEDETECT,
     DIRECTDIRECTION,
     DEATH,
+    ISNOTLOAD,
 }
 public abstract class AICondition : MonoBehaviour
 {

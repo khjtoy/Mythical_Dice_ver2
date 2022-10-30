@@ -25,6 +25,7 @@ public class SkillSwim : EnemySkill
                 isUnderWater = false;
                 break;
         }
+
         seq = DOTween.Sequence();
         if(!unit.Sequence.Sequences.Contains(seq))
             unit.Sequence.Sequences.Add(seq);
@@ -32,9 +33,12 @@ public class SkillSwim : EnemySkill
         seq.Join(unit.transform.DOMoveZ(Define.PlayerMove.WorldPos.z, 0.3f));
         seq.AppendCallback(() =>
         {
+            unit.WorldPos = unit.transform.localPosition;
+            Vector2Int pos = unit.GamePos;
+            int damage = MapController.Instance.MapNum[pos.y, pos.x];
             unit.WorldPos = unit.transform.position;
             unit.CanVoid = isUnderWater;
-            unit.StartCoroutine(SwimAttackCoroutine(unit.GamePos, range, 0.4f, 1));
+            unit.StartCoroutine(SwimAttackCoroutine(unit.GamePos, range, 0.4f, damage));
           
         });
         if(isUnderWater)

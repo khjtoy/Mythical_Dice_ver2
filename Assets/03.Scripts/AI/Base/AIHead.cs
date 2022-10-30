@@ -20,6 +20,8 @@ public class AIHead : MonoBehaviour
 
 	protected virtual void Update()
 	{
+		if (Define.IsMapLoaded == false)
+			return;
 		SetState(anyState);
 		if (_canDoAgain)
 		{
@@ -37,53 +39,51 @@ public class AIHead : MonoBehaviour
 	void SetState(AIState state)
 	{
 		foreach (var transition in state.Transitions)
-        {
-    		if (transition.PositiveCondition.Count == 0)
-    			_canMoveNext = true;
-    		else
-    		if (transition.IsPositiveAnd)
-    		{
-    			_canMoveNext = true;
-    			foreach (var conditon in transition.PositiveCondition)
-    			{
-    				_canMoveNext &= conditon.Result();
-    			}
-    		}
-    		else
-    		{
-    			_canMoveNext = false;
-    			foreach (var conditon in transition.PositiveCondition)
-    			{
-    				_canMoveNext |= conditon.Result();
-    			}
-    		}
-    	
-    		if (transition.NegativeCondition.Count == 0)
-    			_canMoveNext &= true;
-    		else
-    		if (transition.IsNegativeAnd)
-    		{
-    			_canMoveNext &= true;
-    			foreach (var conditon in transition.NegativeCondition)
-    			{
-    				_canMoveNext &= !conditon.Result();
-    			}
-    		}
-    		else
-    		{
-    			_canMoveNext = false;
-    			foreach (var conditon in transition.NegativeCondition)
-    			{
-    				_canMoveNext |= !conditon.Result();
-    			}
-    		}
-    	
-    		if (_canMoveNext)
-    		{
-    			Debug.Log($"Current State Has Changed To {transition.goalState}");
-    			_currentState = transition.goalState;
-    			_canDoAgain = true;
-    		}
+		{
+			if (transition.PositiveCondition.Count == 0)
+				_canMoveNext = true;
+			else if (transition.IsPositiveAnd)
+			{
+				_canMoveNext = true;
+				foreach (var conditon in transition.PositiveCondition)
+				{
+					_canMoveNext &= conditon.Result();
+				}
+			}
+			else
+			{
+				_canMoveNext = false;
+				foreach (var conditon in transition.PositiveCondition)
+				{
+					_canMoveNext |= conditon.Result();
+				}
+			}
+
+			if (transition.NegativeCondition.Count == 0)
+				_canMoveNext &= true;
+			else if (transition.IsNegativeAnd)
+			{
+				_canMoveNext &= true;
+				foreach (var conditon in transition.NegativeCondition)
+				{
+					_canMoveNext &= !conditon.Result();
+				}
+			}
+			else
+			{
+				_canMoveNext = false;
+				foreach (var conditon in transition.NegativeCondition)
+				{
+					_canMoveNext |= !conditon.Result();
+				}
+			}
+
+			if (_canMoveNext)
+			{
+				Debug.Log($"Current State Has Changed To {transition.goalState}");
+				_currentState = transition.goalState;
+				_canDoAgain = true;
+			}
 		}
 	}
 	private void EndState()

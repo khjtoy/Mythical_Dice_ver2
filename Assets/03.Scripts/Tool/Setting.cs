@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,9 @@ using UnityEngine.UI;
 enum Buttons
 {
     CONTINUE = 0,
-    MENU = 1,
-    EXIT = 2,
+    RESTART,
+    MENU,
+    EXIT,
     COUNT
 }
 
@@ -64,15 +66,21 @@ public class Setting : MonoBehaviour
                 DataManager.SaveJsonFile(Application.dataPath + "/Save/Settings", "Audio", str);
             }
         );
-        
-        buttons[0].onClick.AddListener(_input.ToggleSetting);
-        buttons[1].onClick.AddListener(() =>
+        buttons[(int)Buttons.RESTART].onClick.AddListener(() =>
+        {
+            _input.ToggleSetting();
+            DOTween.KillAll();
+            if(SceneManager.GetSceneByBuildIndex(4).isLoaded)
+                SceneManager.LoadScene("SampleScene");
+        });
+        buttons[(int)Buttons.CONTINUE].onClick.AddListener(_input.ToggleSetting);
+        buttons[(int)Buttons.MENU].onClick.AddListener(() =>
         {
             _input.ToggleSetting();
             if(SceneManager.GetSceneByBuildIndex(4).isLoaded)
                 GameManager.Instance.LoadStageScene(0);
         });
-        buttons[2].onClick.AddListener(() =>
+        buttons[(int)Buttons.EXIT].onClick.AddListener(() =>
         {
             _input.ToggleSetting();
             Application.Quit();

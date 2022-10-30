@@ -80,10 +80,15 @@ public class StagePanel : MonoBehaviour
     private void LoadStageAchieve(int id,bool isHard)
     {
         UserStageVO vo = StageContoller.Instance.LoadUserData(id, isHard);
-        if (vo == null) return;
+        if (vo == null)
+        {
+            _stageClearTime.text = "??s";
+            _stageBossKillText.text = "0";
+            return;
+        }
 
         _stageClearTime.text = string.Format(vo.clearTime.ToString());
-        _stageBossKillText.text =string.Format(vo.clearCount.ToString());
+        _stageBossKillText.text = string.Format(vo.clearCount.ToString());
 
     }
     private void OnDisable()

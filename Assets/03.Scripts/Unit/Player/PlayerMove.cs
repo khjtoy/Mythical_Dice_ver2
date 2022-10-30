@@ -116,7 +116,7 @@ public class PlayerMove : UnitMove
 
 	public override void Translate(Vector3 pos)
 	{
-		if (_isMoving || flagAction)
+		if (_isMoving || flagAction || !Define.IsMapLoaded)
 			return;
 		_isMoving = true;
 		SoundManager.Instance.AudioChange(playerMoveSoundsSo.audioClips[(int)PlayerMoveSound.BaseMove], moveSource);

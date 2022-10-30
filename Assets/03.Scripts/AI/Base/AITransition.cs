@@ -40,6 +40,8 @@ public class AITransition : MonoBehaviour
                 return gameObject.AddComponent<RangeDetectCondition>();
             case Conditions.DIRECTDIRECTION:
                 return gameObject.AddComponent<DirectDirectionCondition>();
+            case Conditions.ISNOTLOAD:
+                return gameObject.AddComponent<MapLoadCondition>();
         }
 
         return null;
@@ -72,6 +74,7 @@ public class AITransition : MonoBehaviour
         foreach (var condition in conditions)
         {
             AICondition currentCondition = null;
+            Debug.Log($"{condition.ConditionEnum.ToString()} is loaded");
             currentCondition = SetCondition(condition.ConditionEnum);
             currentCondition.SetParam(condition.Parameter);
             if (condition.IsPositive)
@@ -84,7 +87,7 @@ public class AITransition : MonoBehaviour
             }
         }
 
-        IsPositiveAnd = true;
-        IsNegativeAnd = true;
+        IsPositiveAnd = false;
+        IsNegativeAnd = false;
     }
 }
