@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   Name: Slime
+  MapSize: 5
   Hp: 30
   MainSprite: {fileID: 21300000, guid: 8a5d6674afe83934a908d2275e12dad0, type: 3}
   spriteOffset: {x: 0, y: 0, z: 0}

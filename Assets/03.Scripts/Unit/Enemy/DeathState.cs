@@ -11,10 +11,10 @@ public class DeathState : EnemySkill
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         unit.Sequence.KillAllSequence();
-        ani?.Invoke();
 
         if(_firstDead == true)
         {
+            ani?.Invoke();
             _firstDead = false;
             GameManager.Instance.SaveUserData(PlayerPrefs.GetInt("NOWSTAGE") ,GameManager.Instance.Timer );
         }

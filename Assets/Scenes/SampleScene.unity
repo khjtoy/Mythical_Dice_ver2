@@ -6843,7 +6843,7 @@ MonoBehaviour:
   distance: 1.5
   floorChangeTime: 0.1
   wait: 0.1
-  isDual: 0
+  isDual: 1
   XAxis: 0
   isDown: 0
   isLeft: 0
