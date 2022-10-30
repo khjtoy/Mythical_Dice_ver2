@@ -20,11 +20,10 @@ public class AIHead : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		if (SetState(anyState))
-		{
-			
-		}
-		else if (_canDoAgain)
+		if (Define.IsMapLoaded == false)
+			return;
+		SetState(anyState);
+		if (_canDoAgain)
 		{
 			_isExcuting = true;
 			_currentState.DoAction(EndState);
@@ -37,7 +36,7 @@ public class AIHead : MonoBehaviour
 		}
 	}
 
-	bool SetState(AIState state)
+	void SetState(AIState state)
 	{
 		foreach (var transition in state.Transitions)
 		{
@@ -84,11 +83,8 @@ public class AIHead : MonoBehaviour
 				Debug.Log($"Current State Has Changed To {transition.goalState}");
 				_currentState = transition.goalState;
 				_canDoAgain = true;
-				return true;
 			}
 		}
-
-		return false;
 	}
 	private void EndState()
     {
