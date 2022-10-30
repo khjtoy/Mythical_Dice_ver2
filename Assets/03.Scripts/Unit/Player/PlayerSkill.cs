@@ -113,10 +113,20 @@ public class PlayerSkill : CharacterBase
         cameraZoom.ZoomTriger = true;
         animation.SetTrigger("Combo");
         SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
-        for (int i = 0; i < 4; i++)
+        if (isEqul)
         {
-            SetSword(i);
-            yield return new WaitForSeconds(0.65f);
+            for (int i = 0; i < 4; i++)
+            {
+                SetSword(i);
+                yield return new WaitForSeconds(0.65f);
+            }
+        }
+        else
+        {
+            accDamage = numbersIdx[0] + numbersIdx[1] + numbersIdx[2] + numbersIdx[3];
+            for(int i = 0; i < 4; i++)
+                SpeedAttack(i);
+            StartCoroutine("Combo");
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -188,6 +198,26 @@ public class PlayerSkill : CharacterBase
         seq[idx].AppendCallback(() => seq[idx].Kill());
     }
 
+    private void SpeedAttack(int idx)
+    {
+        seq[idx].Kill();
+        seq[idx] = DOTween.Sequence();
+        numbersTransform[idx].color = Color.blue;
+        seq[idx].Append(numbersTransform[idx].GetComponent<RectTransform>().DOLocalMove(targetPos.localPosition + new Vector3(30 * idx, 0, 0), 1f).SetEase(Ease.OutQuart));
+        seq[idx].Join(numbersTransform[idx].GetComponent<RectTransform>().DOScale(0, 1)).OnComplete(() =>
+        {
+            numbersTransform[idx].gameObject.SetActive(false);
+
+            if (idx == 3)
+            {
+                //swordAnimator.enabled = true;
+                //swordAnimator.SetBool(hashSkill, true);
+                ResetSkill();
+            }
+        });
+        seq[idx].AppendCallback(() => seq[idx].Kill());
+    }
+
     private void ResetSkill()
     {
         currentIdx = 0;
@@ -203,7 +233,7 @@ public class PlayerSkill : CharacterBase
 
     private IEnumerator Combo()
     {
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f);
         animation.SetTrigger("Last");
         yield return new WaitForSeconds(0.5f);
         damage = accDamage;
