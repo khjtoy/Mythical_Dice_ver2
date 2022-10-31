@@ -23,6 +23,7 @@ public class SkillSwim : EnemySkill
             case 1:
                 range = 8;
                 isUnderWater = false;
+                unit.CanVoid = false;
                 break;
         }
 
@@ -37,19 +38,20 @@ public class SkillSwim : EnemySkill
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
             unit.WorldPos = unit.transform.position;
-            unit.CanVoid = isUnderWater;
             unit.StartCoroutine(SwimAttackCoroutine(unit.GamePos, range, 0.4f, damage));
           
         });
         if(isUnderWater)
         {
-            unit.CanVoid = true;
             seq.AppendInterval(0.8f);
-            seq.AppendCallback(() => DoAttack(unit, ani, callback));
+            seq.AppendCallback(() =>
+            {
+                unit.CanVoid = true;
+                DoAttack(unit, ani, callback);
+            });
         }
         else
         {
-            unit.CanVoid = false;
             seq.AppendInterval(0.8f);
             seq.AppendCallback(() => callback?.Invoke());
         }
