@@ -15,7 +15,7 @@ public class SkillJump : EnemySkill
     public override void DoAttack(UnitMove unit, Action ani = null, Action callback = null)
     {
         unit.PlaySound(unit.SkillAudioClips[(int)Sound.START]);
-
+        unit.CanVoid = true;
         seq = DOTween.Sequence();
         if(!unit.Sequence.Sequences.Contains(seq))
             unit.Sequence.Sequences.Add(seq);
@@ -29,6 +29,7 @@ public class SkillJump : EnemySkill
         seq.Append(baseTrm.DOLocalMoveY(0, 0.2f).SetEase(Ease.InExpo));
         seq.AppendCallback(() =>
         {
+            unit.CanVoid = false;
             unit.WorldPos = baseTrm.localPosition;
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];

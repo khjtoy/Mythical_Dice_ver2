@@ -17,7 +17,7 @@ public class SkillSlime : EnemySkill
         unit.CanVoid = true; 
         unit.PlaySound(unit.SkillAudioClips[0]);
         seq = DOTween.Sequence();
-        if(!unit.Sequence.Sequences.Contains(seq))
+        if (!unit.Sequence.Sequences.Contains(seq))
             unit.Sequence.Sequences.Add(seq);
         seq.Append(baseTrm.DOLocalMoveY(4, 0.3f));
         seq.Join(baseTrm.DOLocalMoveX(Define.PlayerMove.WorldPos.x, 0.3f));

@@ -102,6 +102,7 @@ public class PlayerAttack : CharacterBase
         difY = MapController.PosToArray(enemy.localPosition.z) - MapController.PosToArray(transform.localPosition.z);
         Debug.Log($"difx:{difX}, difY:{difY}");
         bool nearEnemy = (Mathf.Abs(difX) + Mathf.Abs(difY)) == 1 ? true : false;
+        nearEnemy &= !Define.EnemyMove.CanVoid;
         Vector2Int pos = MapController.PosToArray(transform.localPosition);
         int damage = MapController.Instance.MapNum[pos.y, pos.x];
 

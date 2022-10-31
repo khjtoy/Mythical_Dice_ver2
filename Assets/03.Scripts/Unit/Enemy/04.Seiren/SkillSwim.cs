@@ -43,11 +43,13 @@ public class SkillSwim : EnemySkill
         });
         if(isUnderWater)
         {
+            unit.CanVoid = true;
             seq.AppendInterval(0.8f);
             seq.AppendCallback(() => DoAttack(unit, ani, callback));
         }
         else
         {
+            unit.CanVoid = false;
             seq.AppendInterval(0.8f);
             seq.AppendCallback(() => callback?.Invoke());
         }
