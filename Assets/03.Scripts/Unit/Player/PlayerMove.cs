@@ -59,7 +59,7 @@ public class PlayerMove : UnitMove
 		//Dice Boom Debug
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			MapController.Instance.Boom(Vector2Int.zero, 1);
+			MapController.Instance.Boom(Vector2Int.zero, 1, Color.red);
 		}
 	}
 

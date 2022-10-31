@@ -19,10 +19,10 @@ public class SkillStamp : EnemySkill
         int skillCase = UnityEngine.Random.Range(0, 2);
         Transform baseTrm = unit.transform;
         EnemyMove enemyMove = Define.EnemyMove;
-        unit.CanVoid = true;
         seq = DOTween.Sequence();
         unit.PlaySound(unit.SkillAudioClips[(int)Sound.START]);
         seq.AppendInterval(0.3f);
+        seq.AppendCallback(()=>unit.CanVoid = true);
         if(!unit.Sequence.Sequences.Contains(seq))
             unit.Sequence.Sequences.Add(seq);
         seq.Append(baseTrm.DOLocalMoveY(1, 0.5f));

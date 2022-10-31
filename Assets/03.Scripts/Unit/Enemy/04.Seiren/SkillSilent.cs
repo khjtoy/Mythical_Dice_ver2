@@ -20,7 +20,7 @@ public class SkillSilent : EnemySkill
         Vector2Int pos = unit.GamePos;
         unit.CanVoid = true;
         int brokeNum = MapController.Instance.MapNum[pos.y, pos.x];
-        MapController.Instance.BoomSameNum(brokeNum);
+        MapController.Instance.BoomSameNum(brokeNum, new Color(0.1f, 0.5f, 0.8f));
         randomPos = MapController.Instance.GetRandomNumberPosition(brokeNum);
         seq.Append(unit.transform.DOLocalMove(MapController.ArrayToPos(randomPos), 0.5f));
 

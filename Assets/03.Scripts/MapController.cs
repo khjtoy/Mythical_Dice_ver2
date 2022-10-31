@@ -207,7 +207,7 @@ public class MapController : MonoSingleton<MapController>
 		}
 	}
 
-	public void BoomSameNum(int value)
+	public void BoomSameNum(int value, Color diceColor )
 	{
 		GameManager.Instance.BossNum = value;
 		int brokeNum = GameManager.Instance.BossNum;
@@ -218,18 +218,18 @@ public class MapController : MonoSingleton<MapController>
 			int x = i / size;
 			int y = i % size;
 			if (mapNum[y, x] == brokeNum)
-				Boom(x, y);
+				Boom(x, y, diceColor);
 		}
 	}
 
-	public void Boom(int x, int y)
+	public void Boom(int x, int y, Color diceColor )
 	{
 		int brokeNum = GameManager.Instance.BossNum;
 		if (dices[y, x].DiceSelect.Randoms == brokeNum)
 		{
 			MeshRenderer renderer = dices[y, x].transform.GetChild(0).GetComponent<MeshRenderer>();
 			Sequence seq = DOTween.Sequence();
-			seq.Append(renderer.material.DOColor(Color.red * 0.8f, 0.3f));
+			seq.Append(renderer.material.DOColor(diceColor * 0.8f, 0.3f));
 			seq.Append(renderer.material.DOColor(new Color(38, 8, 0) / 255, 0.2f));
 			int n = y;
 			int m = x;
@@ -241,23 +241,23 @@ public class MapController : MonoSingleton<MapController>
 			});
 		}
 	}
-	public void Boom(int x, int y, int value)
+	public void Boom(int x, int y, int value, Color diceColor)
 	{
 		if (x >= GameManager.Instance.Size || x < 0 || y >= GameManager.Instance.Size || y < 0)
 			return;
 		dices[y, x].DiceSelect.DiceNumSelect(value);
 		MapNum[y, x] = value;
 		GameManager.Instance.BossNum = value;
-		Boom(x, y);
+		Boom(x, y, diceColor);
 	}
-	public void Boom(Vector2Int pos, int value)
+	public void Boom(Vector2Int pos, int value, Color diceColor)
 	{
 		if (pos.x >= GameManager.Instance.Size || pos.x < 0 || pos.y >= GameManager.Instance.Size || pos.y < 0)
 			return;
 		dices[pos.y, pos.x].DiceSelect.DiceNumSelect(value);
 		MapNum[pos.y, pos.x] = value;
 		GameManager.Instance.BossNum = value;
-		Boom(pos.x, pos.y);
+		Boom(pos.x, pos.y, diceColor);
 	}
 
 	public Vector2Int GetRandomNumberPosition(int value)

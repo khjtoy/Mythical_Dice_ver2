@@ -47,7 +47,7 @@ public class SkillRough : EnemySkill
         {
             unit.WorldPos = unit.transform.localPosition;
             unit.PlaySound(unit.SkillAudioClips[1]);
-            unit.StartCoroutine(LineWaveAttack(wavePos, 6, 0.2f));
+            unit.StartCoroutine(LineWaveAttack(wavePos, 6, 0.2f, new Color(0.1f, 0.5f, 0.8f)));
         });
         if (times == 3)
         {
