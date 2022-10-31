@@ -72,12 +72,14 @@ public class Setting : MonoBehaviour
             DOTween.KillAll();
             if(SceneManager.GetSceneByBuildIndex(4).isLoaded)
                 SceneManager.LoadScene("SampleScene");
+            if(SceneManager.GetSceneByBuildIndex(3).isLoaded)
+                SceneManager.LoadScene("Tutorial3");
         });
         buttons[(int)Buttons.CONTINUE].onClick.AddListener(_input.ToggleSetting);
         buttons[(int)Buttons.MENU].onClick.AddListener(() =>
         {
             _input.ToggleSetting();
-            if(SceneManager.GetSceneByBuildIndex(4).isLoaded)
+            if(SceneManager.GetSceneByBuildIndex(4).isLoaded || SceneManager.GetSceneByBuildIndex(3).isLoaded)
                 GameManager.Instance.LoadStageScene(0);
         });
         buttons[(int)Buttons.EXIT].onClick.AddListener(() =>
