@@ -23,7 +23,7 @@ public class MapController : MonoSingleton<MapController>
 	}
 
 	private UnitSequence Sequence = new UnitSequence();
-	
+
 	private GameObject[,] diceObjectArr;
 	public GameObject[,] DiceObject { get => diceObjectArr; }
 
@@ -78,7 +78,7 @@ public class MapController : MonoSingleton<MapController>
 			}
 		}
 		FloorInit();
-    }
+	}
 
 	private void MapInitSet(int y, int x)
 	{
@@ -93,6 +93,7 @@ public class MapController : MonoSingleton<MapController>
 		diceObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 		diceObject.transform.localScale = new Vector3(1, 1, 1);
 
+		isV[y, x] = false;
 	}
 
 	private void FloorInit(int x = 0, int y = 0, bool isfirst = false)
@@ -102,10 +103,12 @@ public class MapController : MonoSingleton<MapController>
 			return;
 		}
 
-		if (isV[x, y])
-			return;
-
-		isV[x, y] = true;
+		if (isDual)
+		{
+			if (isV[x, y])
+				return;
+			isV[x, y] = true;
+		}
 
 		if (isDown && !isfirst)
 		{
@@ -162,7 +165,7 @@ public class MapController : MonoSingleton<MapController>
 			}
 		}
 
-		StartCoroutine(dices[y, x].DiceSelect.BasicDiceNumSelect(x, y, wait, dices[y,x].Rotation[typeof(BasicRotation)]));
+		StartCoroutine(dices[y, x].DiceSelect.BasicDiceNumSelect(x, y, wait, dices[y, x].Rotation[typeof(BasicRotation)]));
 	}
 
 	public void WaitFloor(int x, int y, bool isfirst)
@@ -205,7 +208,7 @@ public class MapController : MonoSingleton<MapController>
 	}
 
 	public void BoomSameNum(int value)
-	{		
+	{
 		GameManager.Instance.BossNum = value;
 		int brokeNum = GameManager.Instance.BossNum;
 		int size = GameManager.Instance.Size;
@@ -214,7 +217,7 @@ public class MapController : MonoSingleton<MapController>
 		{
 			int x = i / size;
 			int y = i % size;
-			if(mapNum[y, x] == brokeNum)
+			if (mapNum[y, x] == brokeNum)
 				Boom(x, y);
 		}
 	}
@@ -266,7 +269,7 @@ public class MapController : MonoSingleton<MapController>
 		{
 			int x = i / size;
 			int y = i % size;
-			if(Instance.MapNum[y, x] == value)
+			if (Instance.MapNum[y, x] == value)
 				diceTrms.Add(new Vector2Int(x, y));
 		}
 
@@ -277,7 +280,7 @@ public class MapController : MonoSingleton<MapController>
 
 	public static int PosToArray(float pos)
 	{
-		return Mathf.RoundToInt((pos + GameManager.Instance.Offset) / Instance.Distance );
+		return Mathf.RoundToInt((pos + GameManager.Instance.Offset) / Instance.Distance);
 	}
 
 	public static Vector2Int PosToArray(Vector3 pos)
@@ -301,7 +304,7 @@ public class MapController : MonoSingleton<MapController>
 
 	public void GiveDamage(Vector2Int pos, int value)
 	{
-		if(Define.PlayerMove.GamePos == pos)
+		if (Define.PlayerMove.GamePos == pos)
 			Define.PlayerStat.GetDamage(value);
 	}
 

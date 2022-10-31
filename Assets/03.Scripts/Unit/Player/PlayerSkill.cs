@@ -16,7 +16,7 @@ public class PlayerSkill : CharacterBase
     [SerializeField]
     private SoundSO playerAttackSoundsSo;
 
-    private enum AttackSounds { Slash, NoneSlash, F }
+    private enum AttackSounds { Slash, NoneSlash, F, RF}
 
     [SerializeField]
     private Transform dice;
@@ -112,9 +112,9 @@ public class PlayerSkill : CharacterBase
         yield return new WaitForSeconds(0.4f);
         cameraZoom.ZoomTriger = true;
         animation.SetTrigger("Combo");
-        SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
         if (isEqul)
         {
+            SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
             for (int i = 0; i < 4; i++)
             {
                 SetSword(i);
@@ -123,6 +123,7 @@ public class PlayerSkill : CharacterBase
         }
         else
         {
+            //SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
             accDamage = numbersIdx[0] + numbersIdx[1] + numbersIdx[2] + numbersIdx[3];
             for(int i = 0; i < 4; i++)
                 SpeedAttack(i);
@@ -184,7 +185,7 @@ public class PlayerSkill : CharacterBase
             accDamage += damage;
 
             if(isEqul)
-                ComboAttack(/*idx,*/ 0.7f);
+                ComboAttack( 0.7f);
         });
         seq[idx].InsertCallback(0.7f, () =>
         {
@@ -233,12 +234,11 @@ public class PlayerSkill : CharacterBase
 
     private IEnumerator Combo()
     {
-        //yield return new WaitForSeconds(0.1f);
         animation.SetTrigger("Last");
-        yield return new WaitForSeconds(0.5f);
+		SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.RF], attackSource);
+		yield return new WaitForSeconds(0.5f);
         damage = accDamage;
-        //Debug.Log($"Damage:{damage}");
-        ComboAttack(/*4,*/ 1, true);
+        ComboAttack( 1, true);
         swordImg.sprite = originSword;
         if (Define.EnemyStat.HP <= 0) GameManager.Instance.LoadStageScene(2);
         else
@@ -251,25 +251,6 @@ public class PlayerSkill : CharacterBase
 
     private void ComboAttack(/*int index,*/ float f, bool isCombo = false)
     {
-        //      switch(index)
-        //{
-        //          case 0:
-        //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
-        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-        //              break;
-        //          case 1:
-        //              SoundManager.Instance.SetAudioSpeed(attackSource, 0.7f);
-        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-        //              break;
-        //          case 2:
-        //              SoundManager.Instance.SetAudioSpeed(attackSource, 1.3f);
-        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.Slash], attackSource);
-        //              break;
-        //          case 3:
-        //              SoundManager.Instance.SetAudioSpeed(attackSource,1f);
-        //              SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.F], attackSource);
-        //              break;
-        //      }
         ObjectPool.Instance.GetObject(PoolObjectType.PopUpDamage).GetComponent<NumText>().DamageText(damage, Define.EnemyStat.transform.position);
         Define.EnemyStat.GetDamage(damage);
         GameObject particle = ObjectPool.Instance.GetObject(isCombo ? PoolObjectType.ComboParticle : PoolObjectType.AttackParticle);
