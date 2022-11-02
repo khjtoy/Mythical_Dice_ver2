@@ -13,7 +13,7 @@ public class PlayerAttack : CharacterBase
     [FormerlySerializedAs("playerAttackSounds")] [SerializeField]
     private SoundSO playerAttackSoundsSo;
 
-    private enum AttackSounds { Slash, SlashFail}
+    private enum AttackSounds { Slash, SlashFail, FAttack = 4}
 
     private Transform enemy;
     private float timer;
@@ -110,6 +110,7 @@ public class PlayerAttack : CharacterBase
         // Last Attack ø¨√‚
         if (nearEnemy && Define.EnemyStat.HP - damage <= 0)
         {
+            SoundManager.Instance.AudioChange(playerAttackSoundsSo.audioClips[(int)AttackSounds.FAttack], attackSource);
             EventManager.TriggerEvent("STOPACTION", new EventParam());
             lastAttack.Play();
             return;

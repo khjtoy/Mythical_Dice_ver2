@@ -4,12 +4,12 @@
     "userStages": [
         {
             "currentStage": 1,
-            "clearCount": 6,
-            "clearTime": 10.618643760681153
+            "clearCount": 10,
+            "clearTime": 8.0
         },
         {
             "currentStage": 2,
-            "clearCount": 8,
+            "clearCount": 12,
             "clearTime": 20.0
         },
         {
