@@ -30,14 +30,6 @@ public class SkillSlime : EnemySkill
             Vector2Int pos = unit.GamePos;
             int damage = MapController.Instance.MapNum[pos.y, pos.x];
             SquareRangeAttack(unit.GamePos, 1, MapController.Instance.MapNum[pos.y, pos.x]);
-            
-            int random = Random.Range(0, 5);
-
-            if(random == 0)
-            {
-                Define.PlayerAttack.SpawnItem(unit.WorldPos);
-            }
-
             callback?.Invoke();
             seq.Kill();
         });

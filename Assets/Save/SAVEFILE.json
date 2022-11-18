@@ -4,7 +4,7 @@
     "userStages": [
         {
             "currentStage": 1,
-            "clearCount": 10,
+            "clearCount": 11,
             "clearTime": 8.0
         },
         {
@@ -14,7 +14,7 @@
         },
         {
             "currentStage": 3,
-            "clearCount": 5,
+            "clearCount": 6,
             "clearTime": 27.0
         },
         {
