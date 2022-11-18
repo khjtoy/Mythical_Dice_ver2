@@ -15,7 +15,7 @@ MonoBehaviour:
   State: 5
   FromIdleCondition:
   - ConditionEnum: 1
-    Parameter: 0.5
+    Parameter: 0.7
     IsPositive: 1
   - ConditionEnum: 3
     Parameter: 1
